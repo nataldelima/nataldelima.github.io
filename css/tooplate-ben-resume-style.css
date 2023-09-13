@@ -327,7 +327,7 @@ a:hover {
 
 
 /*---------------------------------------
-     ABOUT                
+     SOBRE                
   -----------------------------------------*/
 
 .sobre-third {
@@ -348,6 +348,31 @@ a:hover {
   margin-right: 1rem;
 }
 
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.skills>li {
+  min-height: 85px;
+  min-width: 85px;
+  text-align: center;
+  padding: 0 5px 0 0;
+  margin: 5px;
+  border: 1px solid #f0f0f0;
+  border-radius: 15%;
+}
+
+.skills>li>img {
+  text-align: center;
+  height: 30px;
+  padding-right: 5px;
+}
 
 /*---------------------------------------
      FAQ                 
