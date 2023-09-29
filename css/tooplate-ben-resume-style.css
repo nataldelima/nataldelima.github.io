@@ -415,38 +415,38 @@ a:hover {
      TESTIMONIALS               
   -----------------------------------------*/
 
-.testimonials {
+.portfolio {
   background: #f9f9f9;
 }
 
-.testimonials-image {
+.portfolio-image {
   margin: 0 1rem 1rem 1rem;
 }
 
-.testimonials-image img {
+.portfolio-image img {
   border-radius: var(--border-radius-medium);
 }
 
-.testimonials-info {
+.portfolio-info {
   width: 100%;
 }
 
-.testimonials .owl-theme .owl-nav.disabled+.owl-dots {
+.portfolio .owl-theme .owl-nav.disabled+.owl-dots {
   margin-top: 2rem;
 }
 
-.testimonials .owl-theme .owl-dots .owl-dot {
+.portfolio .owl-theme .owl-dots .owl-dot {
   outline: none;
 }
 
-.testimonials .owl-theme .owl-dots .owl-dot span {
+.portfolio .owl-theme .owl-dots .owl-dot span {
   width: 30px;
   height: 3px;
   margin: 5px;
 }
 
-.testimonials .owl-theme .owl-dots .owl-dot.active span,
-.testimonials .owl-theme .owl-dots .owl-dot:hover span {
+.portfolio .owl-theme .owl-dots .owl-dot.active span,
+.portfolio .owl-theme .owl-dots .owl-dot:hover span {
   background: var(--primary-color);
 }
 

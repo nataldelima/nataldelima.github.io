@@ -23,7 +23,7 @@ $(function () {
     });
 
     // TESTIMONIALS CAROUSEL
-    $('#testimonials-carousel').owlCarousel({
+    $('#portfolio-carousel').owlCarousel({
         loop: true,
         margin: 10,
         responsiveClass: true,
