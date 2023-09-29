@@ -38,6 +38,7 @@ https://www.tooplate.com/view/2120-ben-resume
 
   --gray-color: #909090;
   --p-color: #7d7a7a;
+  --ul-color: #7d7a7a;
 
   --base-font-family: "Plain", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-weight-bold: 600;
@@ -99,13 +100,15 @@ h6 {
   font-size: var(--h6-font-size);
 }
 
-p {
+p,
+ul {
   color: var(--p-color);
   font-size: var(--p-font-size);
   font-weight: var(--font-weight-light);
   letter-spacing: 0.3px;
   line-height: 2em;
 }
+
 
 .section-padding {
   padding: 6rem 0;
