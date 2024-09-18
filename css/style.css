@@ -75,3 +75,15 @@
      background-color: #212529;
      color: #f8f9fa;
  }
+
+ .carousel-control-prev,
+ .carousel-control-next {
+     width: 5%;
+ }
+
+ .carousel-control-prev-icon,
+ .carousel-control-next-icon {
+     background-color: rgba(0, 0, 0, 0.0);
+     border-radius: 50%;
+     padding: 20px;
+ }
