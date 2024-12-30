@@ -34,3 +34,36 @@ buscarValorClasse(url, classe)
         }
     })
     .catch(error => console.error(error));
+
+
+//Função para Carousel
+
+document.addEventListener('DOMContentLoaded', () => {
+    const carousel = document.querySelector('#portfolioCarousel');
+    const prevBtn = carousel.querySelector('.carousel-control-prev');
+    const nextBtn = carousel.querySelector('.carousel-control-next');
+    const items = carousel.querySelectorAll('.carousel-item');
+
+    const updateButtons = () => {
+        const activeIndex = Array.from(items).findIndex(item => item.classList.contains('active'));
+        prevBtn.style.display = activeIndex === 0 ? 'none' : 'block';
+        nextBtn.style.display = activeIndex === items.length - 1 ? 'none' : 'block';
+    };
+
+    carousel.addEventListener('slid.bs.carousel', updateButtons);
+    updateButtons(); // Initialize button visibility
+});
+
+
+// Enviar mensagem por whatsapp
+function sendWhatsAppMessage() {
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var phone = document.getElementById('phone').value;
+    var message = document.getElementById('message').value;
+
+    var whatsappMessage = `Nome: ${name}%0AEmail: ${email}%0ATelefone: ${phone}%0AMensagem: ${message}`;
+    var whatsappUrl = `https://web.whatsapp.com/send?phone=5567991609897&text=${whatsappMessage}`;
+
+    window.open(whatsappUrl, '_blank');
+}
