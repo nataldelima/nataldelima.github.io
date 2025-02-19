@@ -58,6 +58,8 @@ body {
     background-color: var(--color-white);
 }
 
+
+
 img {
     max-width: 100%;
     height: auto;
@@ -87,6 +89,9 @@ img {
     font-size: 2.5rem;
     margin-bottom: 2rem;
     text-align: center;
+    text-transform: uppercase;
+    font-family: var(--font-brand);
+    letter-spacing: 0.2em;
 }
 
 /* Components */
@@ -109,10 +114,10 @@ img {
     padding: 1rem var(--container-padding);
 }
 
-/* Adicionando padding-top no main para compensar o header fixo */
-#main-content {
+
+section {
     padding-top: 100px;
-    /* Ajuste este valor de acordo com a altura do seu header */
+
 }
 
 
@@ -301,8 +306,84 @@ img {
 /* Contact Section */
 .contact-section {
     padding: 4rem 0;
-    background-color: var(--color-tertiary-alpha);
+    background-color: var(--color-secondary);
+    color: var(--color-white);
 }
+
+
+.contact-container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.contact-form {
+    background-color: var(--color-white);
+    padding: 2rem;
+    border-radius: 15px;
+    color: var(--color-black);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.form-group textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.btn {
+    border-radius: 25px;
+}
+
+.btn-whatsapp {
+    padding: 15px;
+    text-decoration: none;
+    max-width: 200px;
+
+}
+
+.btn-instagram {
+    padding: 15px;
+    text-decoration: none;
+    max-width: 200px;
+
+}
+
+
+.btn-submit {
+    border: 1px solid var(--color-black);
+    font-size: x-large;
+    padding: 15px;
+}
+
+.btn-submit:hover {
+    color: var(--color-white);
+    background-color: var(--color-secondary);
+    border: 1px solid var(--color-white);
+}
+
+.social-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
 
 /* Footer */
 .site-footer {
@@ -387,6 +468,13 @@ img {
     .hero {
         padding: 15vh 0;
     }
+
+    .contact-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        padding: 3px;
+    }
+
 }
 
 /* Mobile Landscape (480px to 767px) */
@@ -406,6 +494,7 @@ img {
     .section-title {
         font-size: 2rem;
     }
+
 }
 
 /* Mobile Portrait (up to 479px) */
