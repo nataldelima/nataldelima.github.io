@@ -58,19 +58,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function detectOS() {
     const userAgent = navigator.userAgent;
-    const platform = navigator.platform;
 
-    if (/Android|iPhone|iPad|iPod|Windows/.test(userAgent)) {
-        return "mobileOrWindows";
-    }
-    return "other";
+    return (/Android|iPhone|iPad|iPod|Windows/.test(userAgent)) ? "api" : "web";
 }
 
 
 // Enviar mensagem por whatsapp
 function sendWhatsAppMessage(source = 'form') {
     const phoneNumber = "5567991609897";
-    const app = detectOS() === "mobileOrWindows" ? 'api' : 'web';
+    const app = detectOS();
     var name = document.getElementById('name').value;
     var email = document.getElementById('email').value;
     var phone = document.getElementById('phone').value;
@@ -88,9 +84,6 @@ function sendWhatsAppMessage(source = 'form') {
     if (!message) {
         message = `👋Olá! estou pensando em desenvolver um site.🖥️ 📱 Pode me dar mais informações?`;
     }
-
-    alert(detectOS());
-
 
     var whatsappMessage = source === 'form' ? `Nome: ${name}%0AEmail: ${email}%0ATelefone: ${phone}%0AMensagem: ${message}` : message;
     var whatsappUrl = `https://${app}.whatsapp.com/send?phone=${phoneNumber}&text=${whatsappMessage}`;
