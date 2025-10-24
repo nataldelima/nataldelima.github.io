@@ -71,6 +71,10 @@
      color: #343a40;
  }
 
+ sup {
+     font-size: bolder;
+ }
+
  footer {
      background-color: #212529;
      color: #f8f9fa;
@@ -79,11 +83,14 @@
  .carousel-control-prev,
  .carousel-control-next {
      width: 5%;
+     margin: -50px;
  }
 
  .carousel-control-prev-icon,
  .carousel-control-next-icon {
-     background-color: rgba(0, 0, 0, 0.0);
+     background-color: rgba(0, 0, 0, 0.3);
+     color: #343a40;
      border-radius: 50%;
-     padding: 20px;
+     padding: 10px;
+
  }

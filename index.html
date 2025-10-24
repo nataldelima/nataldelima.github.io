@@ -169,13 +169,12 @@
                      </div>
                      <div class="col-md-4 d-none d-md-block">
                         <div class="card" style="height: 400px;">
-                           <img class="card-img-top" src="/midia/clinica-mulher.png" alt="Clínica da Mulher"
+                           <img class="card-img-top" src="midia/clinica-mulher.png" alt="Clínica da Mulher"
                               style="height: 200px; object-fit: cover;">
                            <div class="card-body d-flex flex-column">
                               <h4 class="card-title text-dark">Projeto Clínica da Mulher</h4>
                               <p class="card-text text-dark">Projeto fictício para treinar habilidades de
-                                 desenvolvimento
-                                 web.</p>
+                                 desenvolvimentoeb.</p>
                               <a href="midia/portfolio/clinica-mulher/" target="_blank"
                                  class="btn btn-warning mt-auto">Ver
                                  Projeto</a>
@@ -189,8 +188,7 @@
                            <div class="card-body d-flex flex-column">
                               <h4 class="card-title text-dark">Projeto Inteligência Artificial</h4>
                               <p class="card-text text-dark">Projeto fictício para treinar habilidades de
-                                 desenvolvimento
-                                 web.</p>
+                                 desenvolvimento web.</p>
                               <a href="midia/portfolio/ia/" target="_blank" class="btn btn-warning mt-auto">Ver
                                  Projeto</a>
                            </div>
@@ -209,11 +207,9 @@
                            <div class="card-body d-flex flex-column">
                               <h4 class="card-title text-dark">Projeto Agência Fake</h4>
                               <p class="card-text text-dark">Projeto fictício para treinar habilidades de
-                                 desenvolvimento
-                                 web.</p>
+                                 desenvolvimentoeb.</p>
                               <a href="midia/portfolio/agencia-fake/" target="_blank"
-                                 class="btn btn-warning mt-auto">Ver
-                                 Projeto</a>
+                                 class="btn btn-warning mt-auto">Ver Projeto</a>
                            </div>
                         </div>
                      </div>
@@ -259,30 +255,30 @@
          <h2 class="text-center">Contato</h2>
          <div class="row">
             <div class="col-md-8 mx-auto google-form-container form">
-               <form onsubmit="sendWhatsAppMessage(); return false;">
+               <form id="form" onsubmit="sendWhatsAppMessage('form'); return false;">
                   <div class="mb-3">
-                     <label for="name" class="form-label">Nome</label>
+                     <label for="name" class="form-label">Nome <sup>*</sup></label>
                      <input type="text" class="form-control" id="name" required>
                   </div>
                   <div class="mb-3">
-                     <label for="email" class="form-label">Email</label>
+                     <label for="email" class="form-label">Email <sup>*</sup></label>
                      <input type="email" class="form-control" id="email" required>
                   </div>
                   <div class="mb-3">
-                     <label for="phone" class="form-label">Telefone</label>
+                     <label for="phone" class="form-label">Telefone <sup>*</sup></label>
                      <input type="tel" class="form-control" id="phone" required>
                   </div>
                   <div class="mb-3">
                      <label for="message" class="form-label">Mensagem</label>
-                     <textarea class="form-control" id="message" rows="3" required></textarea>
+                     <textarea class="form-control" id="message" rows="3"></textarea>
                   </div>
+                  <div class="alert"></div>
                   <button type="submit" class="btn btn-warning">Enviar Mensagem</button>
                </form>
 
             </div>
             <div class="col-md-4 mx-auto text-end">
-               <p><a class="btn btn-light mt-4" target="_blank"
-                     href="https://web.whatsapp.com/send?phone=5567991609897text=Ol%C3%A1%2C%20estou%20pensando%20em%20desenvolver%20um%20site%20e%20quero%20mais%20informa%C3%A7%C3%B5es%3A"><i
+               <p><a id="btnWhats" class="btn btn-light mt-4" target="_blank" onclick="sendWhatsAppMessage('btn')"><i
                         class="bi bi-whatsapp"></i> (67) 99160 9897</a>
                </p>
             </div>

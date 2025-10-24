@@ -55,15 +55,92 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// Enviar mensagem por whatsapp
+/*
+
+const phoneNumber = "5567991609897";
+function detectOS() {
+    const userAgent = navigator.userAgent;
+    const platform = navigator.platform;
+
+    if (/Android|iPhone|iPad|iPod|Windows/.test(userAgent)) {
+        return "mobileOrWindows";
+    }
+    return "other";
+}
+
+function updateWhatsAppLink() {
+    const whatsappLink = document.getElementById("whatsapp");
+    const message = `Olá! 👋 
+    
+    🖥️ Gostaria de informações para fazer um site. 📱
+    
+    Pode me ajudar?`;
+    const encodedMessage = encodeURIComponent(message);
+    const baseURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+    const webURL = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+
+    if (detectOS() === "mobileOrWindows") {
+        whatsappLink.href = baseURL;
+    } else {
+        whatsappLink.href = webURL;
+    }
+}
+
+// Executa a função ao carregar a página
+window.onload = updateWhatsAppLink;
+
+
 function sendWhatsAppMessage() {
+    const nome = document.getElementById('nome').value;
+    const email = document.getElementById('email').value;
+    const fone = document.getElementById('fone').value;
+    const mensagem = document.getElementById('mensagem').value;
+    const whatsappMessage = `*Nome:* ${nome}%0A*Email:* ${email}%0A*Telefone:* ${fone}%0A*Mensagem:* ${mensagem}`;
+    const app = detectOS() === "mobileOrWindows" ? 'api' : 'web';
+    const whatsappUrl = `https://${app}.whatsapp.com/send?phone=${phoneNumber}&text=${whatsappMessage}`;
+    window.open(whatsappUrl, '_blank');
+}
+
+*/
+
+function detectOS() {
+    const userAgent = navigator.userAgent;
+    const platform = navigator.platform;
+
+    if (/Android|iPhone|iPad|iPod|Windows/.test(userAgent)) {
+        return "mobileOrWindows";
+    }
+    return "other";
+}
+
+
+// Enviar mensagem por whatsapp
+function sendWhatsAppMessage(source = 'form') {
+    const phoneNumber = "5567991609897";
+    const app = detectOS() === "mobileOrWindows" ? 'api' : 'web';
     var name = document.getElementById('name').value;
     var email = document.getElementById('email').value;
     var phone = document.getElementById('phone').value;
     var message = document.getElementById('message').value;
+    var alertBox = document.querySelector('.alert');
 
-    var whatsappMessage = `Nome: ${name}%0AEmail: ${email}%0ATelefone: ${phone}%0AMensagem: ${message}`;
-    var whatsappUrl = `https://web.whatsapp.com/send?phone=5567991609897&text=${whatsappMessage}`;
+    if (source == 'form') {
+
+        if (!name || !email || !phone) {
+            alertBox.textContent = 'Por favor, preencha todos os campos obrigatórios.';
+            alertBox.style.color = 'yellow';
+            return;
+        }
+    }
+    if (!message) {
+        message = `👋Olá! estou pensando em desenvolver um site.🖥️ 📱 Pode me dar mais informações?`;
+    }
+
+    alert(detectOS());
+
+
+    var whatsappMessage = source === 'form' ? `Nome: ${name}%0AEmail: ${email}%0ATelefone: ${phone}%0AMensagem: ${message}` : message;
+    var whatsappUrl = `https://${app}.whatsapp.com/send?phone=${phoneNumber}&text=${whatsappMessage}`;
 
     window.open(whatsappUrl, '_blank');
 }
