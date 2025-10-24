@@ -41,23 +41,27 @@
    <link rel="stylesheet" href="css/style.css">
    <link rel="shortcut icon" href="midia/logo.png" type="image/x-icon">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-</head>
 
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-1054859292"></script>
-<script>
-   window.dataLayer = window.dataLayer || [];
-   function gtag() { dataLayer.push(arguments); }
-   gtag('js', new Date());
-
-   gtag('config', 'AW-1054859292');
+   <!-- Google tag (gtag.js) -->
+   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-1054859292"></script>
+   <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
 
 
-   // Event snippet for Preencheu Formulário de Orçamento conversion page
+      // GA4 measurement ID (substitua pelo seu G-XXXXX)
+      gtag('config', 'G-TMRRJ71KMB');
 
-   gtag('event', 'conversion', { 'send_to': 'AW-1054859292/PrrWCI6PxKMaEJzA__YD' });
-</script>
+      // Google Ads (se quiser manter a tag de conversão)
+      // o script da lib é o mesmo; eventos de conversão são enviados assim:
+      gtag('config', 'AW-1054859292');
+
+
+      // Event snippet for Preencheu Formulário de Orçamento conversion page
+      gtag('event', 'conversion', { 'send_to': 'AW-1054859292/PrrWCI6PxKMaEJzA__YD' });
+   </script>
 
 </head>
 
