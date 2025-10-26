@@ -1,58 +1,82 @@
-async function buscarValorClasse(url, classe) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Erro na requisição: ${response.status}`);
-        }
-
-        const html = await response.text();
-        const document = new DOMParser().parseFromString(html, "text/html");
-        const elementos = document.getElementsByClassName(classe);
-
-        if (elementos.length === 0) {
-            throw new Error(`Nenhum elemento encontrado com a classe ${classe}`);
-        }
-
-        const valor = elementos[0].textContent.trim();
-        return valor;
-    } catch (error) {
-        console.error(error);
-        return null;
-    }
-}
-
-// Exemplo de uso
-const url = "https://www.google.com/maps/search/clinica+estetica/@-20.5013962,-54.6412327,15z/data=!4m2!2m1!6e6?entry=ttu"; // Insira a URL do seu site
-const classe = "meu-classe"; // Insira a classe que você deseja buscar o valor
-
-buscarValorClasse(url, classe)
-    .then(valor => {
-        if (valor) {
-            console.log(`Valor da classe ${classe}: ${valor}`);
-        } else {
-            console.error(`Não foi possível obter o valor da classe ${classe}`);
-        }
-    })
-    .catch(error => console.error(error));
-
-
 //Função para Carousel
 
+
 document.addEventListener('DOMContentLoaded', () => {
-    const carousel = document.querySelector('#portfolioCarousel');
-    const prevBtn = carousel.querySelector('.carousel-control-prev');
-    const nextBtn = carousel.querySelector('.carousel-control-next');
-    const items = carousel.querySelectorAll('.carousel-item');
 
-    const updateButtons = () => {
-        const activeIndex = Array.from(items).findIndex(item => item.classList.contains('active'));
-        prevBtn.style.display = activeIndex === 0 ? 'none' : 'block';
-        nextBtn.style.display = activeIndex === items.length - 1 ? 'none' : 'block';
-    };
+    // Lista de projetos do portfólio
+    const projetos = [
+        {
+            titulo: "Projeto Lista de Tarefas",
+            descricao: "Projeto de lista de tarefas feito em HTML5, CSS e JavaScript.",
+            imagem: "midia/lista-de-tarefas.png",
+            link: "midia/portfolio/lista-de-tarefas/"
+        },
+        {
+            titulo: "Projeto Clínica da Mulher",
+            descricao: "Projeto fictício para treinar habilidades de desenvolvimento web.",
+            imagem: "midia/clinica-mulher.png",
+            link: "midia/portfolio/clinica-mulher/"
+        },
+        {
+            titulo: "Projeto Inteligência Artificial",
+            descricao: "Projeto fictício para treinar habilidades de desenvolvimento web.",
+            imagem: "midia/ia.png",
+            link: "midia/portfolio/ia/"
+        },
+        {
+            titulo: "Projeto Agência Fake",
+            descricao: "Projeto fictício para treinar habilidades de desenvolvimento web.",
+            imagem: "midia/agencia-fake.png",
+            link: "midia/portfolio/agencia-fake/"
+        }
+    ];
 
-    carousel.addEventListener('slid.bs.carousel', updateButtons);
-    updateButtons(); // Initialize button visibility
+    // Container do Swiper
+    const wrapper = document.getElementById('portfolioWrapper');
+
+    // Gera dinamicamente os slides
+    projetos.forEach(projeto => {
+        const slide = document.createElement('div');
+        slide.classList.add('swiper-slide');
+
+        slide.innerHTML = `
+        <div class="card h-100">
+          <img src="${projeto.imagem}" class="card-img-top" alt="${projeto.titulo}" style="height: 200px; object-fit: cover;">
+          <div class="card-body d-flex flex-column">
+            <h4 class="card-title text-dark">${projeto.titulo}</h4>
+            <p class="card-text text-dark">${projeto.descricao}</p>
+            <a href="${projeto.link}" target="_blank" class="btn btn-warning mt-auto">Ver Projeto</a>
+          </div>
+        </div>
+      `;
+        wrapper.appendChild(slide);
+    });
+
+    // Inicializa o Swiper
+    const swiper = new Swiper(".portfolioSwiper", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+        },
+        breakpoints: {
+            768: { slidesPerView: 2, spaceBetween: 30 }, // tablets
+            992: { slidesPerView: 3, spaceBetween: 30 }, // notebooks e PCs
+        },
+    });
 });
+
+
 
 //Identificar o sistema operacional
 
