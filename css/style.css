@@ -27,24 +27,31 @@
  .video-banner {
      position: relative;
      width: 100%;
-     height: 400px;
+     height: auto;
+     min-height: 400px;
      overflow: hidden;
      opacity: 0.8;
  }
 
  .video-banner video {
-     width: 100%;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     min-width: 100%;
+     min-height: 100%;
+     width: auto;
      height: auto;
      object-fit: cover;
  }
 
  .video-banner .container {
-     position: absolute;
-     top: 50%;
-     left: 50%;
-     transform: translate(-50%, -50%);
+     position: relative;
      text-align: center;
+     padding-top: 5rem;
+     padding-bottom: 5rem;
      color: #343a40;
+     height: 100%;
  }
 
  .bg-light {
@@ -118,4 +125,45 @@
  .swiper-button-prev:hover::after,
  .swiper-button-next:hover::after {
      color: #fff;
+ }
+
+
+ /* --- Media Query para Dispositivos Móveis --- */
+
+ @media (max-width: 768px) {
+     .video-banner {
+         /* No celular, remova a altura fixa ou reduza-a */
+         height: auto;
+     }
+
+     .video-banner .container {
+         /* Reduza o espaçamento interno para diminuir o espaço extra */
+         padding-top: 3rem;
+         padding-bottom: 3rem;
+         /* ESTE É O AJUSTE CHAVE PARA O CELULAR */
+         top: auto;
+         /* Remove a centralização absoluta no celular */
+         left: auto;
+         transform: none;
+         height: auto;
+     }
+
+     .video-banner video {
+         /* Garanta que o vídeo não estique demais */
+         height: 100%;
+     }
+
+     #servicos {
+         margin-top: -5rem;
+         text-align: center;
+     }
+
+     #contato .btn {
+         text-align: center;
+         width: 100%;
+     }
+
+     #contato .btn-warning {
+         margin-top: -5rem;
+     }
  }
