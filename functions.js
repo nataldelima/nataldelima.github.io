@@ -5,7 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Lista de projetos do portfólio
     const projetos = [
+
         {
+            titulo: "Projeto Doguinho's",
+            descricao: "Projeto de Site simples para Clínica Veterinária.",
+            imagem: "midia/doguinhos.png",
+            link: "https://nataldelima.github.io/doguinhos"
+        }, {
             titulo: "Projeto Lista de Tarefas",
             descricao: "Projeto de lista de tarefas feito em HTML5, CSS e JavaScript.",
             imagem: "midia/lista-de-tarefas.png",
@@ -41,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         slide.innerHTML = `
         <div class="card h-100">
-          <img src="${projeto.imagem}" class="card-img-top" alt="${projeto.titulo}" style="height: 200px; object-fit: cover;">
+          <img src="${projeto.imagem}" class="card-img-top" alt="${projeto.titulo}" style="height: 250px; object-fit: cover;">
           <div class="card-body d-flex flex-column">
             <h4 class="card-title text-dark">${projeto.titulo}</h4>
             <p class="card-text text-dark">${projeto.descricao}</p>
