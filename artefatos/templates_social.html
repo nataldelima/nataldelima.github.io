@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Templates Redes Sociais - Desenvolvedor Web</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .tab {
+            padding: 15px 30px;
+            background: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .content {
+            display: none;
+        }
+        
+        .content.active {
+            display: block;
+        }
+        
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .template-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .template-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .template-preview {
+            width: 100%;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .template-info {
+            padding: 20px;
+        }
+        
+        .template-info h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .template-info p {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .copy-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .copy-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .copy-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .template-text {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 0.85em;
+            line-height: 1.8;
+            border-left: 4px solid #667eea;
+            white-space: pre-wrap;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .hashtags {
+            margin-top: 15px;
+            padding: 12px;
+            background: #e8eaf6;
+            border-radius: 8px;
+            font-size: 0.8em;
+            color: #667eea;
+            font-weight: 500;
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            color: #667eea;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .tips-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 5px solid #f59e0b;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .tips-box h4 {
+            color: #d97706;
+            margin-bottom: 10px;
+        }
+        
+        .tips-box ul {
+            margin-left: 20px;
+            color: #92400e;
+        }
+        
+        .tips-box li {
+            margin: 8px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .template-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                width: 100%;
+            }
+        }
+        
+        .emojis {
+            font-size: 1.2em;
+        }
+        
+        .visual-example {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .post-preview {
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 15px;
+            background: #fafafa;
+            margin-top: 10px;
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .post-content {
+            line-height: 1.6;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📱 TEMPLATES PARA REDES SOCIAIS</h1>
+            <p style="margin-top: 10px; font-size: 1.2em;">Posts prontos para Instagram, Facebook e LinkedIn</p>
+            <p style="margin-top: 5px; opacity: 0.9;">Copy, Cole e Personalize!</p>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('apresentacao')">👋 Apresentação</button>
+            <button class="tab" onclick="showTab('portfolio')">💼 Portfólio</button>
+            <button class="tab" onclick="showTab('dicas')">💡 Dicas de Valor</button>
+            <button class="tab" onclick="showTab('depoimentos')">⭐ Depoimentos</button>
+            <button class="tab" onclick="showTab('processos')">⚙️ Bastidores</button>
+            <button class="tab" onclick="showTab('engajamento')">🔥 Engajamento</button>
+            <button class="tab" onclick="showTab('stories')">📸 Stories</button>
+        </div>
+        
+        <!-- APRESENTAÇÃO -->
+        <div id="apresentacao" class="content active">
+            <h2 class="section-title">👋 Posts de Apresentação</h2>
+            
+            <div class="template-grid">
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div>
+                            <div style="font-size: 3em; margin-bottom: 10px;">👨‍💻</div>
+                            <div style="font-size: 1.5em;">QUEM SOU EU?</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Apresentação Pessoal</h3>
+                        <p>Use no primeiro post ou periodicamente para novos seguidores</p>
+                        <div class="template-text">Oi! Me chama de [SEU NOME] 👋
+
+Sou desenvolvedor web especializado em criar sites profissionais para pequenos negócios.
+
+🎯 O que eu faço?
+Ajudo empresas locais a terem presença online de qualidade e que realmente traz resultados.
+
+💼 Meu foco:
+Sites para pet shops, clínicas de estética e pequenos comércios.
+
+✨ Por que comigo?
+→ Atendimento personalizado
+→ Preços justos
+→ Prazos cumpridos
+→ Suporte real
+
+Se você tem um negócio e ainda não está online (ou tem um site que não funciona), vamos conversar!
+
+Manda um "OI" no direct que te conto como posso ajudar! 💬</div>
+                        <div class="hashtags">#desenvolvimentoweb #sitesprofissionais #webdesign #marketing digital #campogrande</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        <div>
+                            <div style="font-size: 3em; margin-bottom: 10px;">🚀</div>
+                            <div style="font-size: 1.5em;">MINHA HISTÓRIA</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>História e Propósito</h3>
+                        <p>Humanize seu trabalho contando sua jornada</p>
+                        <div class="template-text">📖 COMO TUDO COMEÇOU
+
+Há [X meses/anos], percebi que muitos negócios incríveis aqui de [SUA CIDADE] não tinham presença online.
+
+Enquanto isso, os clientes deles estavam procurando no Google... e encontrando os concorrentes.
+
+Foi aí que decidi:
+→ Vou ajudar pequenos negócios a serem encontrados online
+→ Com sites profissionais e preços justos
+→ Focando em RESULTADOS, não só "site bonito"
+
+Hoje já são [X] clientes satisfeitos e esse é só o começo! 💪
+
+Minha missão? Fazer seu negócio ser encontrado por quem realmente importa: seus futuros clientes! 🎯
+
+Vamos juntos nessa? Chama no direct! 📱</div>
+                        <div class="hashtags">#empreendedorismo #historiadesucesso #sitesprofissionais #desenvolvedor web</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                        <div>
+                            <div style="font-size: 3em; margin-bottom: 10px;">💼</div>
+                            <div style="font-size: 1.5em;">SERVIÇOS</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Apresentação de Serviços</h3>
+                        <p>Deixe claro o que você oferece</p>
+                        <div class="template-text">🌐 O QUE EU FAÇO?
+
+Desenvolvimento de sites profissionais que realmente funcionam!
+
+📦 MEUS SERVIÇOS:
+
+🌟 Landing Page (R$ 897)
+→ Página única otimizada
+→ Perfeita para campanhas
+→ Entrega em 7 dias
+
+🚀 Site Institucional (R$ 1.997)
+→ Até 5 páginas completas
+→ Design responsivo
+→ Entrega em 15 dias
+
+💎 Site Premium (R$ 3.497)
+→ Sistema completo
+→ Blog + Agendamento
+→ Entrega em 20 dias
+
+✅ TUDO INCLUI:
+• Hospedagem 12 meses
+• Certificado de segurança
+• SEO otimizado
+• Suporte 30 dias
+• Treinamento de uso
+
+Quer saber mais? Manda "ORÇAMENTO" no direct! 💬</div>
+                        <div class="hashtags">#criacaodesites #sitesprofissionais #desenvolvimentoweb #preços #marketing</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PORTFÓLIO -->
+        <div id="portfolio" class="content">
+            <h2 class="section-title">💼 Posts de Portfólio</h2>
+            
+            <div class="template-grid">
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);">
+                        <div>
+                            <div style="font-size: 3em; margin-bottom: 10px;">🎨</div>
+                            <div style="font-size: 1.5em;">PROJETO</div>
+                            <div style="font-size: 1.5em;">CONCLUÍDO</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Showcase de Projeto</h3>
+                        <p>Mostre seu trabalho com print do site</p>
+                        <div class="template-text">✨ PROJETO ENTREGUE
+
+🎯 Cliente: [Nome do Cliente]
+📱 Tipo: Site Institucional
+⏱️ Prazo: Entregue em 14 dias
+
+O QUE FOI FEITO:
+✅ Design moderno e responsivo
+✅ 5 páginas otimizadas
+✅ Formulário de contato
+✅ Integração com WhatsApp
+✅ Google Maps
+✅ SEO configurado
+
+💬 FEEDBACK DO CLIENTE:
+"Ficou além das expectativas! Já estamos recebendo mais contatos." - [Nome]
+
+Seu negócio também precisa de presença online profissional?
+
+Chama no direct! 📩
+
+👉 Deslize para ver mais detalhes do projeto</div>
+                        <div class="hashtags">#portfolio #siteprofissional #webdesign #casosdesucesso #clientesatisfeito</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);">
+                        <div>
+                            <div style="font-size: 3em; margin-bottom: 10px;">📱</div>
+                            <div style="font-size: 1.3em;">ANTES<br>×<br>DEPOIS</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Antes e Depois</h3>
+                        <p>Mostre a transformação que você proporciona</p>
+                        <div class="template-text">⚡ ANTES × DEPOIS
+
+😰 ANTES:
+• Sem site ou site desatualizado
+• Clientes não encontravam no Google
+• Perdendo vendas para concorrência
+• Visual amador
+
+😍 DEPOIS:
+• Site profissional e moderno
+• Aparecendo no Google
+• Mais contatos e vendas
+• Credibilidade aumentada
+
+📈 RESULTADO:
++40% de contatos em 30 dias!
+
+Essa pode ser a história do SEU negócio também! 💪
+
+Quer transformar sua presença online?
+Me chama no direct! 💬
+
+#antesedepois #siteprofissional #resultados #transformacaodigital #marketingdigital</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">
+                        <div>
+                            <div style="font-size: 3em; margin-bottom: 10px;">📊</div>
+                            <div style="font-size: 1.5em;">RESULTADOS</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Resultados Reais</h3>
+                        <p>Números chamam atenção e geram confiança</p>
+                        <div class="template-text">📊 NÚMEROS QUE FALAM
+
+Site desenvolvido para [Cliente/Nicho]:
+
+📈 EM 60 DIAS:
+• 847 visitantes únicos
+• 124 formulários preenchidos
+• 89 conversas no WhatsApp
+• 23 novos clientes
+
+💰 RETORNO:
+Investimento: R$ 1.997
+Faturamento extra: R$ 12.500+
+
+ROI: 526% 🚀
+
+Não é sobre ter "só um site bonito".
+É sobre ter um site que VENDE!
+
+Seu negócio também pode ter esses resultados!
+
+Manda "QUERO" no direct 💬
+
+#resultados #sitequevende #marketingdigital #roi #crescimento</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DICAS DE VALOR -->
+        <div id="dicas" class="content">
+            <h2 class="section-title">💡 Posts de Dicas e Valor</h2>
+            
+            <div class="template-grid">
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                        <div>
+                            <div style="font-size: 3em; margin-bottom: 10px;">⚠️</div>
+                            <div style="font-size: 1.3em;">5 ERROS<br>FATAIS</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Erros Comuns</h3>
+                        <p>Eduque sua audiência sobre o que evitar</p>
+                        <div class="template-text">🚨 5 ERROS QUE MATAM SEU SITE
+
+Vi isso em MUITOS sites e preciso te alertar:
+
+❌ 1. Site que não funciona no celular
+→ 70% dos acessos são mobile!
+
+❌ 2. Demora 10 segundos pra carregar
+→ Cliente não espera isso
+
+❌ 3. Sem telefone/WhatsApp visível
+→ Quer vender ou não?
+
+❌ 4. Fotos ruins ou genéricas
+→ Mostra SEU negócio de verdade
+
+❌ 5. Nunca atualiza
+→ Site de 2015? Cliente pensa que você fechou!
+
+✅ SOLUÇÃO:
+Site profissional, rápido, atualizado e que converte!
+
+Seu site tem algum desses erros?
+Comenta aqui embaixo! 👇
+
+#dicasdesite #erroscomuns #siteprofissional #webdesign #marketing</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        <div>
+                            <div style="font-size: 3em; margin-bottom: 10px;">🎯</div>
+                            <div style="font-size: 1.3em;">POR QUE<br>TER SITE?</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Educação de Mercado</h3>
+                        <p>Mostre o valor de ter um site profissional</p>
+                        <div class="template-text">🤔 "NÃO PRECISO DE SITE, TENHO INSTAGRAM"
+
+Olha, eu entendo...
+
+Mas deixa eu te mostrar uma coisa:
+
+📱 Instagram:
+• Você não é dono da plataforma
+• Algoritmo controla o alcance
+• Só quem te segue vê
+• Pode perder tudo do nada
+
+🌐 Seu Site:
+• SEU espaço, SUAS regras
+• Aparece no Google
+• QUALQUER pessoa encontra
+• É seu pra sempre
+
+💡 A VERDADE:
+Instagram + Site = COMBINAÇÃO PERFEITA! 🚀
+
+Instagram = relacionamento
+Site = vendas e credibilidade
+
+Não precisa escolher um ou outro.
+Precisa ter OS DOIS!
+
+Concorda? Comenta aqui! 💬
+
+#instagram #site #presencaonline #marketingdigital #dicas</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div>
+                            <div style="font-size: 3em; margin-bottom: 10px;">📝</div>
+                            <div style="font-size: 1.3em;">CHECKLIST</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Checklist Útil</h3>
+                        <p>Conteúdo de valor que pode ser salvo</p>
+                        <div class="template-text">✅ CHECKLIST: SEU SITE ESTÁ BOM?
+
+Responda sim ou não:
+
+📱 Funciona bem no celular?
+⚡ Carrega em menos de 3 segundos?
+📞 Telefone/WhatsApp está visível?
+📍 Tem seu endereço e mapa?
+📸 Fotos são profissionais?
+🔍 Aparece no Google?
+🔒 Tem certificado de segurança (https)?
+📝 Informações estão atualizadas?
+💬 Tem formulário de contato?
+⭐ Mostra depoimentos de clientes?
+
+RESULTADO:
+
+8-10 SIM: Parabéns! Site profissional! ✅
+5-7 SIM: Dá pra melhorar bastante 🟡
+0-4 SIM: Urgente! Precisa refazer 🔴
+
+Quantos "SIM" você marcou?
+Comenta aqui! 👇
+
+Quer ajuda pra melhorar?
+Me chama no direct! 💬
+
+#checklist #siteprofissional #dicas #webdesign #avaliacao</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DEPOIMENTOS -->
+        <div id="depoimentos" class="content">
+            <h2 class="section-title">⭐ Posts de Depoimentos</h2>
+            
+            <div class="template-grid">
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);">
+                        <div>
+                            <div style="font-size: 3em; margin-bottom: 10px;">⭐</div>
+                            <div style="font-size: 1.5em;">DEPOIMENTO</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Depoimento Simples</h3>
+                        <p>Use com foto do cliente ou do site dele</p>
+                        <div class="template-text">💬 CLIENTE SATISFEITO
+
+"Trabalho excepcional! O [SEU NOME] entregou no prazo, foi super atencioso e o site ficou melhor do que eu esperava. Recomendo!" ⭐⭐⭐⭐⭐
+
+- [Nome do Cliente]
+[Tipo de Negócio]
+
+Feedback assim me motiva a dar sempre o melhor! 💙
+
+Quer ter a mesma experiência?
+Chama no direct! 📱
+
+#depoimento #clientesatisfeito #feedback #siteprofissional #qualidade</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        <div>
+                            <div style="font-size: 3em; margin-bottom: 10px;">🎉</div>
+                            <div style="font-size: 1.3em;">RESULTADO<br>DO CLIENTE</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Depoimento com Resultado</h3>
+                        <p>Combine feedback com números</p>
+                        <div class="template-text">🚀 RESULTADO QUE EMOCIONA
+
+"Em 1 mês com o novo site:
+→ Dobrei os agendamentos
+→ Clientes me acham no Google
+→ Meu negócio parece muito mais profissional
+
+Melhor investimento que fiz este ano!" 💯
+
+- [Nome], [Negócio] há [X] anos
+
+📊 OS NÚMEROS:
+• 2x mais agendamentos
+• 156 visitas no Google
+• 47 formulários preenchidos
+
+Isso não é sobre "site bonito".
+É sobre RESULTADO REAL! 📈
+
+Seu negócio pode ser o próximo!
+Me chama 💬
+
+#resultado #casosdesucesso #depoimento #crescimento #sitequevende</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);">
+                        <div>
+                            <div style="font-size: 3em; margin-bottom: 10px;">💝</div>
+                            <div style="font-size: 1.3em;">GRATIDÃO</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Post de Gratidão</h3>
+                        <p>Agradeça publicamente seus clientes</p>
+                        <div class="template-text">💙 GRATIDÃO
+
+Hoje completamos a entrega do site para [Cliente/Negócio]!
+
+Obrigado pela confiança, [Nome]! 🙏
+
+Foi incrível poder contribuir para o crescimento do seu negócio. Ver você satisfeito(a) com o resultado é a melhor recompensa! ✨
+
+🎯 PRÓXIMOS PASSOS:
+Agora é acompanhar os resultados chegarem!
+
+Desejo muito sucesso e que esse site traga muitos clientes novos! 🚀
+
+E você, também quer transformar sua presença online?
+Me chama no direct! 💬
+
+#gratidao #clientesatisfeito #entregue #siteprofissional #desenvolvimentoweb</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- BASTIDORES -->
+        <div id="processos" class="content">
+            <h2 class="section-title">⚙️ Posts de Bastidores</h2>
+            
+            <div class="template-grid">
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">
+                        <div>
+                            <div style="font-size: 3em; margin-bottom: 10px;">💻</div>
+                            <div style="font-size: 1.3em;">TRABALHANDO</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Dia de Trabalho</h3>
+                        <p>Mostre seu dia a dia (foto do setup)</p>
+                        <div class="template-text">☕ DIA DE TRABALHO
+
+Enquanto você lê isso, estou aqui desenvolvendo mais um site profissional! 💻
+
+📊 NO MOMENTO:
+→ 3 projetos em andamento
+→ 2 para entregar esta semana
+→ 5 propostas sendo preparadas
+
+É muito gratificante ver negócios crescendo com sites que realmente funcionam! 🚀
+
+💡 CURIOSIDADE:
+Um site leva em média 15 dias de trabalho intenso do início à entrega. Não é só "arrastar e soltar"!
+
+Cada detalhe é pensado para converter visitantes em clientes! 🎯
+
+Bom domingo pra vocês! 
+Eu vou continuar trabalhando aqui! 😄
+
+#diadetrampo #desenvolvedorweb #bastidores #trabalho #dedication</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);">
+                        <div>
+                            <div style="font-size: 3em; margin-bottom: 10px;">🎨</div>
+                            <div style="font-size: 1.3em;">PROCESSO<br>CRIATIVO</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Processo de Criação</h3>
+                        <p>Mostre como você trabalha</p>
+                        <div class="template-text">🎨 COMO NASCE UM SITE?
+
+Muita gente acha que é só "fazer bonito"...
+Mas o processo é BEM mais complexo! 
+
+📋 ETAPA 1: Briefing
+Converso com cliente, entendo o negócio, público, objetivos
+
+🎨 ETAPA 2: Design
+Crio o layout pensando em conversão, não só beleza
+
+💻 ETAPA 3: Desenvolvimento
+Codifico tudo, otimizo velocidade, SEO, responsividade
+
+🧪 ETAPA 4: Testes
+Testo em 10+ dispositivos diferentes
+
+✅ ETAPA 5: Entrega
+Treinamento, documentação, suporte
+
+📈 ETAPA 6: Resultados
+Acompanho e otimizo baseado em dados
+
+Cada site leva 15-20 dias de MUITO trabalho! 💪
+
+É artesanal, personalizado, pensado para SEU negócio!
+
+Desliza pra ver os bastidores! 👉
+
+#bastidores #processo #desenvolvimento #webdesign #comofunciona</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                        <div>
+                            <div style="font-size: 3em; margin-bottom: 10px;">⏰</div>
+                            <div style="font-size: 1.3em;">UPDATE</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Update de Progresso</h3>
+                        <p>Compartilhe andamento de projetos</p>
+                        <div class="template-text">📊 UPDATE DA SEMANA
+
+Como estão os projetos? Vem comigo! 👇
+
+✅ CONCLUÍDOS:
+• Site para [Cliente 1] - Entregue!
+• Landing page para [Cliente 2] - No ar!
+
+⚙️ EM ANDAMENTO:
+• [Cliente 3] - 70% (entrega semana que vem)
+• [Cliente 4] - 40% (design aprovado, codificando)
+
+📝 NOVOS:
+• 2 contratos assinados essa semana! 🎉
+
+📈 NÚMEROS:
+• 15 sites entregues no ano
+• 12 clientes ativos
+• 98% de satisfação
+
+Tá sendo um ano INCRÍVEL! 🚀
+
+E seu negócio? Já tem site profissional?
+Se não, pode ser o próximo da lista! 
+
+Chama no direct! 💬
+
+#update #projetos #desenvolvedor #sitesprofissionais #crescimento</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ENGAJAMENTO -->
+        <div id="engajamento" class="content">
+            <h2 class="section-title">🔥 Posts de Engajamento</h2>
+            
+            <div class="template-grid">
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+                        <div>
+                            <div style="font-size: 3em; margin-bottom: 10px;">❓</div>
+                            <div style="font-size: 1.5em;">PERGUNTA</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Pergunta para Engajar</h3>
+                        <p>Faça perguntas que gerem comentários</p>
+                        <div class="template-text">🤔 PERGUNTA PRA VOCÊ
+
+Seu negócio TEM site, mas:
+
+❌ Ninguém acessa
+❌ Não gera contatos
+❌ Está desatualizado
+❌ Não aparece no Google
+
+É melhor:
+
+A) Ter site ruim
+B) Não ter site
+
+Comenta aqui embaixo! 👇
+
+(Spoiler: a resposta pode te surpreender!)
+
+#pergunta #enquete #debate #siteprofissional #marketing</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        <div>
+                            <div style="font-size: 3em; margin-bottom: 10px;">💬</div>
+                            <div style="font-size: 1.3em;">COMPLETE<br>A FRASE</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Complete a Frase</h3>
+                        <p>Dinâmica interativa</p>
+                        <div class="template-text">🎯 COMPLETE A FRASE
+
+"Meu negócio precisa de um site porque _______________"
+
+Comenta completando a frase! 👇
+
+Vou responder TODOS os comentários! 💬
+
+E ainda te dou uma dica personalizada de como o site pode ajudar especificamente o SEU negócio! 🚀
+
+Bora? Comenta aí! 
+
+#engajamento #complete #interacao #siteprofissional #negocios</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);">
+                        <div>
+                            <div style="font-size: 3em; margin-bottom: 10px;">🎁</div>
+                            <div style="font-size: 1.5em;">SORTEIO</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Promoção/Sorteio</h3>
+                        <p>Gere buzz e novos seguidores</p>
+                        <div class="template-text">🎁 SORTEIO: ANÁLISE GRATUITA DO SEU SITE
+
+Vou sortear 3 ANÁLISES COMPLETAS do site de vocês! 
+
+O que você ganha:
+✅ Relatório completo do que está bom
+✅ Lista do que precisa melhorar
+✅ Dicas de como otimizar
+✅ Estimativa de investimento
+
+VALOR: R$ 200 (mas vai ser DE GRAÇA pra 3 sortudos!)
+
+🎯 COMO PARTICIPAR:
+1. Siga @[seu_usuario]
+2. Curta este post
+3. Comenta "QUERO" + tag 2 amigos
+4. Compartilha no story (vale +1 chance)
+
+📅 RESULTADO: [Data]
+
+Boa sorte! 🍀
+
+#sorteio #gratis #analisedosite #promocao #siteprofissional</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);">
+                        <div>
+                            <div style="font-size: 3em; margin-bottom: 10px;">📊</div>
+                            <div style="font-size: 1.5em;">ENQUETE</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Enquete Rápida</h3>
+                        <p>Use o recurso de enquete do Instagram</p>
+                        <div class="template-text">📊 ENQUETE RÁPIDA
+
+Seu negócio JÁ tem site?
+
+👍 SIM, já tenho
+👎 NÃO, ainda não
+
+Vota aí! Quero conhecer vocês melhor! 
+
+E se você ainda NÃO tem, me manda um "OI" no direct que te conto como posso ajudar! 💬
+
+#enquete #votacao #pesquisa #siteprofissional #negocios</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- STORIES -->
+        <div id="stories" class="content">
+            <h2 class="section-title">📸 Templates para Stories</h2>
+            
+            <div class="tips-box">
+                <h4>💡 DICAS PARA STORIES</h4>
+                <ul>
+                    <li>Poste 5-10 stories por dia para manter engajamento</li>
+                    <li>Use os stickers interativos (enquete, pergunta, quiz)</li>
+                    <li>Grave vídeos curtos (15 segundos) falando sobre seu trabalho</li>
+                    <li>Mostre bastidores, dia a dia, trabalho em andamento</li>
+                    <li>Reposte stories de clientes que te marcarem</li>
+                    <li>Use textos grandes e legíveis</li>
+                    <li>Adicione música quando apropriado</li>
+                </ul>
+            </div>
+            
+            <div class="template-grid">
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div style="font-size: 1.2em; text-align: center;">
+                            BOM DIA!<br><br>
+                            Hoje é dia de...<br><br>
+                            <div style="font-size: 2em;">💻</div><br>
+                            DESENVOLVER<br>
+                            SITES INCRÍVEIS!
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Bom Dia Motivacional</h3>
+                        <p>Comece o dia conectando com audiência</p>
+                        <div class="template-text">Texto superior:
+"BOM DIA! ☀️"
+
+Texto central (grande):
+"Hoje é dia de
+FAZER ACONTECER! 💪"
+
+Texto inferior:
+"Me conta: o que você vai fazer de incrível hoje? 👇"
+
+[Adicionar sticker de pergunta]</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                        <div style="font-size: 1.1em; text-align: center;">
+                            VOCÊ SABIA?<br><br>
+                            <div style="font-size: 2em;">📊</div><br>
+                            80% dos clientes<br>
+                            pesquisam no Google<br>
+                            antes de comprar
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Você Sabia? (Educativo)</h3>
+                        <p>Compartilhe dados interessantes</p>
+                        <div class="template-text">Texto superior:
+"VOCÊ SABIA? 🤔"
+
+Texto central:
+"70% das pessoas
+NÃO LIGAM
+se não acham seu site!"
+
+Texto inferior:
+"Seu negócio está perdendo clientes AGORA!"
+
+[Adicionar sticker "Deslize pra cima" ou "Link na bio"]</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        <div style="font-size: 1.1em; text-align: center;">
+                            <div style="font-size: 2em;">🎉</div><br>
+                            PROJETO<br>
+                            ENTREGUE!<br><br>
+                            +1 cliente<br>
+                            satisfeito!
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Comemoração de Entrega</h3>
+                        <p>Celebre cada conquista</p>
+                        <div class="template-text">Texto:
+"ENTREGUEEE! 🎉
+
+Mais um site no ar!
+
+Cliente: [Nome/Tipo]
+Prazo: Cumprido! ✅
+Satisfação: 100% 💯
+
+Próximo! 🚀"
+
+[Foto/vídeo do site ou sua comemoração]
+[Sticker de comemoração]</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);">
+                        <div style="font-size: 1em; text-align: center;">
+                            ENQUETE<br><br>
+                            Seu negócio<br>
+                            tem site?<br><br>
+                            <div style="font-size: 1.5em;">👍 SIM</div><br>
+                            <div style="font-size: 1.5em;">👎 NÃO</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Enquete Interativa</h3>
+                        <p>Use o sticker de enquete</p>
+                        <div class="template-text">Texto:
+"RÁPIDO! 
+Me responde:
+
+Seu negócio JÁ TEM site profissional?"
+
+[Adicionar sticker de ENQUETE]
+Opção 1: "SIM! ✅"
+Opção 2: "NÃO 😢"
+
+Texto final:
+"Vou te dar uma dica baseada na sua resposta! 💡"</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);">
+                        <div style="font-size: 1.1em; text-align: center;">
+                            BASTIDORES<br><br>
+                            <div style="font-size: 2em;">💻</div><br>
+                            Desenvolvendo<br>
+                            mais um site...<br><br>
+                            [Foto do setup]
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Bastidores do Trabalho</h3>
+                        <p>Mostre seu dia a dia</p>
+                        <div class="template-text">Opções de texto:
+
+"Enquanto vocês descansam...
+Eu tô aqui desenvolvendo! 😄☕"
+
+ou
+
+"Sextou mas o trabalho não para!
+Mais 2 sites pra entregar essa semana! 💪"
+
+ou
+
+"Setup do dia! 
+Hoje é dia de codar muito! 💻🚀"
+
+[Vídeo ou foto do seu workspace]
+[Música animada de fundo]</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">
+                        <div style="font-size: 1em; text-align: center;">
+                            CAIXA DE<br>
+                            PERGUNTAS<br><br>
+                            <div style="font-size: 2em;">❓</div><br>
+                            Me pergunte<br>
+                            QUALQUER COISA<br>
+                            sobre sites!
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3>Caixa de Perguntas</h3>
+                        <p>Gere interação e tire dúvidas</p>
+                        <div class="template-text">Texto:
+"TIRA DÚVIDAS! 
+
+Me pergunta qualquer coisa sobre:
+
+💻 Desenvolvimento de sites
+💰 Preços
+⏰ Prazos
+📊 Resultados
+🎨 Design
+
+Vou responder TODAS! 💬"
+
+[Adicionar sticker CAIXINHA DE PERGUNTAS]
+
+Depois responda em vídeos curtos!</div>
+                        <button class="copy-btn" onclick="copyText(this)">📋 Copiar Texto</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tips-box" style="margin-top: 30px;">
+                <h4>📅 CALENDÁRIO SEMANAL DE STORIES</h4>
+                <ul>
+                    <li><strong>Segunda:</strong> Bom dia + Planos da semana</li>
+                    <li><strong>Terça:</strong> Dica de valor (Você sabia?)</li>
+                    <li><strong>Quarta:</strong> Bastidores do trabalho</li>
+                    <li><strong>Quinta:</strong> Enquete ou pergunta</li>
+                    <li><strong>Sexta:</strong> Comemoração (entrega/meta)</li>
+                    <li><strong>Sábado:</strong> Reflexão da semana</li>
+                    <li><strong>Domingo:</strong> Motivacional + Descanso</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- DICAS GERAIS -->
+        <div class="visual-example" style="margin-top: 40px;">
+            <h2 style="color: #667eea; margin-bottom: 20px;">📋 DICAS GERAIS PARA REDES SOCIAIS</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div class="tips-box">
+                    <h4>📅 FREQUÊNCIA DE POSTS</h4>
+                    <ul>
+                        <li><strong>Feed:</strong> 4-5x por semana</li>
+                        <li><strong>Stories:</strong> 5-10x por dia</li>
+                        <li><strong>Reels:</strong> 2-3x por semana</li>
+                        <li>Consistência > Quantidade</li>
+                    </ul>
+                </div>
+                
+                <div class="tips-box">
+                    <h4>⏰ MELHORES HORÁRIOS</h4>
+                    <ul>
+                        <li><strong>Manhã:</strong> 8h-9h (antes trabalho)</li>
+                        <li><strong>Almoço:</strong> 12h-13h</li>
+                        <li><strong>Noite:</strong> 19h-21h (melhor!)</li>
+                        <li>Teste e veja seu público</li>
+                    </ul>
+                </div>
+                
+                <div class="tips-box">
+                    <h4>✍️ COPY (TEXTO)</h4>
+                    <ul>
+                        <li>Primeira linha CRUCIAL (gancho)</li>
+                        <li>Use emojis com moderação</li>
+                        <li>Quebre linhas (facilita leitura)</li>
+                        <li>Sempre tenha CTA (call-to-action)</li>
+                        <li>Conte histórias, não venda direto</li>
+                    </ul>
+                </div>
+                
+                <div class="tips-box">
+                    <h4>#️⃣ HASHTAGS</h4>
+                    <ul>
+                        <li>Use 10-15 hashtags relevantes</li>
+                        <li>Mix: populares + nicho + local</li>
+                        <li>Coloque no primeiro comentário</li>
+                        <li>Crie sua hashtag própria</li>
+                    </ul>
+                </div>
+                
+                <div class="tips-box">
+                    <h4>📸 IMAGENS/VÍDEOS</h4>
+                    <ul>
+                        <li>Alta qualidade sempre!</li>
+                        <li>Iluminação adequada</li>
+                        <li>Use Canva para designs</li>
+                        <li>Vídeos > Fotos (algoritmo)</li>
+                        <li>Rosto humano performa melhor</li>
+                    </ul>
+                </div>
+                
+                <div class="tips-box">
+                    <h4>💬 ENGAJAMENTO</h4>
+                    <ul>
+                        <li>Responda TODOS comentários</li>
+                        <li>Responda rápido (primeiras horas)</li>
+                        <li>Faça perguntas nos posts</li>
+                        <li>Interaja com seu nicho</li>
+                        <li>Use stickers interativos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- HASHTAGS SUGERIDAS -->
+        <div class="visual-example">
+            <h2 style="color: #667eea; margin-bottom: 20px;">#️⃣ BANCO DE HASHTAGS</h2>
+            
+            <div style="display: grid; gap: 15px;">
+                <div style="background: #f3f4f6; padding: 15px; border-radius: 8px;">
+                    <h4 style="color: #667eea; margin-bottom: 10px;">Gerais (Desenvolvimento Web)</h4>
+                    <p style="font-size: 0.9em; line-height: 1.8;">
+                        #desenvolvimentoweb #criacaodesites #sitesprofissionais #webdesign #webdeveloper #desenvolvedor #programacao #sitesresponsivos #sitemoderno #agenciadigital
+                    </p>
+                </div>
+                
+                <div style="background: #f3f4f6; padding: 15px; border-radius: 8px;">
+                    <h4 style="color: #667eea; margin-bottom: 10px;">Marketing e Negócios</h4>
+                    <p style="font-size: 0.9em; line-height: 1.8;">
+                        #marketingdigital #empreendedorismo #pequenasempresas #negocios #vendas #presencaonline #transformacaodigital #marketing #seo #googleminegocio
+                    </p>
+                </div>
+                
+                <div style="background: #f3f4f6; padding: 15px; border-radius: 8px;">
+                    <h4 style="color: #667eea; margin-bottom: 10px;">Nicho Específico</h4>
+                    <p style="font-size: 0.9em; line-height: 1.8;">
+                        #petshop #clinicaestetica #restaurante #ecommerce #lojvirtual #comerciolocal #servicoslocais #negociolocal #empresalocal
+                    </p>
+                </div>
+                
+                <div style="background: #f3f4f6; padding: 15px; border-radius: 8px;">
+                    <h4 style="color: #667eea; margin-bottom: 10px;">Localização (Adapte para sua cidade)</h4>
+                    <p style="font-size: 0.9em; line-height: 1.8;">
+                        #campogrande #campograndems #matogrossodosul #ms #desenvolvedor campogrande #sitescampogrande #webdesignercampogrande
+                    </p>
+                </div>
+                
+                <div style="background: #f3f4f6; padding: 15px; border-radius: 8px;">
+                    <h4 style="color: #667eea; margin-bottom: 10px;">Resultados e Social Proof</h4>
+                    <p style="font-size: 0.9em; line-height: 1.8;">
+                        #casosdesucesso #clientesatisfeito #portfolio #trabalhobemfeito #qualidade #profissionalismo #resultados #crescimento #sucesso
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showTab(tabName) {
+            // Esconde todo conteúdo
+            const contents = document.querySelectorAll('.content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active de todas as tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Mostra o conteúdo selecionado
+            document.getElementById(tabName).classList.add('active');
+            
+            // Adiciona active na tab clicada
+            event.target.classList.add('active');
+            
+            // Scroll para o topo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function copyText(button) {
+            const card = button.closest('.template-card');
+            const textElement = card.querySelector('.template-text');
+            const hashtagsElement = card.querySelector('.hashtags');
+            
+            let textToCopy = textElement.textContent;
+            
+            if (hashtagsElement) {
+                textToCopy += '\n\n' + hashtagsElement.textContent;
+            }
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalText = button.textContent;
+                button.textContent = '✅ Copiado!';
+                button.style.background = '#10b981';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

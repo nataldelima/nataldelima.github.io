@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planner Semanal - Desenvolvedor Web</title>
+    <style>
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.4;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            z-index: 1000;
+        }
+
+        .print-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .planner-page {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            margin: 0 auto 30px auto;
+            padding: 15mm;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .header .week-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        .week-info input {
+            border: none;
+            border-bottom: 2px solid #ddd;
+            padding: 5px;
+            font-size: 1em;
+            text-align: center;
+            width: 120px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 15px;
+            font-weight: bold;
+            font-size: 1.1em;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .goal-box {
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 12px;
+            min-height: 80px;
+        }
+
+        .goal-box h4 {
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+
+        .goal-box input {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #ddd;
+            padding: 5px 0;
+            margin: 3px 0;
+            font-size: 0.85em;
+        }
+
+        .daily-section {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            background: #fafafa;
+        }
+
+        .daily-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .daily-header h3 {
+            color: #667eea;
+            font-size: 1.1em;
+        }
+
+        .priority {
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .task-list {
+            display: grid;
+            gap: 8px;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #667eea;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .task-item input {
+            flex: 1;
+            border: none;
+            border-bottom: 1px solid #ddd;
+            padding: 5px;
+            font-size: 0.9em;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .metric-box {
+            border: 2px solid #10b981;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .metric-box h4 {
+            color: #10b981;
+            font-size: 0.85em;
+            margin-bottom: 5px;
+        }
+
+        .metric-box input {
+            width: 60px;
+            border: none;
+            border-bottom: 2px solid #10b981;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #10b981;
+        }
+
+        .notes-area {
+            border: 2px solid #f59e0b;
+            border-radius: 8px;
+            padding: 12px;
+            min-height: 100px;
+        }
+
+        .notes-area h4 {
+            color: #f59e0b;
+            margin-bottom: 8px;
+        }
+
+        .notes-area textarea {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 8px;
+            font-family: inherit;
+            font-size: 0.9em;
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .wins-section {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border: 2px solid #10b981;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .wins-section h4 {
+            color: #059669;
+            margin-bottom: 10px;
+        }
+
+        .win-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 5px 0;
+        }
+
+        .win-item::before {
+            content: '🎉';
+            font-size: 1.2em;
+        }
+
+        .win-item input {
+            flex: 1;
+            border: none;
+            background: white;
+            padding: 8px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px solid #ddd;
+            text-align: center;
+            color: #666;
+            font-size: 0.85em;
+        }
+
+        .color-code {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.8em;
+            margin-top: 10px;
+        }
+
+        .color-code span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .color-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="print-button no-print" onclick="window.print()">🖨️ IMPRIMIR PLANNER</button>
+
+    <!-- PÁGINA 1: PLANEJAMENTO SEMANAL -->
+    <div class="planner-page">
+        <div class="header">
+            <h1>📅 PLANNER SEMANAL</h1>
+            <p style="color: #666; margin-top: 5px;">Desenvolvedor Web - Do Zero ao Primeiro Cliente</p>
+            <div class="week-info">
+                <div>
+                    <strong>Semana:</strong>
+                    <input type="text" placeholder="__ / __" />
+                </div>
+                <div>
+                    <strong>Período:</strong>
+                    <input type="text" placeholder="__/__/__" /> a <input type="text" placeholder="__/__/__" />
+                </div>
+                <div>
+                    <strong>Módulo:</strong>
+                    <input type="text" placeholder="Ex: Módulo 2" />
+                </div>
+            </div>
+        </div>
+
+        <!-- METAS DA SEMANA -->
+        <div class="section">
+            <div class="section-title">🎯 METAS DA SEMANA</div>
+            <div class="goals-grid">
+                <div class="goal-box">
+                    <h4>💼 PROSPECÇÃO</h4>
+                    <input type="text" placeholder="__ contatos" />
+                    <input type="text" placeholder="__ ligações" />
+                    <input type="text" placeholder="__ WhatsApp" />
+                </div>
+                <div class="goal-box">
+                    <h4>💰 VENDAS</h4>
+                    <input type="text" placeholder="__ propostas" />
+                    <input type="text" placeholder="__ follow-ups" />
+                    <input type="text" placeholder="__ clientes" />
+                </div>
+                <div class="goal-box">
+                    <h4>⚙️ PROJETOS</h4>
+                    <input type="text" placeholder="__ em execução" />
+                    <input type="text" placeholder="__ para entregar" />
+                    <input type="text" placeholder="__ horas/dia" />
+                </div>
+            </div>
+        </div>
+
+        <!-- SEGUNDA-FEIRA -->
+        <div class="section">
+            <div class="daily-section">
+                <div class="daily-header">
+                    <h3>SEGUNDA-FEIRA</h3>
+                    <div class="priority">🔴 Alta | 🟡 Média | 🟢 Baixa</div>
+                </div>
+                <div class="task-list">
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">9h</span>
+                        <input type="text" placeholder="Ex: 10 ligações para prospects" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">10h</span>
+                        <input type="text" placeholder="Ex: Enviar 10 WhatsApp novos" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">11h</span>
+                        <input type="text" placeholder="Ex: Responder leads quentes" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">14h</span>
+                        <input type="text" placeholder="Ex: Desenvolver projeto Cliente X" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">16h</span>
+                        <input type="text" placeholder="Ex: Preparar proposta para lead Y" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">19h</span>
+                        <input type="text" placeholder="Ex: Follow-up + Planejar amanhã" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TERÇA-FEIRA -->
+        <div class="section">
+            <div class="daily-section">
+                <div class="daily-header">
+                    <h3>TERÇA-FEIRA</h3>
+                    <div class="priority">🔴 Alta | 🟡 Média | 🟢 Baixa</div>
+                </div>
+                <div class="task-list">
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">9h</span>
+                        <input type="text" placeholder="Tarefa 1" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">10h</span>
+                        <input type="text" placeholder="Tarefa 2" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">11h</span>
+                        <input type="text" placeholder="Tarefa 3" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">14h</span>
+                        <input type="text" placeholder="Tarefa 4" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">16h</span>
+                        <input type="text" placeholder="Tarefa 5" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">19h</span>
+                        <input type="text" placeholder="Tarefa 6" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUARTA-FEIRA -->
+        <div class="section">
+            <div class="daily-section">
+                <div class="daily-header">
+                    <h3>QUARTA-FEIRA</h3>
+                    <div class="priority">🔴 Alta | 🟡 Média | 🟢 Baixa</div>
+                </div>
+                <div class="task-list">
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">9h</span>
+                        <input type="text" placeholder="Tarefa 1" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">10h</span>
+                        <input type="text" placeholder="Tarefa 2" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">11h</span>
+                        <input type="text" placeholder="Tarefa 3" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">14h</span>
+                        <input type="text" placeholder="Tarefa 4" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">16h</span>
+                        <input type="text" placeholder="Tarefa 5" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">19h</span>
+                        <input type="text" placeholder="Tarefa 6" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="color-code">
+                <span>
+                    <div class="color-dot" style="background: #ef4444;"></div> Urgente/Importante
+                </span>
+                <span>
+                    <div class="color-dot" style="background: #f59e0b;"></div> Importante
+                </span>
+                <span>
+                    <div class="color-dot" style="background: #10b981;"></div> Normal
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- PÁGINA 2: QUINTA A DOMINGO + MÉTRICAS -->
+    <div class="planner-page page-break">
+        <div class="header">
+            <h1>📅 PLANNER SEMANAL</h1>
+            <p style="color: #666; margin-top: 5px;">Continuação - Semana __/__</p>
+        </div>
+
+        <!-- QUINTA-FEIRA -->
+        <div class="section">
+            <div class="daily-section">
+                <div class="daily-header">
+                    <h3>QUINTA-FEIRA</h3>
+                    <div class="priority">🔴 Alta | 🟡 Média | 🟢 Baixa</div>
+                </div>
+                <div class="task-list">
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">9h</span>
+                        <input type="text" placeholder="Ex: Desenvolvimento projeto" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">10h</span>
+                        <input type="text" placeholder="Tarefa 2" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">11h</span>
+                        <input type="text" placeholder="Tarefa 3" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">14h</span>
+                        <input type="text" placeholder="Tarefa 4" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">16h</span>
+                        <input type="text" placeholder="Tarefa 5" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">19h</span>
+                        <input type="text" placeholder="Tarefa 6" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEXTA-FEIRA -->
+        <div class="section">
+            <div class="daily-section">
+                <div class="daily-header">
+                    <h3>SEXTA-FEIRA</h3>
+                    <div class="priority">🔴 Alta | 🟡 Média | 🟢 Baixa</div>
+                </div>
+                <div class="task-list">
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">9h</span>
+                        <input type="text" placeholder="Ex: Follow-up intensivo" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">10h</span>
+                        <input type="text" placeholder="Tarefa 2" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">11h</span>
+                        <input type="text" placeholder="Tarefa 3" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">14h</span>
+                        <input type="text" placeholder="Tarefa 4" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">16h</span>
+                        <input type="text" placeholder="Ex: Fechar vendas pendentes" />
+                    </div>
+                    <div class="task-item">
+                        <div class="checkbox"></div>
+                        <span style="width: 30px; color: #667eea;">19h</span>
+                        <input type="text" placeholder="Ex: Planejar semana seguinte" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FIM DE SEMANA -->
+        <div class="section">
+            <div class="section-title">🏖️ SÁBADO & DOMINGO</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div class="daily-section" style="margin: 0;">
+                    <h4 style="color: #667eea; margin-bottom: 10px;">SÁBADO</h4>
+                    <div class="task-list">
+                        <div class="task-item">
+                            <div class="checkbox"></div>
+                            <input type="text" placeholder="Ex: Responder clientes" />
+                        </div>
+                        <div class="task-item">
+                            <div class="checkbox"></div>
+                            <input type="text" placeholder="Ex: Estudar nova técnica" />
+                        </div>
+                        <div class="task-item">
+                            <div class="checkbox"></div>
+                            <input type="text" placeholder="Opcional" />
+                        </div>
+                    </div>
+                </div>
+                <div class="daily-section" style="margin: 0;">
+                    <h4 style="color: #667eea; margin-bottom: 10px;">DOMINGO</h4>
+                    <div class="task-list">
+                        <div class="task-item">
+                            <div class="checkbox"></div>
+                            <input type="text" placeholder="Ex: Planejar semana" />
+                        </div>
+                        <div class="task-item">
+                            <div class="checkbox"></div>
+                            <input type="text" placeholder="Ex: Descansar!" />
+                        </div>
+                        <div class="task-item">
+                            <div class="checkbox"></div>
+                            <input type="text" placeholder="Opcional" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MÉTRICAS DA SEMANA -->
+        <div class="section">
+            <div class="section-title">📊 MÉTRICAS DA SEMANA</div>
+            <div class="metrics-grid">
+                <div class="metric-box">
+                    <h4>CONTATOS</h4>
+                    <input type="text" placeholder="0" />
+                    <p style="font-size: 0.75em; color: #666; margin-top: 5px;">Meta: 30-50</p>
+                </div>
+                <div class="metric-box">
+                    <h4>CONVERSAS</h4>
+                    <input type="text" placeholder="0" />
+                    <p style="font-size: 0.75em; color: #666; margin-top: 5px;">Meta: 5-10</p>
+                </div>
+                <div class="metric-box">
+                    <h4>PROPOSTAS</h4>
+                    <input type="text" placeholder="0" />
+                    <p style="font-size: 0.75em; color: #666; margin-top: 5px;">Meta: 1-3</p>
+                </div>
+                <div class="metric-box">
+                    <h4>FECHADOS</h4>
+                    <input type="text" placeholder="0" />
+                    <p style="font-size: 0.75em; color: #666; margin-top: 5px;">Meta: 1</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VITÓRIAS DA SEMANA -->
+        <div class="wins-section">
+            <h4>🎉 VITÓRIAS DA SEMANA</h4>
+            <div class="win-item">
+                <input type="text" placeholder="Ex: Fechei meu primeiro cliente!" />
+            </div>
+            <div class="win-item">
+                <input type="text" placeholder="Ex: Consegui 15 conversas iniciadas" />
+            </div>
+            <div class="win-item">
+                <input type="text" placeholder="Ex: Entreguei projeto dentro do prazo" />
+            </div>
+        </div>
+
+        <!-- NOTAS E OBSERVAÇÕES -->
+        <div class="section">
+            <div class="notes-area">
+                <h4>📝 NOTAS E APRENDIZADOS</h4>
+                <textarea placeholder="O que funcionou bem? O que preciso melhorar? Insights importantes..."></textarea>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Planner Semanal - Desenvolvedor Web</strong></p>
+            <p>Do Zero ao Primeiro Cliente | v1.0</p>
+        </div>
+    </div>
+
+    <!-- PÁGINA 3: PLANNER DE PROSPECÇÃO -->
+    <div class="planner-page page-break">
+        <div class="header">
+            <h1>📞 CONTROLE DE PROSPECÇÃO</h1>
+            <p style="color: #666; margin-top: 5px;">Semana __/__ - Rastreie cada contato</p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">🎯 LISTA DE PROSPECTS</div>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: #667eea; color: white;">
+                        <th style="padding: 10px; text-align: left; font-size: 0.9em;">Empresa</th>
+                        <th style="padding: 10px; text-align: left; font-size: 0.9em;">Contato</th>
+                        <th style="padding: 10px; text-align: center; font-size: 0.9em;">Data</th>
+                        <th style="padding: 10px; text-align: center; font-size: 0.9em;">Status</th>
+                        <th style="padding: 10px; text-align: left; font-size: 0.9em;">Próximo Passo</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" placeholder="Pet Shop ABC" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" placeholder="João" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 70px; border: none; font-size: 0.85em; text-align: center;"
+                                placeholder="__/__" /></td>
+                        <td style="padding: 8px; text-align: center;"><input type="text"
+                                style="width: 60px; border: none; font-size: 0.85em; text-align: center;"
+                                placeholder="🟢" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" placeholder="Enviar proposta" />
+                        </td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 70px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px; text-align: center;"><input type="text"
+                                style="width: 60px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <t <tr style="border-bottom: 1px solid #ddd;">
+                            <td style="padding: 8px;"><input type="text"
+                                    style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                            <td style="padding: 8px;"><input type="text"
+                                    style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                            <td style="padding: 8px;"><input type="text"
+                                    style="width: 70px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                            <td style="padding: 8px; text-align: center;"><input type="text"
+                                    style="width: 60px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                            <td style="padding: 8px;"><input type="text"
+                                    style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 70px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px; text-align: center;"><input type="text"
+                                style="width: 60px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 70px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px; text-align: center;"><input type="text"
+                                style="width: 60px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 70px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px; text-align: center;"><input type="text"
+                                style="width: 60px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 70px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px; text-align: center;"><input type="text"
+                                style="width: 60px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 70px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px; text-align: center;"><input type="text"
+                                style="width: 60px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 70px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px; text-align: center;"><input type="text"
+                                style="width: 60px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 70px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px; text-align: center;"><input type="text"
+                                style="width: 60px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="margin-top: 15px; display: flex; gap: 20px; font-size: 0.85em;">
+                <div><strong>Status:</strong> 🟢 Interessado | 🟡 Pensando | 🔴 Não Interessado | ⭐ Proposta Enviada | ✅
+                    Fechado</div>
+            </div>
+        </div>
+
+        <!-- PROPOSTAS EM ANDAMENTO -->
+        <div class="section">
+            <div class="section-title">📄 PROPOSTAS EM ANDAMENTO</div>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: #10b981; color: white;">
+                        <th style="padding: 10px; text-align: left; font-size: 0.9em;">Cliente</th>
+                        <th style="padding: 10px; text-align: center; font-size: 0.9em;">Enviada em</th>
+                        <th style="padding: 10px; text-align: center; font-size: 0.9em;">Valor</th>
+                        <th style="padding: 10px; text-align: center; font-size: 0.9em;">Follow-up</th>
+                        <th style="padding: 10px; text-align: left; font-size: 0.9em;">Observação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 70px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 80px; border: none; font-size: 0.85em; text-align: center;"
+                                placeholder="R$" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 70px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 70px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 80px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 70px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 70px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 80px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 70px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- PROJETOS EM EXECUÇÃO -->
+        <div class="section">
+            <div class="section-title">⚙️ PROJETOS EM EXECUÇÃO</div>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: #f59e0b; color: white;">
+                        <th style="padding: 10px; text-align: left; font-size: 0.9em;">Cliente</th>
+                        <th style="padding: 10px; text-align: center; font-size: 0.9em;">Fase</th>
+                        <th style="padding: 10px; text-align: center; font-size: 0.9em;">% Concluído</th>
+                        <th style="padding: 10px; text-align: center; font-size: 0.9em;">Entrega</th>
+                        <th style="padding: 10px; text-align: left; font-size: 0.9em;">Próxima Etapa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100px; border: none; font-size: 0.85em; text-align: center;"
+                                placeholder="Design" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 50px; border: none; font-size: 0.85em; text-align: center;"
+                                placeholder="50%" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 70px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 50px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 70px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 50px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 70px; border: none; font-size: 0.85em; text-align: center;" /></td>
+                        <td style="padding: 8px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.85em;" /></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="margin-top: 15px; font-size: 0.85em;">
+                <strong>Fases:</strong> Briefing | Design | Aprovação | Desenvolvimento | Testes | Entrega
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Controle de Prospecção - Desenvolvedor Web</strong></p>
+            <p>Mantenha este controle sempre atualizado!</p>
+        </div>
+    </div>
+
+    <!-- PÁGINA 4: REFLEXÃO E PLANEJAMENTO -->
+    <div class="planner-page page-break">
+        <div class="header">
+            <h1>💭 REFLEXÃO SEMANAL</h1>
+            <p style="color: #666; margin-top: 5px;">Aprenda com a semana e planeje a próxima</p>
+        </div>
+
+        <!-- ANÁLISE DA SEMANA -->
+        <div class="section">
+            <div class="section-title">📊 ANÁLISE DA SEMANA</div>
+            <div style="display: grid; gap: 15px;">
+                <div style="border: 2px solid #667eea; border-radius: 8px; padding: 15px;">
+                    <h4 style="color: #667eea; margin-bottom: 10px;">✅ O QUE FUNCIONOU BEM?</h4>
+                    <textarea
+                        style="width: 100%; border: 1px solid #ddd; border-radius: 5px; padding: 10px; font-family: inherit; min-height: 80px; font-size: 0.9em;"
+                        placeholder="Liste 3-5 coisas que você fez bem esta semana..."></textarea>
+                </div>
+
+                <div style="border: 2px solid #f59e0b; border-radius: 8px; padding: 15px;">
+                    <h4 style="color: #f59e0b; margin-bottom: 10px;">📈 O QUE PODE MELHORAR?</h4>
+                    <textarea
+                        style="width: 100%; border: 1px solid #ddd; border-radius: 5px; padding: 10px; font-family: inherit; min-height: 80px; font-size: 0.9em;"
+                        placeholder="Identifique 3-5 áreas para melhorar..."></textarea>
+                </div>
+
+                <div style="border: 2px solid #10b981; border-radius: 8px; padding: 15px;">
+                    <h4 style="color: #10b981; margin-bottom: 10px;">💡 PRINCIPAIS APRENDIZADOS</h4>
+                    <textarea
+                        style="width: 100%; border: 1px solid #ddd; border-radius: 5px; padding: 10px; font-family: inherit; min-height: 80px; font-size: 0.9em;"
+                        placeholder="O que você aprendeu esta semana que vai aplicar nas próximas?"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- DESAFIOS E SOLUÇÕES -->
+        <div class="section">
+            <div class="section-title">🎯 DESAFIOS E SOLUÇÕES</div>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: #ef4444; color: white;">
+                        <th style="padding: 10px; text-align: left;">Desafio Enfrentado</th>
+                        <th style="padding: 10px; text-align: left;">Como Resolvi / Vou Resolver</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.9em;"
+                                placeholder="Ex: Muitas objeções de preço" /></td>
+                        <td style="padding: 10px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.9em;"
+                                placeholder="Ex: Melhorar argumentação de ROI" /></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.9em;" /></td>
+                        <td style="padding: 10px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.9em;" /></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 10px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.9em;" /></td>
+                        <td style="padding: 10px;"><input type="text"
+                                style="width: 100%; border: none; font-size: 0.9em;" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- PLANO PARA PRÓXIMA SEMANA -->
+        <div class="section">
+            <div class="section-title">🚀 PLANO PARA PRÓXIMA SEMANA</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div style="border: 2px solid #8b5cf6; border-radius: 8px; padding: 15px;">
+                    <h4 style="color: #8b5cf6; margin-bottom: 10px;">🎯 3 PRIORIDADES PRINCIPAIS</h4>
+                    <div style="display: grid; gap: 8px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="color: #8b5cf6; font-weight: bold;">1.</span>
+                            <input type="text"
+                                style="flex: 1; border: none; border-bottom: 2px solid #8b5cf6; padding: 5px; font-size: 0.9em;" />
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="color: #8b5cf6; font-weight: bold;">2.</span>
+                            <input type="text"
+                                style="flex: 1; border: none; border-bottom: 2px solid #8b5cf6; padding: 5px; font-size: 0.9em;" />
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="color: #8b5cf6; font-weight: bold;">3.</span>
+                            <input type="text"
+                                style="flex: 1; border: none; border-bottom: 2px solid #8b5cf6; padding: 5px; font-size: 0.9em;" />
+                        </div>
+                    </div>
+                </div>
+
+                <div style="border: 2px solid #ec4899; border-radius: 8px; padding: 15px;">
+                    <h4 style="color: #ec4899; margin-bottom: 10px;">💪 HÁBITOS A IMPLEMENTAR</h4>
+                    <div style="display: grid; gap: 8px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 18px; height: 18px; border: 2px solid #ec4899; border-radius: 4px;">
+                            </div>
+                            <input type="text"
+                                style="flex: 1; border: none; border-bottom: 1px solid #ddd; padding: 5px; font-size: 0.9em;"
+                                placeholder="Ex: Ligar antes de 10h" />
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 18px; height: 18px; border: 2px solid #ec4899; border-radius: 4px;">
+                            </div>
+                            <input type="text"
+                                style="flex: 1; border: none; border-bottom: 1px solid #ddd; padding: 5px; font-size: 0.9em;" />
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 18px; height: 18px; border: 2px solid #ec4899; border-radius: 4px;">
+                            </div>
+                            <input type="text"
+                                style="flex: 1; border: none; border-bottom: 1px solid #ddd; padding: 5px; font-size: 0.9em;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- METAS AJUSTADAS -->
+        <div class="section">
+            <div class="section-title">🎯 METAS AJUSTADAS PRÓXIMA SEMANA</div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;">
+                <div style="border: 2px solid #667eea; border-radius: 8px; padding: 15px; text-align: center;">
+                    <h4 style="color: #667eea; font-size: 0.9em; margin-bottom: 10px;">CONTATOS</h4>
+                    <input type="text"
+                        style="width: 60px; border: none; border-bottom: 3px solid #667eea; text-align: center; font-size: 2em; font-weight: bold; color: #667eea;" />
+                </div>
+                <div style="border: 2px solid #10b981; border-radius: 8px; padding: 15px; text-align: center;">
+                    <h4 style="color: #10b981; font-size: 0.9em; margin-bottom: 10px;">CONVERSAS</h4>
+                    <input type="text"
+                        style="width: 60px; border: none; border-bottom: 3px solid #10b981; text-align: center; font-size: 2em; font-weight: bold; color: #10b981;" />
+                </div>
+                <div style="border: 2px solid #f59e0b; border-radius: 8px; padding: 15px; text-align: center;">
+                    <h4 style="color: #f59e0b; font-size: 0.9em; margin-bottom: 10px;">PROPOSTAS</h4>
+                    <input type="text"
+                        style="width: 60px; border: none; border-bottom: 3px solid #f59e0b; text-align: center; font-size: 2em; font-weight: bold; color: #f59e0b;" />
+                </div>
+                <div style="border: 2px solid #8b5cf6; border-radius: 8px; padding: 15px; text-align: center;">
+                    <h4 style="color: #8b5cf6; font-size: 0.9em; margin-bottom: 10px;">FECHAR</h4>
+                    <input type="text"
+                        style="width: 60px; border: none; border-bottom: 3px solid #8b5cf6; text-align: center; font-size: 2em; font-weight: bold; color: #8b5cf6;" />
+                </div>
+            </div>
+        </div>
+
+        <!-- MOTIVAÇÃO -->
+        <div
+            style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; padding: 30px; text-align: center; margin-top: 30px;">
+            <h3 style="color: white; font-size: 1.5em; margin-bottom: 15px;">💪 FRASE DA SEMANA</h3>
+            <input type="text"
+                style="width: 90%; border: none; border-bottom: 3px solid white; background: transparent; color: white; text-align: center; font-size: 1.2em; padding: 10px;"
+                placeholder="Ex: Cada não me aproxima do sim!" />
+            <p style="color: white; margin-top: 20px; font-size: 1.1em;">Continue firme! Você está progredindo! 🚀</p>
+        </div>
+
+        <div class="footer">
+            <p><strong>Reflexão Semanal - Desenvolvedor Web</strong></p>
+            <p>A reflexão é tão importante quanto a ação!</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

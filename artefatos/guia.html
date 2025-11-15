@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Visual - Do Zero ao Primeiro Cliente</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+
+        .section {
+            margin: 40px 0;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .diagram {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 20px;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px #667eea;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #667eea;
+        }
+
+        .flow-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .flow-box {
+            padding: 20px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            min-width: 250px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: transform 0.3s;
+        }
+
+        .flow-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .flow-arrow {
+            font-size: 2em;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        .funnel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .funnel-stage {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .funnel-stage:hover {
+            transform: scale(1.05);
+        }
+
+        .funnel-stage:nth-child(1) {
+            width: 90%;
+        }
+
+        .funnel-stage:nth-child(2) {
+            width: 75%;
+        }
+
+        .funnel-stage:nth-child(3) {
+            width: 60%;
+        }
+
+        .funnel-stage:nth-child(4) {
+            width: 45%;
+        }
+
+        .funnel-stage:nth-child(5) {
+            width: 30%;
+        }
+
+        .funnel-stage:nth-child(6) {
+            width: 20%;
+        }
+
+        .process-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .process-step {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 3px solid #667eea;
+            position: relative;
+        }
+
+        .process-step::after {
+            content: '→';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2em;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .process-step:last-child::after {
+            content: '';
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            line-height: 40px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .metric-box {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .metric-number {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .comparison-item {
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .comparison-good {
+            background: #d1fae5;
+            border: 2px solid #10b981;
+        }
+
+        .comparison-bad {
+            background: #fee2e2;
+            border: 2px solid #ef4444;
+        }
+
+        .comparison h4 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .comparison-good h4 {
+            color: #059669;
+        }
+
+        .comparison-bad h4 {
+            color: #dc2626;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .process-flow {
+                grid-template-columns: 1fr;
+            }
+
+            .process-step::after {
+                content: '↓';
+                right: 50%;
+                top: auto;
+                bottom: -35px;
+                transform: translateX(50%);
+            }
+        }
+
+        .note {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .note strong {
+            color: #d97706;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background: #f3f4f6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>📊 GUIA VISUAL</h1>
+        <p class="subtitle">Do Zero ao Primeiro Cliente - Diagramas e Fluxogramas</p>
+
+        <!-- VISÃO GERAL -->
+        <div class="section">
+            <h2>🎯 Visão Geral da Jornada (5 Semanas)</h2>
+            <div class="diagram">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <strong>SEMANA 1 - PREPARAÇÃO</strong>
+                        <p>Configure ferramentas, defina preços, crie portfólio</p>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>SEMANA 2 - PROSPECÇÃO</strong>
+                        <p>Mapeie 50 prospects, faça 30-50 contatos</p>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>SEMANA 3 - VENDAS</strong>
+                        <p>Envie propostas, negocie, FECHE o primeiro cliente</p>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>SEMANAS 4-5 - EXECUÇÃO</strong>
+                        <p>Colete materiais, desenvolva, entregue projeto</p>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>PÓS-ENTREGA - CRESCIMENTO</strong>
+                        <p>Follow-up, indicações, receita recorrente</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FUNIL DE VENDAS -->
+        <div class="section">
+            <h2>🔄 Funil de Vendas Completo</h2>
+            <div class="diagram">
+                <div class="funnel">
+                    <div class="funnel-stage">50 PROSPECTS MAPEADOS</div>
+                    <div class="funnel-stage">30-40 CONTATOS REALIZADOS</div>
+                    <div class="funnel-stage">10-15 CONVERSAS INICIADAS</div>
+                    <div class="funnel-stage">5-8 INTERESSADOS REAIS</div>
+                    <div class="funnel-stage">2-3 PROPOSTAS ENVIADAS</div>
+                    <div class="funnel-stage">1 CLIENTE FECHADO! 🎉</div>
+                </div>
+                <div class="metric-box">
+                    <div>TAXA DE CONVERSÃO ESPERADA</div>
+                    <div class="metric-number">2-5%</div>
+                    <div>De contatos para clientes fechados</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROCESSO DE VENDAS -->
+        <div class="section">
+            <h2>💼 Processo de Vendas Detalhado</h2>
+            <div class="diagram">
+                <div class="flow-chart">
+                    <div class="flow-box">1. MAPEAMENTO<br>Encontre 50 prospects no Google Maps</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-box">2. PRIMEIRO CONTATO<br>Ligue ou envie WhatsApp com script</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-box">3. QUALIFICAÇÃO<br>Identifique necessidade e interesse</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-box">4. PROPOSTA<br>Envie proposta personalizada</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-box">5. FOLLOW-UP<br>Acompanhe após 24-48h</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-box">6. NEGOCIAÇÃO<br>Responda objeções, facilite pagamento</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-box">7. FECHAMENTO<br>Contrato + Pagamento = CLIENTE! 🎉</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROCESSO DE EXECUÇÃO -->
+        <div class="section">
+            <h2>⚙️ Processo de Execução do Projeto</h2>
+            <div class="diagram">
+                <div class="process-flow">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <strong>BRIEFING</strong>
+                        <p>2-3 dias</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <strong>DESIGN</strong>
+                        <p>3-5 dias</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <strong>APROVAÇÃO</strong>
+                        <p>1-2 dias</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <strong>DESENVOLVIMENTO</strong>
+                        <p>5-7 dias</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <strong>TESTES</strong>
+                        <p>1-2 dias</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">6</div>
+                        <strong>ENTREGA</strong>
+                        <p>1 dia</p>
+                    </div>
+                </div>
+                <div class="note">
+                    <strong>⏱️ PRAZO TOTAL:</strong> 15-20 dias úteis (3-4 semanas)
+                </div>
+            </div>
+        </div>
+
+        <!-- ESTRUTURA DE PREÇOS -->
+        <div class="section">
+            <h2>💰 Estrutura de Preços Sugerida</h2>
+            <div class="diagram">
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>🌟 LANDING PAGE</h3>
+                        <div style="font-size: 2em; color: #667eea; font-weight: bold; margin: 15px 0;">R$ 897</div>
+                        <ul>
+                            <li>1 página otimizada</li>
+                            <li>Design responsivo</li>
+                            <li>Formulário de contato</li>
+                            <li>WhatsApp integrado</li>
+                            <li>2 revisões incluídas</li>
+                            <li>Entrega: 7 dias</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>🚀 SITE INSTITUCIONAL</h3>
+                        <div style="font-size: 2em; color: #667eea; font-weight: bold; margin: 15px 0;">R$ 1.997</div>
+                        <ul>
+                            <li>Até 5 páginas</li>
+                            <li>Design profissional</li>
+                            <li>Google Maps</li>
+                            <li>Galeria de fotos</li>
+                            <li>SEO otimizado</li>
+                            <li>3 revisões incluídas</li>
+                            <li>Entrega: 15 dias</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>💎 SITE PREMIUM</h3>
+                        <div style="font-size: 2em; color: #667eea; font-weight: bold; margin: 15px 0;">R$ 3.497</div>
+                        <ul>
+                            <li>Tudo do Institucional</li>
+                            <li>Sistema de agendamento</li>
+                            <li>Blog integrado</li>
+                            <li>Chat online</li>
+                            <li>Painel administrativo</li>
+                            <li>5 revisões incluídas</li>
+                            <li>Entrega: 20-25 dias</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CRONOGRAMA SEMANAL -->
+        <div class="section">
+            <h2>📅 Cronograma Semanal de Atividades</h2>
+            <div class="diagram">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dia</th>
+                            <th>Manhã (9h-12h)</th>
+                            <th>Tarde (14h-17h)</th>
+                            <th>Noite (19h-20h)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Segunda</strong></td>
+                            <td>10 ligações + 10 WhatsApp</td>
+                            <td>Respostas + Propostas</td>
+                            <td>Follow-up + Planejamento</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Terça</strong></td>
+                            <td>10 ligações + 10 WhatsApp</td>
+                            <td>Respostas + Propostas</td>
+                            <td>Follow-up + Planejamento</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Quarta</strong></td>
+                            <td>10 ligações + 10 WhatsApp</td>
+                            <td>Respostas + Propostas</td>
+                            <td>Follow-up + Planejamento</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Quinta</strong></td>
+                            <td>Desenvolvimento de projetos</td>
+                            <td>Desenvolvimento de projetos</td>
+                            <td>Respostas clientes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sexta</strong></td>
+                            <td>Desenvolvimento de projetos</td>
+                            <td>Follow-up intensivo</td>
+                            <td>Fechamento de vendas</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="note">
+                    <strong>💡 META SEMANAL:</strong> 30-50 contatos | 5-10 conversas | 1-2 propostas | Foco em fechar!
+                </div>
+            </div>
+        </div>
+
+        <!-- MELHORES PRÁTICAS -->
+        <div class="section">
+            <h2>✅ Faça vs ❌ Não Faça</h2>
+            <div class="diagram">
+                <div class="comparison">
+                    <div class="comparison-good">
+                        <h4>✅ FAÇA</h4>
+                        <ul>
+                            <li>Seja persistente (follow-up)</li>
+                            <li>Personalize cada proposta</li>
+                            <li>Mostre resultados/benefícios</li>
+                            <li>Facilite o pagamento</li>
+                            <li>Cumpra prazos prometidos</li>
+                            <li>Comunique-se regularmente</li>
+                            <li>Peça feedback sempre</li>
+                            <li>Documente tudo</li>
+                            <li>Aprenda com cada projeto</li>
+                            <li>Celebre pequenas vitórias</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-bad">
+                        <h4>❌ NÃO FAÇA</h4>
+                        <ul>
+                            <li>Desistir após poucos "nãos"</li>
+                            <li>Enviar proposta genérica</li>
+                            <li>Focar só em recursos técnicos</li>
+                            <li>Ser inflexível no pagamento</li>
+                            <li>Prometer o que não pode cumprir</li>
+                            <li>Sumir após vender</li>
+                            <li>Ignorar críticas construtivas</li>
+                            <li>Começar sem contrato</li>
+                            <li>Repetir mesmos erros</li>
+                            <li>Ser muito autocrítico</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MÉTRICAS DE SUCESSO -->
+        <div class="section">
+            <h2>📈 Métricas de Sucesso por Período</h2>
+            <div class="diagram">
+                <div class="grid-3">
+                    <div class="card" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);">
+                        <h3>MÊS 1-3</h3>
+                        <h4 style="color: #d97706;">FUNDAÇÃO</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>✓ 3-5 clientes fechados</li>
+                            <li>✓ R$ 4.000-6.000/mês</li>
+                            <li>✓ Portfólio real criado</li>
+                            <li>✓ 3-5 em manutenção</li>
+                            <li>✓ Processos definidos</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);">
+                        <h3>MÊS 4-6</h3>
+                        <h4 style="color: #2563eb;">TRAÇÃO</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>✓ 10-15 clientes totais</li>
+                            <li>✓ R$ 6.000-10.000/mês</li>
+                            <li>✓ Presença online forte</li>
+                            <li>✓ 8-12 em manutenção</li>
+                            <li>✓ Parcerias formadas</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);">
+                        <h3>MÊS 7-12</h3>
+                        <h4 style="color: #059669;">ESCALA</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>✓ 25-35 clientes totais</li>
+                            <li>✓ R$ 10.000-16.000/mês</li>
+                            <li>✓ Autoridade no nicho</li>
+                            <li>✓ 15-20 em manutenção</li>
+                            <li>✓ Processos otimizados</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CICLO DE RECEITA RECORRENTE -->
+        <div class="section">
+            <h2>🔄 Construindo Receita Recorrente (MRR)</h2>
+            <div class="diagram">
+                <div class="flow-chart">
+                    <div class="flow-box" style="background: #10b981;">PROJETO INICIAL<br>R$ 1.997 (uma vez)</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-box" style="background: #10b981;">ENTREGA + SATISFAÇÃO<br>Cliente feliz!</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-box" style="background: #10b981;">OFERTA DE MANUTENÇÃO<br>R$ 197/mês</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-box" style="background: #10b981;">RECEITA RECORRENTE<br>R$ 2.364/ano do mesmo
+                        cliente!</div>
+                </div>
+                <div class="metric-box">
+                    <div>META: 20 CLIENTES EM MANUTENÇÃO</div>
+                    <div class="metric-number">R$ 3.940/mês</div>
+                    <div>Receita Recorrente Mensal Garantida!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DOCUMENTOS E QUANDO USAR -->
+        <div class="section">
+            <h2>📄 Documentos e Quando Usar</h2>
+            <div class="diagram">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Documento</th>
+                            <th>Quando Usar</th>
+                            <th>Objetivo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Scripts de Abordagem</strong></td>
+                            <td>Primeiro contato (telefone/WhatsApp)</td>
+                            <td>Iniciar conversa profissional</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Orçamento Rápido</strong></td>
+                            <td>Cliente pede preço rapidamente</td>
+                            <td>Resposta ágil e profissional</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Proposta Comercial</strong></td>
+                            <td>Cliente demonstra interesse sério</td>
+                            <td>Formalizar oferta completa</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Apresentação Comercial</strong></td>
+                            <td>Reunião presencial ou videocall</td>
+                            <td>Impressionar visualmente</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contrato de Serviços</strong></td>
+                            <td>Cliente aceita proposta</td>
+                            <td>Proteger ambas as partes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>NDA</strong></td>
+                            <td>Projetos sensíveis ou cliente solicita</td>
+                            <td>Proteger informações confidenciais</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Formulário de Briefing</strong></td>
+                            <td>Após pagamento inicial</td>
+                            <td>Coletar informações do projeto</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Guia de Materiais</strong></td>
+                            <td>Com o briefing</td>
+                            <td>Orientar cliente sobre o que enviar</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Checklist de Projeto</strong></td>
+                            <td>Durante todo o desenvolvimento</td>
+                            <td>Não esquecer nada</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Checklist de SEO</strong></td>
+                            <td>Antes de publicar site</td>
+                            <td>Garantir otimização básica</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Termo de Entrega</strong></td>
+                            <td>Na entrega final</td>
+                            <td>Formalizar conclusão do projeto</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Recibo</strong></td>
+                            <td>A cada pagamento recebido</td>
+                            <td>Comprovar transação financeira</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Templates de E-mail</strong></td>
+                            <td>Durante todo o relacionamento</td>
+                            <td>Comunicação profissional</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Scripts de Follow-up</strong></td>
+                            <td>Pós-entrega (7, 15, 30, 60, 90 dias)</td>
+                            <td>Manter relacionamento</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ROADMAP DE CRESCIMENTO -->
+        <div class="section">
+            <h2>🚀 Roadmap de Crescimento (12 Meses)</h2>
+            <div class="diagram">
+                <div style="background: white; padding: 20px; border-radius: 10px;">
+                    <svg viewBox="0 0 800 400" style="width: 100%; height: auto;">
+                        <!-- Eixos -->
+                        <line x1="50" y1="350" x2="750" y2="350" stroke="#333" stroke-width="2" />
+                        <line x1="50" y1="50" x2="50" y2="350" stroke="#333" stroke-width="2" />
+
+                        <!-- Labels Eixo X -->
+                        <text x="100" y="370" text-anchor="middle" font-size="12">Mês 1</text>
+                        <text x="200" y="370" text-anchor="middle" font-size="12">Mês 3</text>
+                        <text x="350" y="370" text-anchor="middle" font-size="12">Mês 6</text>
+                        <text x="550" y="370" text-anchor="middle" font-size="12">Mês 9</text>
+                        <text x="700" y="370" text-anchor="middle" font-size="12">Mês 12</text>
+
+                        <!-- Labels Eixo Y -->
+                        <text x="40" y="330" text-anchor="end" font-size="12">R$ 0</text>
+                        <text x="40" y="250" text-anchor="end" font-size="12">R$ 5k</text>
+                        <text x="40" y="170" text-anchor="end" font-size="12">R$ 10k</text>
+                        <text x="40" y="90" text-anchor="end" font-size="12">R$ 15k</text>
+
+                        <!-- Linha de Crescimento -->
+                        <polyline points="100,320 200,280 350,200 550,130 700,80" fill="none" stroke="#667eea"
+                            stroke-width="4" />
+
+                        <!-- Pontos de Dados -->
+                        <circle cx="100" cy="320" r="6" fill="#667eea" />
+                        <circle cx="200" cy="280" r="6" fill="#667eea" />
+                        <circle cx="350" cy="200" r="6" fill="#667eea" />
+                        <circle cx="550" cy="130" r="6" fill="#667eea" />
+                        <circle cx="700" cy="80" r="6" fill="#667eea" />
+
+                        <!-- Valores -->
+                        <text x="100" y="310" text-anchor="middle" font-size="14" font-weight="bold"
+                            fill="#667eea">3k</text>
+                        <text x="200" y="270" text-anchor="middle" font-size="14" font-weight="bold"
+                            fill="#667eea">5k</text>
+                        <text x="350" y="190" text-anchor="middle" font-size="14" font-weight="bold"
+                            fill="#667eea">8k</text>
+                        <text x="550" y="120" text-anchor="middle" font-size="14" font-weight="bold"
+                            fill="#667eea">12k</text>
+                        <text x="700" y="70" text-anchor="middle" font-size="14" font-weight="bold"
+                            fill="#667eea">15k</text>
+                    </svg>
+                </div>
+                <div class="note">
+                    <strong>📊 CRESCIMENTO EXPONENCIAL:</strong> Cada mês você ganha experiência, portfólio cresce,
+                    processos melhoram = mais clientes e maior faturamento!
+                </div>
+            </div>
+        </div>
+
+        <!-- CICLO DE VIDA DO CLIENTE -->
+        <div class="section">
+            <h2>♻️ Ciclo de Vida do Cliente</h2>
+            <div class="diagram">
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin: 30px 0;">
+                    <div style="text-align: center;">
+                        <div
+                            style="width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.1em; margin: 0 auto;">
+                            PROSPECÇÃO</div>
+                        <p style="margin-top: 10px;">Mapear<br>Contactar</p>
+                    </div>
+                    <div style="align-self: center; font-size: 2em; color: #667eea;">→</div>
+                    <div style="text-align: center;">
+                        <div
+                            style="width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(135deg, #10b981 0%, #059669 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.1em; margin: 0 auto;">
+                            VENDAS</div>
+                        <p style="margin-top: 10px;">Proposta<br>Fechamento</p>
+                    </div>
+                    <div style="align-self: center; font-size: 2em; color: #667eea;">→</div>
+                    <div style="text-align: center;">
+                        <div
+                            style="width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.1em; margin: 0 auto;">
+                            EXECUÇÃO</div>
+                        <p style="margin-top: 10px;">Desenvolver<br>Entregar</p>
+                    </div>
+                    <div style="align-self: center; font-size: 2em; color: #667eea;">→</div>
+                    <div style="text-align: center;">
+                        <div
+                            style="width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.1em; margin: 0 auto;">
+                            RETENÇÃO</div>
+                        <p style="margin-top: 10px;">Manutenção<br>Upsell</p>
+                    </div>
+                    <div style="align-self: center; font-size: 2em; color: #667eea;">→</div>
+                    <div style="text-align: center;">
+                        <div
+                            style="width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(135deg, #ec4899 0%, #be185d 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.1em; margin: 0 auto;">
+                            INDICAÇÃO</div>
+                        <p style="margin-top: 10px;">Depoimentos<br>Referências</p>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <div style="font-size: 3em; color: #667eea;">↻</div>
+                    <p style="font-weight: bold; color: #667eea;">O CICLO RECOMEÇA COM INDICAÇÕES!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- MATRIZ DE PRIORIZAÇÃO -->
+        <div class="section">
+            <h2>🎯 Matriz de Priorização de Prospects</h2>
+            <div class="diagram">
+                <div style="background: white; padding: 20px; border-radius: 10px;">
+                    <table style="border-collapse: separate; border-spacing: 0;">
+                        <thead>
+                            <tr>
+                                <th style="background: #ef4444; color: white;">🔴 BAIXA PRIORIDADE</th>
+                                <th style="background: #f59e0b; color: white;">🟡 MÉDIA PRIORIDADE</th>
+                                <th style="background: #10b981; color: white;">🟢 ALTA PRIORIDADE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="background: #fee2e2; padding: 15px;">
+                                    ✗ Já tem site bom<br>
+                                    ✗ Recém aberto<br>
+                                    ✗ Pouco movimento<br>
+                                    ✗ Região distante
+                                </td>
+                                <td style="background: #fef3c7; padding: 15px;">
+                                    ~ Site desatualizado<br>
+                                    ~ Presença média<br>
+                                    ~ Negócio médio porte<br>
+                                    ~ Região OK
+                                </td>
+                                <td style="background: #d1fae5; padding: 15px;">
+                                    ✓ Sem site<br>
+                                    ✓ Ativo nas redes<br>
+                                    ✓ Negócio consolidado<br>
+                                    ✓ Região próxima
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center; padding: 15px; background: #fee2e2;">
+                                    <strong>Contactar depois</strong>
+                                </td>
+                                <td style="text-align: center; padding: 15px; background: #fef3c7;">
+                                    <strong>Contactar em 2ª semana</strong>
+                                </td>
+                                <td style="text-align: center; padding: 15px; background: #d1fae5;">
+                                    <strong>Contactar AGORA!</strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESPOSTA A OBJEÇÕES -->
+        <div class="section">
+            <h2>🛡️ Framework de Resposta a Objeções</h2>
+            <div class="diagram">
+                <div class="grid-3">
+                    <div class="card" style="border-left: 5px solid #ef4444;">
+                        <h3 style="color: #ef4444;">💰 "Está caro"</h3>
+                        <p><strong>1. EMPATIA:</strong><br>"Entendo sua preocupação..."</p>
+                        <p><strong>2. VALOR:</strong><br>"Mas veja o ROI: R$ 1.500 extras/mês..."</p>
+                        <p><strong>3. FACILITAÇÃO:</strong><br>"Posso parcelar em 3x..."</p>
+                        <p><strong>4. ALTERNATIVA:</strong><br>"Ou começamos com Landing Page..."</p>
+                    </div>
+                    <div class="card" style="border-left: 5px solid #f59e0b;">
+                        <h3 style="color: #f59e0b;">⏰ "Não é o momento"</h3>
+                        <p><strong>1. QUESTIONAMENTO:</strong><br>"Qual seria o momento ideal?"</p>
+                        <p><strong>2. URGÊNCIA:</strong><br>"Seus concorrentes já estão online..."</p>
+                        <p><strong>3. CUSTO:</strong><br>"Cada dia sem site = clientes perdidos"</p>
+                        <p><strong>4. FACILIDADE:</strong><br>"Posso começar pequeno agora"</p>
+                    </div>
+                    <div class="card" style="border-left: 5px solid #8b5cf6;">
+                        <h3 style="color: #8b5cf6;">🤔 "Vou pensar"</h3>
+                        <p><strong>1. DESCOBERTA:</strong><br>"O que especificamente precisa pensar?"</p>
+                        <p><strong>2. ESCLARECIMENTO:</strong><br>"Posso esclarecer alguma dúvida?"</p>
+                        <p><strong>3. PRAZO:</strong><br>"Proposta válida até sexta..."</p>
+                        <p><strong>4. PRÓXIMO PASSO:</strong><br>"Que tal marcarmos call amanhã?"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHECKLIST DIÁRIO -->
+        <div class="section">
+            <h2>✅ Checklist Diário do Desenvolvedor</h2>
+            <div class="diagram">
+                <div class="grid-3">
+                    <div class="card" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);">
+                        <h3>🌅 MANHÃ</h3>
+                        <ul>
+                            <li>Revisar agenda do dia</li>
+                            <li>10 ligações para prospects</li>
+                            <li>10 mensagens WhatsApp</li>
+                            <li>Responder leads quentes</li>
+                            <li>Atualizar planilha</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);">
+                        <h3>☀️ TARDE</h3>
+                        <ul>
+                            <li>Desenvolver projetos ativos</li>
+                            <li>Preparar propostas pendentes</li>
+                            <li>Follow-up de propostas enviadas</li>
+                            <li>Responder clientes atuais</li>
+                            <li>Trabalhar em portfólio</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="background: linear-gradient(135deg, #e9d5ff 0%, #d8b4fe 100%);">
+                        <h3>🌙 NOITE</h3>
+                        <ul>
+                            <li>Responder WhatsApp acumulado</li>
+                            <li>Planejar dia seguinte</li>
+                            <li>Atualizar planilha financeira</li>
+                            <li>Postar em redes sociais</li>
+                            <li>Estudar/melhorar habilidades</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EVOLUÇÃO DO PORTFÓLIO -->
+        <div class="section">
+            <h2>📈 Evolução do Portfólio</h2>
+            <div class="diagram">
+                <div class="timeline">
+                    <div class="timeline-item" style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);">
+                        <strong style="color: #dc2626;">FASE 1: PROJETOS FICTÍCIOS</strong>
+                        <p>• 3 sites exemplo criados</p>
+                        <p>• Fotos de banco de imagens</p>
+                        <p>• Serve para mostrar capacidade</p>
+                        <p><em>Duração: Semana 1</em></p>
+                    </div>
+                    <div class="timeline-item" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);">
+                        <strong style="color: #d97706;">FASE 2: PRIMEIROS CLIENTES</strong>
+                        <p>• 3-5 projetos reais</p>
+                        <p>• Clientes satisfeitos</p>
+                        <p>• Primeiros depoimentos</p>
+                        <p><em>Duração: Mês 1-3</em></p>
+                    </div>
+                    <div class="timeline-item" style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);">
+                        <strong style="color: #2563eb;">FASE 3: PORTFÓLIO SÓLIDO</strong>
+                        <p>• 10-15 projetos diversos</p>
+                        <p>• Casos de sucesso documentados</p>
+                        <p>• Especialização em nicho</p>
+                        <p><em>Duração: Mês 4-6</em></p>
+                    </div>
+                    <div class="timeline-item" style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);">
+                        <strong style="color: #059669;">FASE 4: AUTORIDADE</strong>
+                        <p>• 25+ projetos de qualidade</p>
+                        <p>• Resultados mensuráveis</p>
+                        <p>• Referência no mercado</p>
+                        <p><em>Duração: Mês 7-12</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GATILHOS MENTAIS -->
+        <div class="section">
+            <h2>🧠 Gatilhos Mentais Para Vendas</h2>
+            <div class="diagram">
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>⏰ ESCASSEZ</h3>
+                        <p><strong>Como usar:</strong></p>
+                        <p>"Tenho apenas 2 vagas este mês"</p>
+                        <p>"Promoção válida até sexta"</p>
+                        <p>"Última vaga disponível"</p>
+                    </div>
+                    <div class="card">
+                        <h3>👥 PROVA SOCIAL</h3>
+                        <p><strong>Como usar:</strong></p>
+                        <p>"Já ajudei 15 pet shops"</p>
+                        <p>"Veja depoimentos de clientes"</p>
+                        <p>"87% recomendam meu trabalho"</p>
+                    </div>
+                    <div class="card">
+                        <h3>🎁 RECIPROCIDADE</h3>
+                        <p><strong>Como usar:</strong></p>
+                        <p>"Envio análise gratuita do seu site"</p>
+                        <p>"Consultoria inicial sem custo"</p>
+                        <p>"E-book gratuito de marketing"</p>
+                    </div>
+                    <div class="card">
+                        <h3>👔 AUTORIDADE</h3>
+                        <p><strong>Como usar:</strong></p>
+                        <p>"Especialista em sites para [nicho]"</p>
+                        <p>"X anos de experiência"</p>
+                        <p>"Certificado em [tecnologia]"</p>
+                    </div>
+                    <div class="card">
+                        <h3>❤️ SIMPATIA</h3>
+                        <p><strong>Como usar:</strong></p>
+                        <p>Seja genuíno e empático</p>
+                        <p>Encontre pontos em comum</p>
+                        <p>Mostre interesse real no negócio</p>
+                    </div>
+                    <div class="card">
+                        <h3>✅ COMPROMISSO</h3>
+                        <p><strong>Como usar:</strong></p>
+                        <p>"Se não gostar, refaço até aprovar"</p>
+                        <p>"Garantia de satisfação"</p>
+                        <p>"Suporte de 30 dias incluso"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESUMO VISUAL -->
+        <div class="section">
+            <h2>🎯 Resumo: Do Zero ao Primeiro Cliente em 5 Passos</h2>
+            <div class="diagram">
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div
+                        style="display: flex; align-items: center; gap: 20px; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                        <div
+                            style="min-width: 60px; height: 60px; background: #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2em; font-weight: bold;">
+                            1</div>
+                        <div>
+                            <h3 style="margin: 0; color: #667eea;">PREPARE-SE</h3>
+                            <p style="margin: 5px 0 0 0;">Configure ferramentas, crie portfólio, defina preços (1
+                                semana)</p>
+                        </div>
+                    </div>
+                    <div
+                        style="display: flex; align-items: center; gap: 20px; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                        <div
+                            style="min-width: 60px; height: 60px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2em; font-weight: bold;">
+                            2</div>
+                        <div>
+                            <h3 style="margin: 0; color: #10b981;">PROSPECTE</h3>
+                            <p style="margin: 5px 0 0 0;">Mapeie 50 prospects, faça 30-50 contatos (1 semana)</p>
+                        </div>
+                    </div>
+                    <div
+                        style="display: flex; align-items: center; gap: 20px; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                        <div
+                            style="min-width: 60px; height: 60px; background: #f59e0b; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2em; font-weight: bold;">
+                            3</div>
+                        <div>
+                            <h3 style="margin: 0; color: #f59e0b;">VENDA</h3>
+                            <p style="margin: 5px 0 0 0;">Envie propostas, negocie, FECHE primeiro cliente (1 semana)
+                            </p>
+                        </div>
+                    </div>
+                    <div
+                        style="display: flex; align-items: center; gap: 20px; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                        <div
+                            style="min-width: 60px; height: 60px; background: #8b5cf6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2em; font-weight: bold;">
+                            4</div>
+                        <div>
+                            <h3 style="margin: 0; color: #8b5cf6;">EXECUTE</h3>
+                            <p style="margin: 5px 0 0 0;">Colete materiais, desenvolva, teste, entregue (2-3 semanas)
+                            </p>
+                        </div>
+                    </div>
+                    <div
+                        style="display: flex; align-items: center; gap: 20px; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                        <div
+                            style="min-width: 60px; height: 60px; background: #ec4899; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2em; font-weight: bold;">
+                            5</div>
+                        <div>
+                            <h3 style="margin: 0; color: #ec4899;">CRESÇA</h3>
+                            <p style="margin: 5px 0 0 0;">Follow-up, indicações, manutenção recorrente (contínuo)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHAMADA FINAL -->
+        <div
+            style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 60px 30px; border-radius: 20px; text-align: center; margin-top: 40px;">
+            <h2 style="color: white; font-size: 2.5em; margin-bottom: 20px;">🚀 VOCÊ TEM TUDO!</h2>
+            <p style="color: white; font-size: 1.3em; margin-bottom: 30px;">Manual Completo + Documentos + Guia Visual
+            </p>
+            <div style="background: white; padding: 30px; border-radius: 15px; max-width: 600px; margin: 0 auto;">
+                <h3 style="color: #667eea; margin-bottom: 15px;">AGORA É SÓ EXECUTAR!</h3>
+                <p style="font-size: 1.1em; margin-bottom: 20px;">Comece pelo Dia 1 do Módulo 1</p>
+                <p style="font-size: 3em; margin: 20px 0;">💪</p>
+                <p style="font-weight: bold; color: #667eea; font-size: 1.2em;">SEU PRIMEIRO CLIENTE ESTÁ ESPERANDO!</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; margin-top: 40px; padding: 20px; color: #666;">
+            <p><strong>Guia Visual - Do Zero ao Primeiro Cliente</strong></p>
+            <p>Versão 1.0 | Novembro 2025</p>
+            <p style="margin-top: 15px;">📚 Use este guia junto com o Manual Completo</p>
+        </div>
+    </div>
+</body>
+
+</html>
