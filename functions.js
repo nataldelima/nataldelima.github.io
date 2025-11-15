@@ -120,3 +120,17 @@ function sendWhatsAppMessage(source = 'form') {
 
     window.open(whatsappUrl, '_blank');
 }
+
+// Função para trocar o ícone ao passar o mouse
+document.querySelectorAll('.social-media img').forEach(icon => {
+    const originalSrc = icon.src;
+    const hoverSrc = icon.getAttribute('data-hover');
+
+    icon.addEventListener('mouseenter', () => {
+        icon.src = hoverSrc;
+    });
+
+    icon.addEventListener('mouseleave', () => {
+        icon.src = originalSrc;
+    });
+});

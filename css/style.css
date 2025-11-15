@@ -80,6 +80,24 @@
      color: #343a40;
  }
 
+ .social-media {
+     text-align: center;
+     margin-top: 15px;
+ }
+
+ .social-media img {
+     width: 40px;
+     height: auto;
+     margin: 10px;
+     transition: transform 0.2s ease, opacity 0.2s ease;
+ }
+
+ .social-media img:hover {
+     transform: scale(1.1);
+     opacity: 0.9;
+     cursor: pointer;
+ }
+
  sup {
      font-size: bolder;
  }
