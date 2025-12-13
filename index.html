@@ -53,15 +53,24 @@
 
 
       // GA4 measurement ID (substitua pelo seu G-XXXXX)
-      gtag('config', 'G-TMRRJ71KMB');
+      //  gtag('config', 'G-TMRRJ71KMB');
 
       // Google Ads (se quiser manter a tag de conversão)
       // o script da lib é o mesmo; eventos de conversão são enviados assim:
       gtag('config', 'AW-1054859292');
 
-
-      // Event snippet for Preencheu Formulário de Orçamento conversion page
-      gtag('event', 'conversion', { 'send_to': 'AW-1054859292/PrrWCI6PxKMaEJzA__YD' });
+      function gtag_report_conversion(url) {
+         var callback = function () {
+            if (typeof (url) != 'undefined') {
+               window.location = url;
+            }
+         };
+         gtag('event', 'conversion', {
+            'send_to': 'AW-1054859292/PrrWCI6PxKMaEJzA__YD',
+            'event_callback': callback
+         });
+         return false;
+      }
    </script>
 
 </head>
@@ -203,10 +212,6 @@
 
             </div>
             <div class="col-md-4 mx-auto text-end">
-               <!-- <p><a id="btnWhats" class="btn btn-light mt-4" target="_blank" onclick="sendWhatsAppMessage('btn')"><i
-                        class="bi bi-whatsapp"></i> (67) 99160 9897</a>
-               </p> -->
-
 
                <p class="social-media">
                   <img src="midia/whatsapp_claro.png" data-hover="midia/whatsapp_dourado.png"

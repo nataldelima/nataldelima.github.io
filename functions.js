@@ -103,7 +103,7 @@ function sendWhatsAppMessage(source = 'form') {
     var message = document.getElementById('message').value;
     var alertBox = document.querySelector('.alert');
 
-    if (source == 'form') {
+    if (source === 'form') {
 
         if (!name || !email || !phone) {
             alertBox.textContent = 'Por favor, preencha todos os campos obrigatórios.';
@@ -111,6 +111,7 @@ function sendWhatsAppMessage(source = 'form') {
             return;
         }
     }
+    gtag_report_conversion();
     if (!message) {
         message = `👋Olá! estou pensando em desenvolver um site.🖥️ 📱 Pode me dar mais informações?`;
     }
