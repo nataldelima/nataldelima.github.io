@@ -11,32 +11,38 @@ document.addEventListener('DOMContentLoaded', () => {
             imagem: "midia/bellelza.png",
             link: "https://nataldelima.github.io/bellelza"
         },
+        {
+            titulo: "Natal de Lima",
+            descricao: "Site pessoal feito em HTML5, CSS e JavaScript.",
+            imagem: "midia/nataldelima.png",
+            link: "https://nataldelima.github.io"
+        },
 
         {
-            titulo: "Projeto Doguinho's",
+            titulo: "Doguinho's",
             descricao: "Projeto de Site simples para Clínica Veterinária.",
             imagem: "midia/doguinhos.png",
             link: "https://nataldelima.github.io/doguinhos"
         }, {
-            titulo: "Projeto Lista de Tarefas",
+            titulo: "Lista de Tarefas",
             descricao: "Projeto de lista de tarefas feito em HTML5, CSS e JavaScript.",
             imagem: "midia/lista-de-tarefas.png",
             link: "midia/portfolio/lista-de-tarefas/"
         },
         {
-            titulo: "Projeto Clínica da Mulher",
+            titulo: "Clínica da Mulher",
             descricao: "Projeto fictício para treinar habilidades de desenvolvimento web.",
             imagem: "midia/clinica-mulher.png",
             link: "midia/portfolio/clinica-mulher/"
         },
         {
-            titulo: "Projeto Inteligência Artificial",
+            titulo: "Inteligência Artificial",
             descricao: "Projeto fictício para treinar habilidades de desenvolvimento web.",
             imagem: "midia/ia.png",
             link: "midia/portfolio/ia/"
         },
         {
-            titulo: "Projeto Agência Fake",
+            titulo: "Agência Fake",
             descricao: "Projeto fictício para treinar habilidades de desenvolvimento web.",
             imagem: "midia/agencia-fake.png",
             link: "midia/portfolio/agencia-fake/"
@@ -55,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="card h-100">
           <img src="${projeto.imagem}" class="card-img-top" alt="${projeto.titulo}" style="height: 250px; object-fit: cover;">
           <div class="card-body d-flex flex-column">
-            <h4 class="card-title text-dark" style="text-align: center;">${projeto.titulo}</h4>
+            <h4 class="card-title text-dark" style="text-align: center;">Projeto ${projeto.titulo}</h4>
             <p class="card-text text-dark"><strong>Descrição:</strong> ${projeto.descricao}</p>            
             <a href="${projeto.link}" target="_blank" class="btn btn-warning mt-auto">Ver Projeto</a>
           </div>
