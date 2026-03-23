@@ -6,8 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Lista de projetos do portfólio
     const projetos = [
         {
+            titulo: "Psico",
+            descricao: "Projeto modelo de site simples para profissional em psicólogia.",
+            imagem: "midia/psico.png",
+            link: "https://nataldelima.github.io/psico"
+        },
+        {
             titulo: "BellElza",
-            descricao: "Projeto de Site simples para Esteticista.",
+            descricao: "Projeto modelo de site simples para esteticista.",
             imagem: "midia/bellelza.png",
             link: "https://nataldelima.github.io/bellelza"
         },
@@ -20,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         {
             titulo: "Doguinho's",
-            descricao: "Projeto de Site simples para Clínica Veterinária.",
+            descricao: "Projeto modelo de site simples para clínica veterinária.",
             imagem: "midia/doguinhos.png",
             link: "https://nataldelima.github.io/doguinhos"
         }, {
