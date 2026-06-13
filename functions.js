@@ -6,50 +6,67 @@ document.addEventListener('DOMContentLoaded', () => {
     // Lista de projetos do portfólio
     const projetos = [
         {
-            titulo: "Psico",
-            descricao: "Projeto modelo de site simples para profissional em psicólogia.",
+            titulo: "Clínica Psico",
+            descricao: "Site institucional para clínica de psicologia com foco em captação de pacientes.",
+            contexto: "Projeto desenvolvido como simulação de presença digital para um profissional de psicologia, com necessidade de atrair pacientes e facilitar contato via WhatsApp.",
+            solucao: "Layout responsivo, estrutura clara de serviços, CTA para WhatsApp e SEO básico para busca local.",
             imagem: "midia/psico.png",
             link: "https://nataldelima.github.io/psico"
         },
         {
-            titulo: "BellElza",
-            descricao: "Projeto modelo de site simples para esteticista.",
+            titulo: "Bellelza Estética",
+            descricao: "Site institucional para profissional de estética e beleza.",
+            contexto: "Simulação de site para uma esteticista autônoma que precisa divulgar serviços e captar clientes online.",
+            solucao: "Design moderno, foco em apresentação de serviços, responsividade mobile e integração com WhatsApp.",
             imagem: "midia/bellelza.png",
             link: "https://nataldelima.github.io/bellelza"
         },
         {
-            titulo: "Natal de Lima",
-            descricao: "Site pessoal feito em HTML5, CSS e JavaScript.",
+            titulo: "Natal Lima - Portfólio",
+            descricao: "Site pessoal e portfólio profissional desenvolvido em HTML, CSS e JavaScript puro.",
+            contexto: "Projeto de branding pessoal para apresentação de habilidades como desenvolvedor web.",
+            solucao: "Estrutura leve, foco em performance, SEO básico e organização de projetos como vitrine técnica.",
             imagem: "midia/nataldelima.png",
             link: "https://nataldelima.github.io"
         },
 
         {
-            titulo: "Doguinho's",
-            descricao: "Projeto modelo de site simples para clínica veterinária.",
+            titulo: "Doguinho's Vet",
+            descricao: "Site institucional para clínica veterinária",
+            contexto: "Projeto modelo de site simples para clínica veterinária.",
+            solucao: "Layout responsivo, SEO básico e foco em conversão.",
             imagem: "midia/doguinhos.png",
             link: "https://nataldelima.github.io/doguinhos"
-        }, {
+        },
+        {
             titulo: "Lista de Tarefas",
-            descricao: "Projeto de lista de tarefas feito em HTML5, CSS e JavaScript.",
+            descricao: "Aplicação de produtividade para gerenciamento de tarefas.",
+            contexto: "Projeto de estudo para aplicação de lógica de programação e manipulação de DOM.",
+            solucao: "CRUD de tarefas, persistência local e interface simples e responsiva.",
             imagem: "midia/lista-de-tarefas.png",
             link: "midia/portfolio/lista-de-tarefas/"
         },
         {
             titulo: "Clínica da Mulher",
-            descricao: "Projeto fictício para treinar habilidades de desenvolvimento web.",
+            descricao: "Site institucional fictício para clínica médica especializada.",
+            contexto: "Simulação de site para clínica de saúde com foco em apresentação de serviços médicos.",
+            solucao: "Layout institucional, estrutura de serviços e design responsivo para mobile.",
             imagem: "midia/clinica-mulher.png",
             link: "midia/portfolio/clinica-mulher/"
         },
         {
-            titulo: "Inteligência Artificial",
-            descricao: "Projeto fictício para treinar habilidades de desenvolvimento web.",
+            titulo: "Sistema IA Landing",
+            descricao: "Landing page conceitual sobre inteligência artificial.",
+            contexto: "Projeto de estudo para prática de construção de landing pages modernas.",
+            solucao: "Layout moderno, hierarquia visual clara e foco em conversão de interesse.",
             imagem: "midia/ia.png",
             link: "midia/portfolio/ia/"
         },
         {
-            titulo: "Agência Fake",
-            descricao: "Projeto fictício para treinar habilidades de desenvolvimento web.",
+            titulo: "Agência Digital Fake",
+            descricao: "Landing page de agência digital fictícia.",
+            contexto: "Simulação de site institucional para agência de marketing digital.",
+            solucao: "Estrutura comercial, foco em vendas, seções de serviços e CTA estratégico.",
             imagem: "midia/agencia-fake.png",
             link: "midia/portfolio/agencia-fake/"
         }
@@ -67,9 +84,32 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="card h-100">
           <img src="${projeto.imagem}" class="card-img-top" alt="${projeto.titulo}" style="height: 250px; object-fit: cover;">
           <div class="card-body d-flex flex-column">
-            <h4 class="card-title text-dark" style="text-align: center;">Projeto ${projeto.titulo}</h4>
-            <p class="card-text text-dark"><strong>Descrição:</strong> ${projeto.descricao}</p>            
-            <a href="${projeto.link}" target="_blank" class="btn btn-warning mt-auto">Ver Projeto</a>
+          
+            <h4 class="card-title text-dark text-center">${projeto.titulo}</h4>
+            <p class="text-muted text-center"><strong>Descrição:</strong> ${projeto.descricao}</p>
+            <hr/>
+           <div class="details-wrapper mt-2 d-flex flex-column gap-2">
+
+          <div class="d-flex gap-2 mt-auto">
+                <button class="btn btn-portfolio toggle-details w-50">
+                    <i class="bi bi-chevron-down"></i> Detalhes
+                </button>
+
+                <a href="${projeto.link}" target="_blank" class="btn btn-warning w-50">
+                    <i class="bi bi-box-arrow-up-right"></i> Projeto
+                </a>
+            </div>
+            <div class="details-content mt-3">
+                <p class="text-dark">
+                <strong>Contexto:</strong> ${projeto.contexto || 'N/A'}
+                </p>
+
+                <p class="text-dark">
+                <strong>Solução:</strong> ${projeto.solucao || 'N/A'}
+                </p>
+            </div>
+            </div>
+            
           </div>
         </div>
       `;
@@ -81,6 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
         slidesPerView: 1,
         spaceBetween: 20,
         loop: true,
+        autoHeight: false,
+        watchOverflow: true,
+        observer: true,
+        observeParents: true,
         pagination: {
             el: ".swiper-pagination",
             clickable: true,
@@ -100,6 +144,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+
+document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.toggle-details');
+    if (!btn) return;
+
+    const wrapper = btn.closest('.details-wrapper');
+
+    wrapper.classList.toggle('active');
+
+    const isOpen = wrapper.classList.contains('active');
+
+    btn.innerHTML = isOpen
+        ? `<i class="bi bi-chevron-up"></i> Ocultar detalhes`
+        : `<i class="bi bi-chevron-down"></i> Detalhes`;
+});
 
 //Identificar o sistema operacional
 

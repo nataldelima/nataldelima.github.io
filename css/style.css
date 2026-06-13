@@ -112,14 +112,103 @@ footer {
     color: #f8f9fa;
 }
 
+
+#como-funciona .step-card {
+    background: #2b3035;
+    border-radius: 12px;
+    transition: 0.3s ease;
+    position: relative;
+    color: #f8f9fa;
+}
+
+#como-funciona .step-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+#como-funciona .step-number {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 14px;
+    background: #ffc107;
+    color: #343a40;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
 #portfolio .card {
     border: none;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 #portfolio .card:hover {
     transform: translateY(-5px);
+}
+
+#portfolio .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#portfolio .card-body .text-muted {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.8em;
+}
+
+#portfolio .card-body p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* estado fechado */
+.details-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.35s ease;
+}
+
+/* estado aberto */
+.details-wrapper.active .details-content {
+    max-height: 400px;
+    opacity: 1;
+}
+
+.details-wrapper.active .toggle-details i {
+    transform: rotate(180deg);
+    transition: 0.3s ease;
+}
+
+.btn-portfolio {
+    background-color: #212529;
+    color: #ffc107;
+    border: 1px solid #ffc107;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn-portfolio:hover {
+    background-color: #ffc107;
+    color: #212529;
+    border-color: #ffc107;
+    transform: translateY(-2px);
+    box-shadow: 0 0 12px rgba(255, 193, 7, 0.4);
 }
 
 #faq .accordion-item {
@@ -127,6 +216,14 @@ footer {
     margin-bottom: 12px;
     border-radius: 8px;
     overflow: hidden;
+}
+
+#beneficios.card {
+    transition: 0.3s;
+}
+
+#beneficios .card:hover {
+    transform: translateY(-5px);
 }
 
 #faq .accordion-button {
@@ -140,6 +237,48 @@ footer {
 
 #faq .accordion-button:focus {
     box-shadow: none;
+}
+
+#contato .form {
+    background: #2b3035;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+#contato .form-label {
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+#contato .form-control {
+    background-color: #212529;
+    border: 1px solid #495057;
+    color: #f8f9fa;
+    border-radius: 8px;
+}
+
+#contato .form-control:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 0 0.15rem rgba(255, 193, 7, .25);
+}
+
+#contato button[type="submit"] {
+    width: 100%;
+    font-weight: 600;
+    padding: 12px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+#contato button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255, 193, 7, 0.25);
+}
+
+#contato .social-media {
+    margin-top: 20px;
+    opacity: 0.9;
 }
 
 .whatsapp-float {
@@ -166,6 +305,21 @@ footer {
     background: #ffc107;
     color: #343a40;
     transform: scale(1.08);
+}
+
+/* === Estilos para o Swiper === */
+.swiper-wrapper {
+    align-items: stretch;
+}
+
+.swiper-slide {
+    height: auto;
+    display: flex;
+}
+
+.swiper-slide {
+    height: auto;
+    display: flex;
 }
 
 /* === Botões do Swiper === */
