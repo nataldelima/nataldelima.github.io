@@ -101,13 +101,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
 //Identificar o sistema operacional
 
 function detectOS() {
-    const userAgent = navigator.userAgent;
-
-    return (/Android|iPhone|iPad|iPod|Windows/.test(userAgent)) ? "api" : "web";
+    return (/Android|iPhone|iPad|iPod|Windows/i.test(userAgent)) ? "api" : "web";
 }
 
 
@@ -115,10 +112,11 @@ function detectOS() {
 function sendWhatsAppMessage(source = 'form') {
     const phoneNumber = "5567991609897";
     const app = detectOS();
-    var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
-    var phone = document.getElementById('phone').value;
-    var message = document.getElementById('message').value;
+
+    var name = document.getElementById('name')?.value || '';
+    var email = document.getElementById('email')?.value || '';
+    var phone = document.getElementById('phone')?.value || '';
+    var message = document.getElementById('message')?.value || '';
     var alertBox = document.querySelector('.alert');
 
     if (source === 'form') {
@@ -129,6 +127,15 @@ function sendWhatsAppMessage(source = 'form') {
             return;
         }
     }
+
+    if (source === 'float') {
+        message = `👋Olá! Vi seu site e gostaria de solicitar um orçamento`;
+    }
+
+    if (source === 'btn') {
+        message = `👋Olá! Gostaria de saber mais sobre seus serviços`;
+    }
+
     gtag_report_conversion();
     if (!message) {
         message = `👋Olá! estou pensando em desenvolver um site.🖥️ 📱 Pode me dar mais informações?`;

@@ -1,189 +1,240 @@
- body {
-     padding-top: 56px;
-     background-color: #343a40;
-     color: #f8f9fa;
- }
+html {
+    scroll-padding-top: 70px;
+    scroll-behavior: smooth;
+}
 
- .logo {
-     height: 46px;
-     width: auto;
+body {
+    padding-top: 56px;
+    background-color: #343a40;
+    color: #f8f9fa;
+}
 
- }
+.logo {
+    height: 46px;
+    width: auto;
 
-
- .navbar {
-     background-color: #343a40;
- }
-
- .navbar-brand,
- .nav-link {
-     color: #f8f9fa !important;
- }
-
- .nav-item:hover, .nav-link:hover {
-     border-top: 2px solid #ffc107;
-     color: #ffc107 !important;
-     margin-top: -2px;
- }
-
- .video-banner {
-     position: relative;
-     width: 100%;
-     height: auto;
-     min-height: 400px;
-     overflow: hidden;
-     opacity: 0.8;
- }
-
- .video-banner video {
-     position: absolute;
-     top: 50%;
-     left: 50%;
-     transform: translate(-50%, -50%);
-     min-width: 100%;
-     min-height: 100%;
-     width: auto;
-     height: auto;
-     object-fit: cover;
- }
-
- .video-banner .container {
-     position: relative;
-     text-align: center;
-     padding-top: 5rem;
-     padding-bottom: 5rem;
-     color: #343a40;
-     height: 100%;
- }
-
- .bg-light {
-     background-color: #f8f9fa !important;
-     color: #343a40;
- }
-
- .bg-dark {
-     background-color: #343a40 !important;
-     color: #f8f9fa;
- }
-
- .display-4, .lead {
-     color: white;
- }
-
- .text-dark {
-     color: #343a40 !important;
- }
-
- .btn-warning {
-     background-color: #ffc107;
-     border: none;
-     color: #343a40;
- }
-
- .social-media {
-     text-align: center;
-     margin-top: 15px;
- }
-
- .social-media img {
-     width: 40px;
-     height: auto;
-     margin: 10px;
-     transition: transform 0.2s ease, opacity 0.2s ease;
- }
-
- .social-media img:hover {
-     transform: scale(1.1);
-     opacity: 0.9;
-     cursor: pointer;
- }
-
- sup {
-     font-size: bolder;
- }
-
- footer {
-     background-color: #212529;
-     color: #f8f9fa;
- }
-
- #portfolio .card {
-     border: none;
-     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-     transition: transform 0.3s ease;
- }
-
- #portfolio .card:hover {
-     transform: translateY(-5px);
- }
-
- /* === Botões do Swiper === */
- .swiper-button-prev,
- .swiper-button-next {
-     padding: -50px;
-     background-color: rgba(0, 0, 0, 0.1) color: #000;
-     width: 45px;
-     height: 45px;
-     border-radius: 50%;
-     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-     transition: all 0.3s ease;
- }
-
- /* Remove o SVG padrão e insere o seu ícone customizado (opcional) */
- .swiper-button-prev::after,
- .swiper-button-next::after {
-     font-size: 18px;
-     color: #000;
- }
-
- /* Hover */
- .swiper-button-prev:hover,
- .swiper-button-next:hover {
-     background-color: #000;
- }
-
- .swiper-button-prev:hover::after,
- .swiper-button-next:hover::after {
-     color: #fff;
- }
+}
 
 
- /* --- Media Query para Dispositivos Móveis --- */
+.navbar {
+    background-color: #343a40;
+}
 
- @media (max-width: 768px) {
-     .video-banner {
-         /* No celular, remova a altura fixa ou reduza-a */
-         height: auto;
-     }
+.navbar-brand,
+.nav-link {
+    color: #f8f9fa !important;
+}
 
-     .video-banner .container {
-         /* Reduza o espaçamento interno para diminuir o espaço extra */
-         padding-top: 3rem;
-         padding-bottom: 3rem;
-         /* ESTE É O AJUSTE CHAVE PARA O CELULAR */
-         top: auto;
-         /* Remove a centralização absoluta no celular */
-         left: auto;
-         transform: none;
-         height: auto;
-     }
+.nav-item:hover, .nav-link:hover {
+    border-top: 2px solid #ffc107;
+    color: #ffc107 !important;
+    margin-top: -2px;
+}
 
-     .video-banner video {
-         /* Garanta que o vídeo não estique demais */
-         height: 100%;
-     }
+.video-banner {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 400px;
+    overflow: hidden;
+    opacity: 0.8;
+}
 
-     #servicos {
-         margin-top: -5rem;
-         text-align: center;
-     }
+.video-banner video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+}
 
-     #contato .btn {
-         text-align: center;
-         width: 100%;
-     }
+.video-banner .container {
+    position: relative;
+    text-align: center;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    color: #343a40;
+    height: 100%;
+}
 
-     #contato .btn-warning {
-         margin-top: -5rem;
-     }
- }
+.bg-light {
+    background-color: #f8f9fa !important;
+    color: #343a40;
+}
+
+.bg-dark {
+    background-color: #343a40 !important;
+    color: #f8f9fa;
+}
+
+.display-4, .lead {
+    color: white;
+}
+
+.text-dark {
+    color: #343a40 !important;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border: none;
+    color: #343a40;
+}
+
+.social-media {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.social-media img {
+    width: 40px;
+    height: auto;
+    margin: 10px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social-media img:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+sup {
+    font-size: bolder;
+}
+
+footer {
+    background-color: #212529;
+    color: #f8f9fa;
+}
+
+#portfolio .card {
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+#portfolio .card:hover {
+    transform: translateY(-5px);
+}
+
+#faq .accordion-item {
+    border: none;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#faq .accordion-button {
+    font-weight: 600;
+}
+
+#faq .accordion-button:not(.collapsed) {
+    background-color: #ffc107;
+    color: #343a40;
+}
+
+#faq .accordion-button:focus {
+    box-shadow: none;
+}
+
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 25px;
+    right: 25px;
+    background: #343a40;
+    color: #ffc107;
+    border: 2px solid #ffc107;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    z-index: 999;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .3);
+    transition: all .3s ease;
+}
+
+.whatsapp-float:hover {
+    background: #ffc107;
+    color: #343a40;
+    transform: scale(1.08);
+}
+
+/* === Botões do Swiper === */
+.swiper-button-prev,
+.swiper-button-next {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #000;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* Remove o SVG padrão e insere o seu ícone customizado (opcional) */
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    font-size: 18px;
+    color: #000;
+}
+
+/* Hover */
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    background-color: #000;
+}
+
+.swiper-button-prev:hover::after,
+.swiper-button-next:hover::after {
+    color: #fff;
+}
+
+
+/* --- Media Query para Dispositivos Móveis --- */
+
+@media (max-width: 768px) {
+    .video-banner {
+        /* No celular, remova a altura fixa ou reduza-a */
+        height: auto;
+    }
+
+    .video-banner .container {
+        /* Reduza o espaçamento interno para diminuir o espaço extra */
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        /* ESTE É O AJUSTE CHAVE PARA O CELULAR */
+        top: auto;
+        /* Remove a centralização absoluta no celular */
+        left: auto;
+        transform: none;
+        height: auto;
+    }
+
+    .video-banner video {
+        /* Garanta que o vídeo não estique demais */
+        height: 100%;
+    }
+
+    #servicos {
+        margin-top: -5rem;
+        text-align: center;
+    }
+
+    #contato .btn {
+        text-align: center;
+        width: 100%;
+    }
+
+    #contato .btn-warning {
+        margin-top: -5rem;
+    }
+}
