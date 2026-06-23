@@ -163,6 +163,7 @@ document.addEventListener('click', function (e) {
 //Identificar o sistema operacional
 
 function detectOS() {
+    const userAgent = window.navigator.userAgent;
     return (/Android|iPhone|iPad|iPod|Windows/i.test(userAgent)) ? "api" : "web";
 }
 
