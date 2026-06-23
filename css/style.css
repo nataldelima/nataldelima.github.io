@@ -287,6 +287,12 @@ footer {
     opacity: 0.9;
 }
 
+footer a {
+    color: #ffc107;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
 .whatsapp-float {
     position: fixed;
     width: 60px;
