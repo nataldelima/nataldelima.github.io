@@ -6,6 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Lista de projetos do portfólio
     const projetos = [
         {
+            titulo: "Studio Bia Jordão",
+            descricao: "Site profissional para especialista em sobrancelhas e lash lifting, com foco em conversão e agendamentos.",
+            contexto: "O projeto foi desenvolvido para um negócio local de Campo Grande-MS que precisava centralizar a apresentação dos seus serviços, transmitir credibilidade e facilitar a jornada de marcação de horários das clientes.",
+            solucao: "Criação de uma landing page com design personalizado e sofisticado, totalmente responsiva, estruturada com apresentação dos procedimentos e CTAs diretos para agendamento no WhatsApp.",
+            imagem: "midia/studio-bia-jordao.png",
+            link: "https://studiobiajordao.site.je"
+        },
+        {
             titulo: "Clínica Psico",
             descricao: "Site institucional para clínica de psicologia com foco em captação de pacientes.",
             contexto: "Projeto desenvolvido como simulação de presença digital para um profissional de psicologia, com necessidade de atrair pacientes e facilitar contato via WhatsApp.",
@@ -39,14 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
             link: "https://nataldelima.github.io/doguinhos"
         },
         {
-            titulo: "Lista de Tarefas",
-            descricao: "Aplicação de produtividade para gerenciamento de tarefas.",
-            contexto: "Projeto de estudo para aplicação de lógica de programação e manipulação de DOM.",
-            solucao: "CRUD de tarefas, persistência local e interface simples e responsiva.",
-            imagem: "midia/lista-de-tarefas.png",
-            link: "midia/portfolio/lista-de-tarefas/"
-        },
-        {
             titulo: "Clínica da Mulher",
             descricao: "Site institucional fictício para clínica médica especializada.",
             contexto: "Simulação de site para clínica de saúde com foco em apresentação de serviços médicos.",
@@ -61,14 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
             solucao: "Layout moderno, hierarquia visual clara e foco em conversão de interesse.",
             imagem: "midia/ia.png",
             link: "midia/portfolio/ia/"
-        },
-        {
-            titulo: "Agência Digital Fake",
-            descricao: "Landing page de agência digital fictícia.",
-            contexto: "Simulação de site institucional para agência de marketing digital.",
-            solucao: "Estrutura comercial, foco em vendas, seções de serviços e CTA estratégico.",
-            imagem: "midia/agencia-fake.png",
-            link: "midia/portfolio/agencia-fake/"
         }
     ];
 
@@ -196,7 +188,15 @@ function sendWhatsAppMessage(source = 'form') {
         message = `👋Olá! Gostaria de saber mais sobre seus serviços`;
     }
 
-    gtag_report_conversion();
+    try {
+        if (typeof gtag_report_conversion === 'function') {
+            gtag_report_conversion();
+        }
+    } catch (error) {
+        console.warn("Conversão não registrada devido a bloqueador de anúncios, mas o redirecionamento ocorrerá.");
+    }
+
+
     if (!message) {
         message = `👋Olá! estou pensando em desenvolver um site.🖥️ 📱 Pode me dar mais informações?`;
     }
