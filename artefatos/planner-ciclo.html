@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planner Personalizado - Dias & Tarefas Dinâmicas</title>
+    <style>
+        @media print {
+            body { margin: 0; padding: 0; background: white; }
+            .no-print { display: none !important; }
+            .planner-page { box-shadow: none !important; margin: 0 !important; padding: 10mm !important; width: 100% !important; }
+            .page-break { page-break-before: always; }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.4;
+            background: #eef2f7;
+            padding: 20px;
+            color: #333;
+        }
+
+        .action-bar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 9px 16px;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.85em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(102, 126, 234, 0.6); }
+        .btn-secondary { background: #10b981; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4); }
+        .btn-danger { background: #ef4444; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); }
+        .btn-sm { padding: 4px 10px; font-size: 0.75em; border-radius: 4px; }
+
+        .planner-page {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            margin: 0 auto 30px auto;
+            padding: 15mm;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            border-radius: 4px;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 { color: #667eea; font-size: 1.8em; }
+
+        .cycle-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            font-size: 0.85em;
+            background: #f8fafc;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .cycle-info input {
+            border: none;
+            border-bottom: 2px solid #667eea;
+            padding: 3px 5px;
+            font-size: 0.9em;
+            text-align: center;
+            background: transparent;
+            font-weight: bold;
+            color: #4a5568;
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 12px;
+            font-weight: bold;
+            font-size: 0.95em;
+            border-radius: 5px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* CARD DE DIA DA SEMANA */
+        .daily-card {
+            border: 1px solid #cbd5e1;
+            border-left: 5px solid #667eea;
+            border-radius: 6px;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            background: #ffffff;
+            transition: all 0.2s ease;
+        }
+
+        .daily-card.holiday {
+            border-left-color: #f59e0b;
+            background: #fffbeb;
+        }
+
+        .daily-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .day-title-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .day-title-input {
+            font-weight: bold;
+            color: #1e293b;
+            border: none;
+            border-bottom: 1px dashed #cbd5e1;
+            font-size: 0.95em;
+            width: 200px;
+            background: transparent;
+        }
+
+        .day-date-input {
+            border: none;
+            border-bottom: 1px solid #cbd5e1;
+            font-size: 0.8em;
+            width: 80px;
+            text-align: center;
+            color: #64748b;
+            background: transparent;
+        }
+
+        .day-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .holiday-toggle {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.75em;
+            color: #b45309;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /* TAREFAS */
+        .task-list { display: grid; gap: 6px; margin-bottom: 8px; }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 6px;
+            border-radius: 4px;
+            background: #f8fafc;
+            border-left: 4px solid #cbd5e1;
+        }
+
+        /* CORES DE PRIORIDADE */
+        .task-item.p-alta { border-left-color: #ef4444; background: #fef2f2; }
+        .task-item.p-media { border-left-color: #f59e0b; background: #fffbeb; }
+        .task-item.p-baixa { border-left-color: #10b981; background: #f0fdf4; }
+
+        .task-item.done input[type="text"] {
+            text-decoration: line-through;
+            color: #94a3b8;
+        }
+
+        .checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #667eea;
+            border-radius: 4px;
+            flex-shrink: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+        }
+
+        .checkbox.checked { background: #667eea; }
+        .checkbox.checked::after { content: '✓'; color: white; font-size: 12px; font-weight: bold; }
+
+        .priority-select {
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 0.75em;
+            padding: 2px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .task-input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 0.85em;
+            padding: 2px 4px;
+            color: #334155;
+        }
+
+        .btn-icon {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9em;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+        .btn-icon:hover { opacity: 1; }
+
+        .holiday-banner {
+            padding: 10px;
+            text-align: center;
+            color: #d97706;
+            font-weight: bold;
+            font-size: 0.85em;
+            background: #fef3c7;
+            border-radius: 4px;
+        }
+
+        .footer {
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.75em;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            display: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="action-bar no-print">
+        <button class="btn" onclick="window.print()">🖨️ Imprimir</button>
+        <button class="btn btn-secondary" onclick="savePlannerData(true)">💾 Salvar</button>
+        <button class="btn btn-danger" onclick="clearPlannerData()">🧹 Limpar Tudo</button>
+    </div>
+
+    <div id="toast" class="toast">Dados salvos com sucesso!</div>
+
+    <div class="planner-page">
+        <div class="header">
+            <h1>🗓️ CRONOGRAMA DE TRABALHO & TAREFAS</h1>
+            <p style="color: #64748b; margin-top: 3px; font-size: 0.85em;">Organização Flexível com Dias, Feriados e Prioridades</p>
+            <div class="cycle-info">
+                <div><strong>Semana / Ciclo:</strong> <input type="text" data-key="cycle_num" placeholder="01" style="width: 50px;" /></div>
+                <div><strong>Início:</strong> <input type="text" data-key="cycle_start" placeholder="DD/MM" style="width: 70px;" /></div>
+                <div><strong>Fim:</strong> <input type="text" data-key="cycle_end" placeholder="DD/MM" style="width: 70px;" /></div>
+                <div><strong>Foco da Semana:</strong> <input type="text" data-key="cycle_focus" placeholder="Ex: Prospecção & Entregas" style="width: 200px;" /></div>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <span>📅 DIAS DA SEMANA & ATIVIDADES</span>
+            <button class="btn btn-secondary btn-sm no-print" onclick="addNewDayCard()">➕ Adicionar Dia</button>
+        </div>
+
+        <div id="days-container">
+            <!-- Cards de Dias Renderizados via JS -->
+        </div>
+
+        <div class="footer">
+            <p><strong>Planner de Atividades</strong> | Desenvolvedor Freelancer</p>
+        </div>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'planner_dynamic_days_v1';
+
+        // Estrutura padrão inicial de dias (Sem fins de semana por padrão)
+        const defaultDays = [
+            { id: 'd1', label: 'Segunda-Feira', date: '', isHoliday: false, tasks: [
+                { text: 'Prospecção de novos leads', priority: 'alta', done: false },
+                { text: 'Avançar desenvolvimento de projetos', priority: 'media', done: false }
+            ]},
+            { id: 'd2', label: 'Terça-Feira', date: '', isHoliday: false, tasks: [
+                { text: 'Contato inicial com lote de leads', priority: 'alta', done: false }
+            ]},
+            { id: 'd3', label: 'Quarta-Feira', date: '', isHoliday: false, tasks: [
+                { text: 'Follow-up e envio de propostas', priority: 'media', done: false }
+            ]},
+            { id: 'd4', label: 'Quinta-Feira', date: '', isHoliday: false, tasks: [
+                { text: 'Revisão técnica de código / entregas', priority: 'baixa', done: false }
+            ]},
+            { id: 'd5', label: 'Sexta-Feira', date: '', isHoliday: false, tasks: [
+                { text: 'Fechamento de propostas e balanço', priority: 'alta', done: false }
+            ]}
+        ];
+
+        let daysData = [];
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/"/g, '&quot;');
+        }
+
+        // Renderizar todos os cards de dias
+        function renderDays() {
+            const container = document.getElementById('days-container');
+            container.innerHTML = '';
+
+            daysData.forEach((day, dayIndex) => {
+                const card = document.createElement('div');
+                card.className = `daily-card ${day.isHoliday ? 'holiday' : ''}`;
+
+                let tasksHTML = '';
+
+                if (day.isHoliday) {
+                    tasksHTML = `
+                        <div class="holiday-banner">
+                            🌴 FERIADO / SEM EXPEDIENTE
+                        </div>
+                    `;
+                } else {
+                    tasksHTML = `
+                        <div class="task-list">
+                            ${day.tasks.map((task, taskIndex) => `
+                                <div class="task-item p-${task.priority} ${task.done ? 'done' : ''}">
+                                    <div class="checkbox ${task.done ? 'checked' : ''}" 
+                                         onclick="toggleTaskDone(${dayIndex}, ${taskIndex})"></div>
+
+                                    <select class="priority-select" onchange="updateTaskPriority(${dayIndex}, ${taskIndex}, this.value)">
+                                        <option value="alta" ${task.priority === 'alta' ? 'selected' : ''}>🔴 Alta</option>
+                                        <option value="media" ${task.priority === 'media' ? 'selected' : ''}>🟡 Média</option>
+                                        <option value="baixa" ${task.priority === 'baixa' ? 'selected' : ''}>🟢 Baixa</option>
+                                    </select>
+
+                                    <input type="text" class="task-input" value="${escapeHtml(task.text)}" 
+                                           placeholder="Descrição da atividade..." 
+                                           oninput="updateTaskText(${dayIndex}, ${taskIndex}, this.value)" />
+
+                                    <button class="btn-icon no-print" onclick="removeTask(${dayIndex}, ${taskIndex})" title="Excluir Atividade">🗑️</button>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <button class="btn btn-secondary btn-sm no-print" onclick="addTask(${dayIndex})">➕ Nova Atividade</button>
+                    `;
+                }
+
+                card.innerHTML = `
+                    <div class="daily-card-header">
+                        <div class="day-title-container">
+                            <input type="text" class="day-title-input" value="${escapeHtml(day.label)}" 
+                                   oninput="updateDayLabel(${dayIndex}, this.value)" placeholder="Nome do dia..." />
+                            <input type="text" class="day-date-input" value="${escapeHtml(day.date)}" 
+                                   oninput="updateDayDate(${dayIndex}, this.value)" placeholder="DD/MM" />
+                        </div>
+                        <div class="day-controls">
+                            <label class="holiday-toggle no-print">
+                                <input type="checkbox" ${day.isHoliday ? 'checked' : ''} onchange="toggleHoliday(${dayIndex})" />
+                                🌴 Feriado
+                            </label>
+                            <button class="btn-icon no-print" onclick="removeDayCard(${dayIndex})" title="Excluir este dia" style="margin-left: 8px;">❌</button>
+                        </div>
+                    </div>
+                    ${tasksHTML}
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        // Funções de manipulação de dados de dias/tarefas
+        function updateDayLabel(dayIndex, val) { daysData[dayIndex].label = val; savePlannerData(false); }
+        function updateDayDate(dayIndex, val) { daysData[dayIndex].date = val; savePlannerData(false); }
+
+        function toggleHoliday(dayIndex) {
+            daysData[dayIndex].isHoliday = !daysData[dayIndex].isHoliday;
+            renderDays();
+            savePlannerData(false);
+        }
+
+        function addNewDayCard() {
+            daysData.push({
+                id: 'd_' + Date.now(),
+                label: 'Novo Dia / Data Especial',
+                date: '',
+                isHoliday: false,
+                tasks: [{ text: '', priority: 'media', done: false }]
+            });
+            renderDays();
+            savePlannerData(false);
+        }
+
+        function removeDayCard(dayIndex) {
+            if (confirm(`Deseja remover o card de "${daysData[dayIndex].label}"?`)) {
+                daysData.splice(dayIndex, 1);
+                renderDays();
+                savePlannerData(false);
+            }
+        }
+
+        function addTask(dayIndex) {
+            daysData[dayIndex].tasks.push({ text: '', priority: 'media', done: false });
+            renderDays();
+            savePlannerData(false);
+        }
+
+        function removeTask(dayIndex, taskIndex) {
+            daysData[dayIndex].tasks.splice(taskIndex, 1);
+            renderDays();
+            savePlannerData(false);
+        }
+
+        function toggleTaskDone(dayIndex, taskIndex) {
+            daysData[dayIndex].tasks[taskIndex].done = !daysData[dayIndex].tasks[taskIndex].done;
+            renderDays();
+            savePlannerData(false);
+        }
+
+        function updateTaskPriority(dayIndex, taskIndex, priorityVal) {
+            daysData[dayIndex].tasks[taskIndex].priority = priorityVal;
+            renderDays();
+            savePlannerData(false);
+        }
+
+        function updateTaskText(dayIndex, taskIndex, textVal) {
+            daysData[dayIndex].tasks[taskIndex].text = textVal;
+            savePlannerData(false);
+        }
+
+        // Persistência com LocalStorage
+        function savePlannerData(showNotification = false) {
+            const data = {
+                headerFields: {},
+                days: daysData
+            };
+
+            document.querySelectorAll('input[data-key]').forEach(el => {
+                data.headerFields[el.getAttribute('data-key')] = el.value;
+            });
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
+            if (showNotification) {
+                const toast = document.getElementById('toast');
+                toast.style.display = 'block';
+                setTimeout(() => { toast.style.display = 'none'; }, 2000);
+            }
+        }
+
+        function loadPlannerData() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (!saved) {
+                daysData = JSON.parse(JSON.stringify(defaultDays));
+                renderDays();
+                return;
+            }
+
+            try {
+                const data = JSON.parse(saved);
+                daysData = data.days && data.days.length > 0 ? data.days : JSON.parse(JSON.stringify(defaultDays));
+
+                if (data.headerFields) {
+                    document.querySelectorAll('input[data-key]').forEach(el => {
+                        const key = el.getAttribute('data-key');
+                        if (data.headerFields[key] !== undefined) el.value = data.headerFields[key];
+                    });
+                }
+
+                renderDays();
+            } catch (e) {
+                console.error("Erro ao carregar do LocalStorage:", e);
+                daysData = JSON.parse(JSON.stringify(defaultDays));
+                renderDays();
+            }
+        }
+
+        function clearPlannerData() {
+            if (confirm('Tem certeza que deseja redefinir todo o cronograma?')) {
+                localStorage.removeItem(STORAGE_KEY);
+                location.reload();
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadPlannerData();
+        });
+    </script>
+</body>
+</html>
