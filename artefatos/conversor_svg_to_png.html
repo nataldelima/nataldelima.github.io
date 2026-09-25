@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>SVG → PNG (16 / 48 / 128 / 192 / 512)</title>
+<style>
+  body { font-family: system-ui, sans-serif; padding: 24px; max-width: 640px; margin: auto; background: #f5f5f7; color: #1a2030; }
+  h1 { font-size: 20px; }
+  .drop-zone { border: 3px dashed #1a2030; border-radius: 8px; padding: 40px; text-align: center; margin: 20px 0; background: #fff; cursor: pointer; transition: all .2s; }
+  .drop-zone.over { border-color: #f0b429; background: #fffbe6; }
+  .preview { display: flex; gap: 24px; align-items: center; margin: 20px 0; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  .preview-item { text-align: center; }
+  .preview-item img { display: block; margin: 0 auto 6px; image-rendering: pixelated; }
+  .preview-label { font-size: 11px; color: #6b7280; }
+  button { padding: 10px 18px; background: #f0b429; color: #1a2030; font-weight: 700; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; }
+  button:hover { background: #d99e0e; }
+  canvas { display: none; }
+</style>
+</head>
+<body>
+  <h1>🎨 SVG → PNG (16 / 48 / 128 / 192 / 512)</h1>
+  <div id="drop" class="drop-zone">
+    Arraste um arquivo <strong>.svg</strong> aqui<br>
+    <small>ou clique para escolher</small>
+    <input type="file" id="file" accept=".svg,image/svg+xml" hidden>
+  </div>
+  <div id="preview" class="preview" style="display:none;">
+    <div class="preview-item"><img id="p16" width="16" height="16"><div class="preview-label">icon16.png</div></div>
+    <div class="preview-item"><img id="p48" width="48" height="48"><div class="preview-label">icon48.png</div></div>
+    <div class="preview-item"><img id="p128" width="128" height="128"><div class="preview-label">icon128.png</div></div>
+    <div class="preview-item"><img id="p192" width="192" height="192"><div class="preview-label">icon192.png</div></div>
+    <div class="preview-item"><img id="p512" width="512" height="512"><div class="preview-label">icon512.png</div></div>
+    <button id="download">⬇️ Baixar todos os 5</button>
+  </div>
+  <canvas id="canvas"></canvas>
+<script>
+  const drop = document.getElementById('drop');
+  const fileInput = document.getElementById('file');
+  const canvas = document.getElementById('canvas');
+  const preview = document.getElementById('preview');
+  let svgText = null;
+
+  drop.addEventListener('click', () => fileInput.click());
+  drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add('over'); });
+  drop.addEventListener('dragleave', () => drop.classList.remove('over'));
+  drop.addEventListener('drop', e => {
+    e.preventDefault(); drop.classList.remove('over');
+    const f = e.dataTransfer.files[0]; if (f) handleFile(f);
+  });
+  fileInput.addEventListener('change', e => {
+    const f = e.target.files[0]; if (f) handleFile(f);
+  });
+
+  function handleFile(file) {
+    const reader = new FileReader();
+    reader.onload = e => { svgText = e.target.result; renderPreviews(); };
+    reader.readAsText(file);
+  }
+
+  function svgToPng(size) {
+    return new Promise(resolve => {
+      const img = new Image();
+      const blob = new Blob([svgText], { type: 'image/svg+xml' });
+      const url = URL.createObjectURL(blob);
+      img.onload = () => {
+        canvas.width = size; canvas.height = size;
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, size, size);
+        ctx.drawImage(img, 0, 0, size, size);
+        URL.revokeObjectURL(url);
+        canvas.toBlob(resolve, 'image/png');
+      };
+      img.src = url;
+    });
+  }
+
+  async function renderPreviews() {
+    for (const size of [16, 48, 128, 192, 512]) {
+      const blob = await svgToPng(size);
+      document.getElementById('p' + size).src = URL.createObjectURL(blob);
+    }
+    preview.style.display = 'flex';
+  }
+
+  document.getElementById('download').addEventListener('click', async () => {
+    for (const size of [16, 48, 128, 192, 512]) {
+      const blob = await svgToPng(size);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = `icon${size}.png`; a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+  });
+</script>
+</body>
+</html>
