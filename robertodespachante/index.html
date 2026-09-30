@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roberto Despachante | Agilidade e Confiança em Documentação Veicular</title>
+    <meta name="description" content="Há 27 anos resolvendo sua documentação veicular com agilidade e segurança em Campo Grande - MS e todo o Brasil. Emplacamento, Licenciamento, Transferência, CNH e muito mais.">
+    
+    <!-- Tailwind CSS (Framework Starter) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome (Ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Open Sans', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+        .brand-red { color: #dc2626; }
+        .bg-brand-red { background-color: #dc2626; }
+        .bg-brand-dark { background-color: #1a1a1a; }
+        
+        /* Smooth Scroll */
+        html { scroll-behavior: smooth; }
+        
+        /* Card Hover Effect */
+        .service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); }
+        
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed; bottom: 20px; right: 20px; z-index: 1000;
+            background-color: #25d366; color: white; width: 60px; height: 60px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        .whatsapp-float:hover { background-color: #128C7E; transform: scale(1.1); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- NAVBAR -->
+    <header class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="flex items-center gap-2">
+                        <img src="assets/img/logo_vermelho-129x60.png" alt="Roberto Despachante" class="h-12">
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <a href="#inicio" class="text-gray-700 hover:text-brand-red font-semibold transition">Início</a>
+                    <a href="#servicos" class="text-gray-700 hover:text-brand-red font-semibold transition">Serviços</a>
+                    <a href="#sobre" class="text-gray-700 hover:text-brand-red font-semibold transition">Sobre</a>
+                    <a href="#avaliacoes" class="text-gray-700 hover:text-brand-red font-semibold transition">Avaliações</a>
+                    <a href="#contato" class="text-gray-700 hover:text-brand-red font-semibold transition">Contato</a>
+                    <a href="https://api.whatsapp.com/send?phone=556799061649&text=Ol%C3%A1%20estou%20entrando%20em%20contato%20pelo%20seu%20site%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es" target="_blank" class="bg-brand-red text-white px-5 py-2.5 rounded-full font-semibold hover:bg-red-700 transition shadow-md flex items-center gap-2">
+                        <i class="fab fa-whatsapp"></i> Orçamento
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#inicio" class="block px-3 py-2 text-gray-700 font-semibold hover:bg-gray-50 rounded-md">Início</a>
+                <a href="#servicos" class="block px-3 py-2 text-gray-700 font-semibold hover:bg-gray-50 rounded-md">Serviços</a>
+                <a href="#sobre" class="block px-3 py-2 text-gray-700 font-semibold hover:bg-gray-50 rounded-md">Sobre</a>
+                <a href="#avaliacoes" class="block px-3 py-2 text-gray-700 font-semibold hover:bg-gray-50 rounded-md">Avaliações</a>
+                <a href="#contato" class="block px-3 py-2 text-gray-700 font-semibold hover:bg-gray-50 rounded-md">Contato</a>
+                <a href="https://api.whatsapp.com/send?phone=556799061649&text=Ol%C3%A1%20estou%20entrando%20em%20contato%20pelo%20seu%20site%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es" target="_blank" class="block text-center bg-brand-red text-white px-5 py-3 rounded-full font-semibold mt-4">
+                    <i class="fab fa-whatsapp"></i> Solicitar Orçamento
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 flex items-center justify-center min-h-screen" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('assets/img/topo_hero.jpg') center/cover no-repeat;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <span class="inline-block bg-brand-red text-white px-4 py-1 rounded-full text-sm font-bold tracking-wider mb-6 uppercase">Há 27 Anos de Confiança</span>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6">
+                Agilidade e Segurança na <br class="hidden md:block"> sua <span class="text-brand-red">Documentação Veicular</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-10">
+                Resolvemos seu emplacamento, licenciamento, transferência, CNH e muito mais. Atendimento rápido presencial ou delivery em Campo Grande - MS e todo o Brasil.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://api.whatsapp.com/send?phone=556799061649&text=Ol%C3%A1%20estou%20entrando%20em%20contato%20pelo%20seu%20site%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es" target="_blank" class="bg-brand-red text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-red-700 transition shadow-lg flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp text-2xl"></i> Falar com Especialista
+                </a>
+                <a href="#servicos" class="bg-white text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition shadow-lg flex items-center justify-center">
+                    Conhecer Serviços
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST BAR -->
+    <section class="bg-brand-red py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-white">
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-star text-3xl mb-2 text-yellow-300"></i>
+                    <span class="font-bold text-xl">4.9 Estrelas</span>
+                    <span class="text-sm opacity-90">263 Avaliações no Google</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-clock text-3xl mb-2"></i>
+                    <span class="font-bold text-xl">+ Rápido e Seguro</span>
+                    <span class="text-sm opacity-90">Resolução em tempo recorde</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-map-marker-alt text-3xl mb-2"></i>
+                    <span class="font-bold text-xl">Atendimento Nacional</span>
+                    <span class="text-sm opacity-90">Licenciamento e Vendas em todo Brasil</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section id="servicos" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">Nossos Serviços</h2>
+                <div class="w-24 h-1 bg-brand-red mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">Soluções completas para você e seu veículo, com a praticidade que você merece.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Serviço 1 -->
+                <div class="service-card bg-gray-50 p-8 rounded-2xl border border-gray-100 transition duration-300">
+                    <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center text-brand-red text-2xl mb-6">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Primeiro Emplacamento</h3>
+                    <p class="text-gray-600 text-sm">Todo o processo de emplacamento do seu veículo novo, de forma rápida e sem burocracia.</p>
+                </div>
+                <!-- Serviço 2 -->
+                <div class="service-card bg-gray-50 p-8 rounded-2xl border border-gray-100 transition duration-300">
+                    <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center text-brand-red text-2xl mb-6">
+                        <i class="fas fa-file-signature"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Transferência de Propriedade</h3>
+                    <p class="text-gray-600 text-sm">Comprou ou vendeu um veículo? Cuidamos de toda a transferência e baixa de gravame.</p>
+                </div>
+                <!-- Serviço 3 -->
+                <div class="service-card bg-gray-50 p-8 rounded-2xl border border-gray-100 transition duration-300">
+                    <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center text-brand-red text-2xl mb-6">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Licenciamento (Todo Brasil)</h3>
+                    <p class="text-gray-600 text-sm">Mantenha seu veículo em dia. Realizamos o licenciamento anual em qualquer estado.</p>
+                </div>
+                <!-- Serviço 4 -->
+                <div class="service-card bg-gray-50 p-8 rounded-2xl border border-gray-100 transition duration-300">
+                    <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center text-brand-red text-2xl mb-6">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">CNH (Renovação e 2ª Via)</h3>
+                    <p class="text-gray-600 text-sm">Renove sua habilitação ou solicite a segunda via sem sair de casa.</p>
+                </div>
+                <!-- Serviço 5 -->
+                <div class="service-card bg-gray-50 p-8 rounded-2xl border border-gray-100 transition duration-300">
+                    <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center text-brand-red text-2xl mb-6">
+                        <i class="fas fa-search-dollar"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Consulta Leilão e Sinistro</h3>
+                    <p class="text-gray-600 text-sm">Saiba a procedência do seu veículo antes de comprar. Consulta rápida e segura.</p>
+                </div>
+                <!-- Serviço 6 -->
+                <div class="service-card bg-gray-50 p-8 rounded-2xl border border-gray-100 transition duration-300">
+                    <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center text-brand-red text-2xl mb-6">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Transferência de UF e 2ª Via</h3>
+                    <p class="text-gray-600 text-sm">Mudou de estado? Cuidamos da transferência de UF e 2ª via de documentos.</p>
+                </div>
+                <!-- Outros Serviços -->
+                <div class="service-card bg-gray-50 p-8 rounded-2xl border border-gray-100 transition duration-300 lg:col-span-3">
+                    <div class="flex flex-wrap gap-4 justify-center text-center">
+                        <span class="bg-white px-4 py-2 rounded-full shadow-sm text-sm font-semibold text-gray-700"><i class="fas fa-check-circle text-green-500 mr-2"></i>Alienação</span>
+                        <span class="bg-white px-4 py-2 rounded-full shadow-sm text-sm font-semibold text-gray-700"><i class="fas fa-check-circle text-green-500 mr-2"></i>Alteração de Características</span>
+                        <span class="bg-white px-4 py-2 rounded-full shadow-sm text-sm font-semibold text-gray-700"><i class="fas fa-check-circle text-green-500 mr-2"></i>Comunicado de Venda (Todo Brasil)</span>
+                        <span class="bg-white px-4 py-2 rounded-full shadow-sm text-sm font-semibold text-gray-700"><i class="fas fa-check-circle text-green-500 mr-2"></i>2ª Via em Geral</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE NÓS -->
+    <section id="sobre" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <img src="assets/img/imagem_kwid.webp" alt="Fachada Roberto Despachante" class="rounded-2xl shadow-xl w-full object-cover h-[500px]">
+                    <div class="absolute -bottom-6 -right-6 bg-brand-red text-white p-6 rounded-2xl shadow-xl hidden md:block">
+                        <span class="block text-4xl font-bold">27+</span>
+                        <span class="text-sm font-semibold">Anos de Experiência</span>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Sobre o Roberto Despachante</h2>
+                    <div class="w-20 h-1 bg-brand-red mb-8"></div>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Atuando no mercado há mais de 27 anos, contamos com uma equipe altamente treinada e equipamentos sofisticados para garantir a total satisfação na execução dos serviços prestados.
+                    </p>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Nossa relação com clientes, empresas, concessionárias e lojistas de autos fez com que nos aprimorássemos para oferecer <strong>segurança, honestidade, lealdade e preços justos</strong>, sem faltar com a qualidade.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3 text-gray-700"><i class="fas fa-check-circle text-green-500"></i> Atendimento personalizado e humanizado</li>
+                        <li class="flex items-center gap-3 text-gray-700"><i class="fas fa-check-circle text-green-500"></i> Serviço de delivery para sua comodidade</li>
+                        <li class="flex items-center gap-3 text-gray-700"><i class="fas fa-check-circle text-green-500"></i> Resolução rápida e sem burocracia</li>
+                    </ul>
+                    <a href="https://api.whatsapp.com/send?phone=556799061649&text=Ol%C3%A1%20gostaria%20de%20falar%20com%20um%20especialista" target="_blank" class="inline-flex items-center gap-2 text-brand-red font-bold hover:text-red-700 transition">
+                        Fale conosco agora <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AVALIAÇÕES -->
+    <section id="avaliacoes" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">O que nossos clientes dizem</h2>
+                <div class="flex justify-center items-center gap-2 mb-4">
+                    <span class="text-3xl font-bold text-gray-900">4.9</span>
+                    <div class="text-yellow-400 text-xl">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <span class="text-gray-500 font-semibold">(263 avaliações no Google)</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Ótimo atendimento e muita agilidade na prestação do serviço. 👏🏻👏🏻"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center font-bold text-gray-600">HS</div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-sm">Heriberto Segovia</h4>
+                            <span class="text-xs text-gray-500">Avaliação Google</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Eu estava enfrentando dificuldades para realizar a vistoria... Após entrar em contato com o Roberto, ele solucionou meu problema em apenas 1 dia. Atendimento rápido e eficiente."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center font-bold text-gray-600">GA</div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-sm">Gabrielly Alves</h4>
+                            <span class="text-xs text-gray-500">Avaliação Google</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 3 -->
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Excelente atendimento! Resolveu a retirada de um veículo, eu estando a 1300km de distância! Sempre atencioso e cordial!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center font-bold text-gray-600">RN</div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-sm">R Naumann</h4>
+                            <span class="text-xs text-gray-500">Avaliação Google</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://www.google.com/search?q=Roberto+Despachante+Campo+Grande" target="_blank" class="inline-flex items-center gap-2 text-gray-600 font-semibold hover:text-brand-red transition">
+                    Ver todas as avaliações no Google <i class="fas fa-external-link-alt text-sm"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATO E LOCALIZAÇÃO -->
+    <section id="contato" class="py-20 bg-brand-dark text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Informações -->
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Entre em Contato</h2>
+                    <div class="w-20 h-1 bg-brand-red mb-8"></div>
+                    <p class="text-gray-300 mb-10">Estamos prontos para atender você. Venha nos visitar ou fale conosco pelo WhatsApp.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-brand-red rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Endereço</h4>
+                                <p class="text-gray-400">Rua Alegrete, 1643 - Cel. Antonino<br>Campo Grande - MS, 79010-800</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-brand-red rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-phone-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Telefone / WhatsApp</h4>
+                                <p class="text-gray-400">(67) 3351-1580<br>(67) 9906-1649</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-brand-red rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-clock text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Horário de Atendimento</h4>
+                                <p class="text-gray-400">Segunda a Sexta: 8h às 17h</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10">
+                        <a href="https://api.whatsapp.com/send?phone=556799061649&text=Ol%C3%A1%20estou%20entrando%20em%20contato%20pelo%20seu%20site%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es" target="_blank" class="inline-flex items-center gap-3 bg-green-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-green-600 transition shadow-lg">
+                            <i class="fab fa-whatsapp text-2xl"></i> Chamar no WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mapa -->
+                <div class="h-96 lg:h-auto rounded-2xl overflow-hidden shadow-2xl">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3732.645898723685!2d-54.61078168508065!3d-20.46968398628552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9486e6724c37b18f%3A0xe54f65f9f4b7a2b!2sR.%20Alegrete%2C%201643%20-%20Cel.%20Antonino%2C%20Campo%20Grande%20-%20MS%2C%2079010-800!5e0!3m2!1spt-BR!2sbr!4v1626900000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-gray-400 py-10 text-center text-sm">
+        <div class="max-w-7xl mx-auto px-4">
+            <img src="assets/img/logo_vermelho-129x60.png" alt="Roberto Despachante" class="h-10 mx-auto mb-4 opacity-80">
+            <p class="mb-2">Roberto Despachante - Todos os direitos reservados &copy; <span id="year"></span></p>
+            <p>Este site é de propriedade privada e não possui vínculo com órgãos governamentais.</p>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLOAT BUTTON -->
+    <a href="https://api.whatsapp.com/send?phone=556799061649&text=Ol%C3%A1%20estou%20entrando%20em%20contato%20pelo%20seu%20site%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es" class="whatsapp-float" target="_blank" aria-label="Fale conosco pelo WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Atualizar o ano no footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Efeito de scroll na Navbar
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.replace('bg-white/95', 'bg-white');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.replace('bg-white', 'bg-white/95');
+            }
+        });
+    </script>
+</body>
+</html>
