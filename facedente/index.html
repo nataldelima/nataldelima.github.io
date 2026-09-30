@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Face e Dente | Odontologia & Estética em Campo Grande - MS</title>
+  <meta name="description"
+    content="Onde estética e saúde se encontram. Especialistas em Harmonização Orofacial e Odontologia Estética com a Dra. Juliana e equipe em Campo Grande - MS." />
+  <meta name="theme-color" content="#C5A059" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              50: '#FBF8F1', 100: '#F6EFDD', 200: '#EDDCB9', 300: '#E2C48D',
+              400: '#D6A962', 500: '#C5A059', 600: '#A27F3B', 700: '#81602D',
+              800: '#644A27', 900: '#4F3A22'
+            },
+            cream: { 50: '#FAF8F5', 100: '#F5F0E8', 200: '#EBE1D3' },
+            petrol: { 500: '#1D5B6C', 600: '#164856', 700: '#103540' },
+            dark: '#1A1A1A'
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .mobile-menu-overlay {
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .mobile-menu-panel {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-gradient {
+      background: linear-gradient(135deg, #FFFFFF 0%, #FAF8F5 50%, #F5F0E8 100%);
+    }
+
+    .gold-gradient {
+      background: linear-gradient(135deg, #C5A059 0%, #A27F3B 100%);
+    }
+
+    .gold-text-gradient {
+      background: linear-gradient(135deg, #C5A059 0%, #81602D 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(197, 160, 89, 0.15);
+    }
+  </style>
+</head>
+
+<body class="font-sans bg-cream-50 text-dark antialiased selection:bg-gold-500 selection:text-white">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gold-500/15 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="#inicio" class="flex items-center group shrink-0">
+          <img src="assets/img/logo.png" alt="Face e Dente — Odontologia & Estética"
+            class="h-14 transition-opacity group-hover:opacity-90" />
+        </a>
+
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="#especialidades"
+            class="text-sm font-medium text-dark hover:text-gold-500 transition-colors">Especialidades</a>
+          <a href="#sobre" class="text-sm font-medium text-dark hover:text-gold-500 transition-colors">A Clínica</a>
+          <a href="#depoimentos"
+            class="text-sm font-medium text-dark hover:text-gold-500 transition-colors">Avaliações</a>
+          <a href="#contato" class="text-sm font-medium text-dark hover:text-gold-500 transition-colors">Localização</a>
+        </nav>
+
+        <div class="hidden md:flex items-center">
+          <a href="https://wa.me/5567992281210?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20na%20Face%20e%20Dente."
+            target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 gold-gradient text-white px-5 py-2.5 rounded-full font-semibold text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
+            <i data-lucide="calendar" class="w-4 h-4"></i>
+            <span>Agendar Horário</span>
+          </a>
+        </div>
+
+        <div class="flex md:hidden items-center">
+          <button id="mobile-menu-btn" type="button" aria-label="Abrir Menu" aria-expanded="false"
+            class="p-2.5 rounded-xl text-dark hover:text-gold-500 hover:bg-gold-50 focus:outline-none transition-colors">
+            <i id="menu-icon-open" data-lucide="menu" class="w-7 h-7"></i>
+            <i id="menu-icon-close" data-lucide="x" class="w-7 h-7 hidden"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-menu-drawer" class="fixed inset-0 z-50 md:hidden opacity-0 invisible mobile-menu-overlay"
+    aria-hidden="true">
+    <div id="mobile-menu-backdrop" class="fixed inset-0 bg-dark/60 backdrop-blur-sm"></div>
+    <div
+      class="fixed inset-y-0 right-0 max-w-xs w-full bg-white shadow-2xl flex flex-col justify-between p-6 mobile-menu-panel translate-x-full z-10">
+      <div>
+        <div class="flex items-center justify-between pb-6 border-b border-gray-100">
+          <div class="flex items-center">
+            <img src="assets/img/logo.png" alt="Face e Dente" class="h-9 w-auto object-contain" />
+          </div>
+          <button id="mobile-menu-close-btn" type="button" aria-label="Fechar Menu"
+            class="p-2 rounded-lg text-gray-500 hover:text-dark hover:bg-gray-100 transition-colors">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+        <nav class="mt-8 flex flex-col space-y-2">
+          <a href="#especialidades"
+            class="mobile-nav-link flex items-center justify-between p-3 rounded-xl hover:bg-gold-50 text-dark hover:text-gold-600 font-medium transition-colors">
+            <span>Especialidades</span><i data-lucide="chevron-right" class="w-4 h-4 text-gold-500"></i>
+          </a>
+          <a href="#sobre"
+            class="mobile-nav-link flex items-center justify-between p-3 rounded-xl hover:bg-gold-50 text-dark hover:text-gold-600 font-medium transition-colors">
+            <span>A Clínica & Dra. Juliana</span><i data-lucide="chevron-right" class="w-4 h-4 text-gold-500"></i>
+          </a>
+          <a href="#depoimentos"
+            class="mobile-nav-link flex items-center justify-between p-3 rounded-xl hover:bg-gold-50 text-dark hover:text-gold-600 font-medium transition-colors">
+            <span>Avaliações</span><i data-lucide="chevron-right" class="w-4 h-4 text-gold-500"></i>
+          </a>
+          <a href="#contato"
+            class="mobile-nav-link flex items-center justify-between p-3 rounded-xl hover:bg-gold-50 text-dark hover:text-gold-600 font-medium transition-colors">
+            <span>Localização e Contato</span><i data-lucide="chevron-right" class="w-4 h-4 text-gold-500"></i>
+          </a>
+        </nav>
+      </div>
+      <div class="pt-6 border-t border-gray-100 space-y-3">
+        <a href="https://wa.me/5567992281210?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20avaliação."
+          target="_blank" rel="noopener noreferrer"
+          class="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] text-white py-3.5 px-4 rounded-xl font-semibold shadow-md transition-all">
+          <i data-lucide="message-circle" class="w-5 h-5"></i><span>Agendar via WhatsApp</span>
+        </a>
+        <div class="text-center pt-1">
+          <p class="text-xs text-gray-500">(67) 99228-1210</p>
+          <p class="text-[11px] text-gray-400">Campo Grande - MS</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section id="inicio" class="relative hero-gradient py-12 md:py-20 lg:py-24 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-700 font-medium text-xs sm:text-sm">
+            <i data-lucide="sparkles" class="w-4 h-4 text-gold-500"></i>
+            <span>Onde estética e saúde se encontram</span>
+          </div>
+          <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-dark leading-[1.15]">
+            Realce sua beleza natural com <span class="italic gold-text-gradient">excelência e sofisticação</span>
+          </h1>
+          <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            Especialistas em <strong>Harmonização Orofacial</strong> e <strong>Odontologia Estética</strong> em Campo
+            Grande - MS. A <strong>Dra. Juliana e equipe</strong> oferecem tratamentos personalizados em um ambiente
+            moderno, acolhedor e seguro.
+          </p>
+          <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4">
+            <a href="https://wa.me/5567992281210?text=Olá!%20Gostaria%20de%20agendar%20uma%20avaliação%20com%20a%20Dra.%20Juliana."
+              target="_blank" rel="noopener noreferrer"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#20ba5a] text-white px-8 py-4 rounded-full font-semibold text-base shadow-lg shadow-green-500/20 hover:-translate-y-0.5 transition-all">
+              <i data-lucide="message-circle" class="w-5 h-5"></i><span>Falar no WhatsApp</span>
+            </a>
+            <a href="#especialidades"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-gold-50 text-dark border border-gold-500/30 px-6 py-4 rounded-full font-semibold text-base shadow-sm hover:border-gold-500 transition-all">
+              <span>Conhecer Tratamentos</span><i data-lucide="arrow-right" class="w-4 h-4 text-gold-500"></i>
+            </a>
+          </div>
+          <div class="pt-6 border-t border-gold-500/15 flex items-center justify-center lg:justify-start gap-4">
+            <div class="flex items-center -space-x-1">
+              <div
+                class="w-9 h-9 rounded-full bg-gold-100 border-2 border-white flex items-center justify-center text-gold-700 font-bold text-xs">
+                5.0</div>
+              <div
+                class="w-9 h-9 rounded-full bg-gold-500 text-white border-2 border-white flex items-center justify-center font-bold text-xs">
+                ★</div>
+            </div>
+            <div class="text-left">
+              <div class="flex items-center gap-0.5 text-amber-400">
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <span class="text-xs font-bold text-dark ml-1">5.0</span>
+              </div>
+              <p class="text-xs text-gray-500 font-medium">42 avaliações reais no Google</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            <div
+              class="absolute -inset-2 rounded-3xl bg-gradient-to-r from-gold-500/25 to-petrol-500/15 blur-xl opacity-70">
+            </div>
+            <div class="relative bg-white p-3 rounded-3xl shadow-2xl border border-gold-500/20 overflow-hidden">
+              <!-- COLOQUE A FOTO DO CONSULTÓRIO/FACHADA EM: assets/img/consultorio.jpg -->
+              <img src="assets/img/consultorio.png" alt="Consultório Face e Dente"
+                class="w-full h-[340px] sm:h-[420px] object-cover rounded-2xl"
+                onerror="this.src='https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1000';this.onerror=null;" />
+              <div class="absolute bottom-5 left-5 right-5 glass-card p-4 rounded-2xl shadow-lg">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center text-gold-600 shrink-0">
+                    <i data-lucide="award" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-dark">Atendimento Premium</h4>
+                    <p class="text-xs text-gray-600">Av. Júlio de Castilho, 810</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFFERENTIALS -->
+  <section class="py-12 bg-white border-y border-gold-500/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div
+          class="p-6 rounded-2xl bg-cream-50 border border-gold-500/15 flex items-start gap-4 hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 rounded-xl bg-gold-500/15 text-gold-600 flex items-center justify-center shrink-0">
+            <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="font-serif text-lg font-bold text-dark">Atendimento Humanizado</h3>
+            <p class="text-sm text-gray-600 mt-1">Dedicamos o tempo necessário para entender seus desejos e planejar
+              cada detalhe com carinho.</p>
+          </div>
+        </div>
+        <div
+          class="p-6 rounded-2xl bg-cream-50 border border-gold-500/15 flex items-start gap-4 hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 rounded-xl bg-gold-500/15 text-gold-600 flex items-center justify-center shrink-0">
+            <i data-lucide="smile" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="font-serif text-lg font-bold text-dark">Resultados Naturais</h3>
+            <p class="text-sm text-gray-600 mt-1">Procedimentos que valorizam e harmonizam a sua anatomia, sem exageros.
+            </p>
+          </div>
+        </div>
+        <div
+          class="p-6 rounded-2xl bg-cream-50 border border-gold-500/15 flex items-start gap-4 hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 rounded-xl bg-gold-500/15 text-gold-600 flex items-center justify-center shrink-0">
+            <i data-lucide="sparkles" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="font-serif text-lg font-bold text-dark">Estrutura Aconchegante</h3>
+            <p class="text-sm text-gray-600 mt-1">Clínica moderna, higienizada e equipada para máximo conforto.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESPECIALIDADES -->
+  <section id="especialidades" class="py-16 md:py-20 bg-cream-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-gold-600">Procedimentos de Alto Padrão</span>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-dark mt-2">Nossas Especialidades</h2>
+        <div class="w-16 h-0.5 bg-gold-500 mx-auto mt-4 rounded-full"></div>
+        <p class="text-gray-600 mt-4 text-base sm:text-lg">Unimos ciência odontológica e sensibilidade estética para
+          renovar seu sorriso e sua autoestima.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div
+          class="bg-white rounded-3xl p-7 md:p-8 shadow-sm border border-gold-500/15 hover:border-gold-500 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div
+              class="w-14 h-14 rounded-2xl bg-gold-500/10 text-gold-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+              <i data-lucide="sparkle" class="w-7 h-7"></i>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-dark mb-3">Harmonização Orofacial</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-6">Equilíbrio facial personalizado para rejuvenescimento
+              e valorização dos contornos naturais.</p>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center gap-2 text-sm text-gray-700"><i data-lucide="check-circle-2"
+                  class="w-4 h-4 text-gold-500 shrink-0"></i><span>Toxina Botulínica (Botox)</span></li>
+              <li class="flex items-center gap-2 text-sm text-gray-700"><i data-lucide="check-circle-2"
+                  class="w-4 h-4 text-gold-500 shrink-0"></i><span>Preenchimento Labial e Facial</span></li>
+              <li class="flex items-center gap-2 text-sm text-gray-700"><i data-lucide="check-circle-2"
+                  class="w-4 h-4 text-gold-500 shrink-0"></i><span>Bioestimuladores de Colágeno</span></li>
+              <li class="flex items-center gap-2 text-sm text-gray-700"><i data-lucide="check-circle-2"
+                  class="w-4 h-4 text-gold-500 shrink-0"></i><span>Lipo de Papada Enzimática</span></li>
+            </ul>
+          </div>
+          <a href="https://wa.me/5567992281210?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20Harmonização%20Orofacial."
+            target="_blank" rel="noopener noreferrer"
+            class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-gold-500/30 text-gold-700 font-semibold text-sm hover:bg-gold-500 hover:text-white transition-all">
+            <span>Consultar Harmonização</span><i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <div
+          class="bg-white rounded-3xl p-7 md:p-8 shadow-sm border border-gold-500/15 hover:border-gold-500 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div
+              class="w-14 h-14 rounded-2xl bg-gold-500/10 text-gold-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+              <i data-lucide="gem" class="w-7 h-7"></i>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-dark mb-3">Odontologia Estética</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-6">Design do sorriso com lentes e facetas para alinhar,
+              clarear e aperfeiçoar sua estética bucal.</p>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center gap-2 text-sm text-gray-700"><i data-lucide="check-circle-2"
+                  class="w-4 h-4 text-gold-500 shrink-0"></i><span>Lentes de Contato Dental</span></li>
+              <li class="flex items-center gap-2 text-sm text-gray-700"><i data-lucide="check-circle-2"
+                  class="w-4 h-4 text-gold-500 shrink-0"></i><span>Facetas em Resina / Porcelana</span></li>
+              <li class="flex items-center gap-2 text-sm text-gray-700"><i data-lucide="check-circle-2"
+                  class="w-4 h-4 text-gold-500 shrink-0"></i><span>Clareamento Dental Profissional</span></li>
+              <li class="flex items-center gap-2 text-sm text-gray-700"><i data-lucide="check-circle-2"
+                  class="w-4 h-4 text-gold-500 shrink-0"></i><span>Restaurações Estéticas</span></li>
+            </ul>
+          </div>
+          <a href="https://wa.me/5567992281210?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20Odontologia%20Estética."
+            target="_blank" rel="noopener noreferrer"
+            class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-gold-500/30 text-gold-700 font-semibold text-sm hover:bg-gold-500 hover:text-white transition-all">
+            <span>Consultar Sorriso Estético</span><i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <div
+          class="bg-white rounded-3xl p-7 md:p-8 shadow-sm border border-gold-500/15 hover:border-gold-500 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div
+              class="w-14 h-14 rounded-2xl bg-gold-500/10 text-gold-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+              <i data-lucide="shield-check" class="w-7 h-7"></i>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-dark mb-3">Saúde Bucal Integrada</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-6">Manutenção preventiva e tratamento clínico essencial
+              para a saúde de dentes e gengivas.</p>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center gap-2 text-sm text-gray-700"><i data-lucide="check-circle-2"
+                  class="w-4 h-4 text-gold-500 shrink-0"></i><span>Limpeza e Profilaxia Completa</span></li>
+              <li class="flex items-center gap-2 text-sm text-gray-700"><i data-lucide="check-circle-2"
+                  class="w-4 h-4 text-gold-500 shrink-0"></i><span>Odontologia Preventiva</span></li>
+              <li class="flex items-center gap-2 text-sm text-gray-700"><i data-lucide="check-circle-2"
+                  class="w-4 h-4 text-gold-500 shrink-0"></i><span>Avaliação Bucal e Diagnóstico</span></li>
+              <li class="flex items-center gap-2 text-sm text-gray-700"><i data-lucide="check-circle-2"
+                  class="w-4 h-4 text-gold-500 shrink-0"></i><span>Planejamento de Tratamentos</span></li>
+            </ul>
+          </div>
+          <a href="https://wa.me/5567992281210?text=Olá!%20Gostaria%20de%20agendar%20uma%20avaliação%20clínica."
+            target="_blank" rel="noopener noreferrer"
+            class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-gold-500/30 text-gold-700 font-semibold text-sm hover:bg-gold-500 hover:text-white transition-all">
+            <span>Agendar Avaliação Geral</span><i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE / EQUIPE -->
+  <section id="sobre" class="py-16 md:py-20 bg-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div class="lg:col-span-6 order-2 lg:order-1">
+          <div class="relative">
+            <div class="absolute -top-4 -left-4 w-64 h-64 md:w-72 md:h-72 bg-gold-500/10 rounded-3xl -z-10"></div>
+            <div class="absolute -bottom-4 -right-4 w-64 h-64 md:w-72 md:h-72 bg-petrol-500/10 rounded-3xl -z-10"></div>
+            <!-- COLOQUE A FOTO DA EQUIPE EM: assets/img/equipe.jpg -->
+            <img src="assets/img/equipe.png" alt="Equipe Face e Dente - Dra. Juliana e profissionais"
+              class="w-full aspect-[4/3] sm:aspect-[5/4] md:aspect-[4/3] max-h-[520px] object-cover object-center rounded-3xl shadow-xl border-4 border-white"
+              onerror="this.src='https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=1000';this.onerror=null;" />
+            <div
+              class="absolute -bottom-5 right-4 sm:right-6 bg-white p-4 sm:p-5 rounded-2xl shadow-xl border border-gold-500/20 max-w-[260px]">
+              <div class="flex items-center gap-3">
+                <i data-lucide="heart" class="w-7 h-7 text-gold-500 fill-gold-500 shrink-0"></i>
+                <div>
+                  <h4 class="font-serif font-bold text-dark text-base sm:text-lg">Dra. Juliana & Equipe</h4>
+                  <p class="text-xs text-gray-500">Dedicação e acolhimento em cada sorriso.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 space-y-5 order-1 lg:order-2">
+          <span class="text-xs font-bold uppercase tracking-widest text-gold-600">A Clínica</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-dark leading-tight">Compromisso com o seu bem-estar
+            e autoestima</h2>
+          <p class="text-gray-600 text-base leading-relaxed">
+            A clínica <strong>Face e Dente</strong> nasceu da visão de proporcionar tratamentos odontológicos e
+            estéticos de padrão elevado em Campo Grande. Liderada pela <strong>Dra. Juliana</strong>, nossa equipe é
+            reconhecida pelo cuidado humanizado e atenção minuciosa aos detalhes.
+          </p>
+          <p class="text-gray-600 text-base leading-relaxed">
+            Entendemos que cada paciente é único. Por isso, combinamos tecnologia atualizada com um olhar artístico e
+            ético, oferecendo preços acessíveis e condutas personalizadas.
+          </p>
+          <div class="pt-2 grid grid-cols-2 gap-4">
+            <div class="p-4 rounded-2xl bg-cream-50 border border-gold-500/15">
+              <span class="block font-serif text-2xl font-bold text-gold-600">100%</span>
+              <span class="text-xs text-gray-600 font-medium">Foco na Sua Segurança</span>
+            </div>
+            <div class="p-4 rounded-2xl bg-cream-50 border border-gold-500/15">
+              <span class="block font-serif text-2xl font-bold text-gold-600">5.0 ★</span>
+              <span class="text-xs text-gray-600 font-medium">Satisfação no Google</span>
+            </div>
+          </div>
+          <div class="pt-2">
+            <a href="https://wa.me/5567992281210?text=Olá!%20Gostaria%20de%20conhecer%20a%20clínica%20e%20agendar%20um%20horário."
+              target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 gold-gradient text-white px-7 py-3.5 rounded-full font-semibold text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
+              <i data-lucide="message-square" class="w-4 h-4"></i><span>Falar com a Equipe</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section id="depoimentos" class="py-16 md:py-20 bg-cream-50 border-t border-gold-500/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-100 text-amber-800 text-xs font-semibold mb-3">
+          <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-500 text-amber-500"></i><span>Google Reviews</span>
+        </div>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-dark">Depoimentos Reais</h2>
+        <div class="w-16 h-0.5 bg-gold-500 mx-auto mt-4 rounded-full"></div>
+        <p class="text-gray-600 mt-4 text-base">Confira a experiência de quem confia no trabalho da Dra. Juliana e
+          equipe.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div
+          class="bg-white p-7 md:p-8 rounded-3xl shadow-sm border border-gold-500/15 flex flex-col justify-between hover:shadow-md transition-shadow">
+          <div>
+            <div class="flex items-center gap-0.5 text-amber-400 mb-4">
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i><i data-lucide="star"
+                class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i><i data-lucide="star"
+                class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            </div>
+            <p class="text-gray-700 italic text-sm leading-relaxed mb-6">"Profissionais super atenciosos, atendendo a
+              necessidade do cliente e valores super acessíveis. AMEEEEI!"</p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
+            <div
+              class="w-10 h-10 rounded-full bg-gold-500/20 text-gold-700 font-bold flex items-center justify-center text-sm">
+              M</div>
+            <div>
+              <h4 class="font-semibold text-dark text-sm">Mikelly</h4>
+              <p class="text-xs text-gray-400">Avaliação no Google</p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bg-white p-7 md:p-8 rounded-3xl shadow-sm border border-gold-500/15 flex flex-col justify-between hover:shadow-md transition-shadow">
+          <div>
+            <div class="flex items-center gap-0.5 text-amber-400 mb-4">
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i><i data-lucide="star"
+                class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i><i data-lucide="star"
+                class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            </div>
+            <p class="text-gray-700 italic text-sm leading-relaxed mb-6">"Experiência única! A Ju é um amor de pessoa
+              além de ser uma profissional excelente!"</p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
+            <div
+              class="w-10 h-10 rounded-full bg-gold-500/20 text-gold-700 font-bold flex items-center justify-center text-sm">
+              P</div>
+            <div>
+              <h4 class="font-semibold text-dark text-sm">Paulinha Zanata</h4>
+              <p class="text-xs text-gray-400">Avaliação no Google</p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bg-white p-7 md:p-8 rounded-3xl shadow-sm border border-gold-500/15 flex flex-col justify-between hover:shadow-md transition-shadow">
+          <div>
+            <div class="flex items-center gap-0.5 text-amber-400 mb-4">
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i><i data-lucide="star"
+                class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i><i data-lucide="star"
+                class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            </div>
+            <p class="text-gray-700 italic text-sm leading-relaxed mb-6">"Ótima clínica, todas as Dra muito atenciosas e
+              queridas. Super recomendo."</p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
+            <div
+              class="w-10 h-10 rounded-full bg-gold-500/20 text-gold-700 font-bold flex items-center justify-center text-sm">
+              C</div>
+            <div>
+              <h4 class="font-semibold text-dark text-sm">Consultório JV</h4>
+              <p class="text-xs text-gray-400">Avaliação no Google</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato" class="py-16 md:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div class="lg:col-span-5 space-y-7">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-gold-600">Localização</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-dark mt-2">Venha nos Visitar</h2>
+            <p class="text-gray-600 text-sm mt-3">Fácil acesso em Campo Grande, com estacionamento privativo e recepção
+              aconchegante.</p>
+          </div>
+          <div class="space-y-5">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-gold-500/10 text-gold-600 flex items-center justify-center shrink-0">
+                <i data-lucide="map-pin" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-dark text-base">Endereço</h4>
+                <p class="text-sm text-gray-600 mt-0.5">Av. Júlio de Castilho, 810 - Vila Alba</p>
+                <p class="text-sm text-gray-500">Campo Grande - MS, 79110-000</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-gold-500/10 text-gold-600 flex items-center justify-center shrink-0">
+                <i data-lucide="phone" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-dark text-base">WhatsApp</h4>
+                <a href="https://wa.me/5567992281210"
+                  class="text-sm text-gold-600 hover:underline font-medium mt-0.5 inline-block">(67) 99228-1210</a>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-gold-500/10 text-gold-600 flex items-center justify-center shrink-0">
+                <i data-lucide="instagram" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-dark text-base">Instagram</h4>
+                <a href="https://instagram.com/faceedente_" target="_blank" rel="noopener noreferrer"
+                  class="text-sm text-gold-600 hover:underline font-medium mt-0.5 inline-block">@faceedente_</a>
+              </div>
+            </div>
+          </div>
+          <div class="pt-1">
+            <a href="https://wa.me/5567992281210?text=Olá!%20Gostaria%20de%20saber%20a%20disponibilidade%20de%20horários."
+              target="_blank" rel="noopener noreferrer"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#20ba5a] text-white px-8 py-4 rounded-full font-semibold text-base shadow-lg shadow-green-500/20 transition-all">
+              <i data-lucide="message-circle" class="w-5 h-5"></i><span>Agendar via WhatsApp</span>
+            </a>
+          </div>
+        </div>
+        <div class="lg:col-span-7">
+          <div class="w-full h-[360px] sm:h-[440px] rounded-3xl overflow-hidden shadow-xl border border-gold-500/20">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3738.163351296181!2d-54.6368305!3d-20.4585149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9486e8a002829285%3A0xb21404e13ec97bb7!2sAv.%20J%C3%BAlio%20de%20Castilho%2C%20810%20-%20Vila%20Alba%2C%20Campo%20Grande%20-%20MS%2C%2079110-000!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr"
+              width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade" title="Localização Face e Dente"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-dark text-white py-12 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/10">
+        <div class="text-center md:text-left">
+          <span class="font-serif text-2xl font-bold tracking-widest text-gold-500 uppercase">FACE E DENTE</span>
+          <span class="block text-[10px] tracking-[0.25em] text-gold-400 uppercase">Odontologia & Estética</span>
+          <p class="text-xs text-gray-400 mt-2">Dra. Juliana e equipe · Campo Grande - MS</p>
+        </div>
+        <nav class="flex flex-wrap justify-center gap-6 text-sm text-gray-300">
+          <a href="#especialidades" class="hover:text-gold-400 transition-colors">Especialidades</a>
+          <a href="#sobre" class="hover:text-gold-400 transition-colors">A Clínica</a>
+          <a href="#depoimentos" class="hover:text-gold-400 transition-colors">Avaliações</a>
+          <a href="#contato" class="hover:text-gold-400 transition-colors">Localização</a>
+        </nav>
+      </div>
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-3">
+        <p>&copy; 2026 Face e Dente — Odontologia & Estética. Todos os direitos reservados.</p>
+        <p>Av. Júlio de Castilho, 810 - Vila Alba, Campo Grande - MS</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/5567992281210?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank"
+    rel="noopener noreferrer" aria-label="Agendar via WhatsApp"
+    class="fixed bottom-5 right-5 z-40 bg-[#25D366] hover:bg-[#20ba5a] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center group">
+    <i data-lucide="message-circle" class="w-7 h-7"></i>
+    <span
+      class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs group-hover:ml-2 font-semibold text-sm transition-all duration-300 hidden sm:inline">Agende
+      seu Horário</span>
+  </a>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.lucide) lucide.createIcons();
+
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenuCloseBtn = document.getElementById('mobile-menu-close-btn');
+      const mobileMenuDrawer = document.getElementById('mobile-menu-drawer');
+      const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+      const menuIconOpen = document.getElementById('menu-icon-open');
+      const menuIconClose = document.getElementById('menu-icon-close');
+      let isMenuOpen = false;
+
+      function openMenu() {
+        isMenuOpen = true;
+        mobileMenuBtn.setAttribute('aria-expanded', 'true');
+        mobileMenuDrawer.classList.remove('opacity-0', 'invisible');
+        mobileMenuDrawer.classList.add('opacity-100', 'visible');
+        const panel = mobileMenuDrawer.querySelector('.mobile-menu-panel');
+        if (panel) { panel.classList.remove('translate-x-full'); panel.classList.add('translate-x-0'); }
+        if (menuIconOpen && menuIconClose) { menuIconOpen.classList.add('hidden'); menuIconClose.classList.remove('hidden'); }
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenu() {
+        isMenuOpen = false;
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        const panel = mobileMenuDrawer.querySelector('.mobile-menu-panel');
+        if (panel) { panel.classList.remove('translate-x-0'); panel.classList.add('translate-x-full'); }
+        setTimeout(() => {
+          mobileMenuDrawer.classList.remove('opacity-100', 'visible');
+          mobileMenuDrawer.classList.add('opacity-0', 'invisible');
+          document.body.style.overflow = '';
+        }, 200);
+        if (menuIconOpen && menuIconClose) { menuIconOpen.classList.remove('hidden'); menuIconClose.classList.add('hidden'); }
+      }
+
+      if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', function (e) { e.stopPropagation(); isMenuOpen ? closeMenu() : openMenu(); });
+      if (mobileMenuCloseBtn) mobileMenuCloseBtn.addEventListener('click', closeMenu);
+      if (mobileMenuBackdrop) mobileMenuBackdrop.addEventListener('click', closeMenu);
+      mobileNavLinks.forEach(link => link.addEventListener('click', closeMenu));
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && isMenuOpen) closeMenu(); });
+    });
+  </script>
+</body>
+
+</html>
