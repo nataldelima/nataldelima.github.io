@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nataldelima.github.io/sitemap.xml
+Sitemap: https://nataldelima.com.br/sitemap.xml
