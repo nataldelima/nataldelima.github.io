@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             descricao: "Site profissional para especialista em sobrancelhas e lash lifting, com foco em conversão e agendamentos.",
             contexto: "O projeto foi desenvolvido para um negócio local de Campo Grande-MS que precisava centralizar a apresentação dos seus serviços, transmitir credibilidade e facilitar a jornada de marcação de horários das clientes.",
             solucao: "Criação de uma landing page com design personalizado e sofisticado, totalmente responsiva, estruturada com apresentação dos procedimentos e CTAs diretos para agendamento no WhatsApp.",
-            imagem: "midia/studio-bia-jordao.png",
+            imagem: "./midia/studio-bia-jordao.png",
             link: "https://studiobiajordao.site.je"
         },
         {
@@ -18,24 +18,24 @@ document.addEventListener('DOMContentLoaded', () => {
             descricao: "Site institucional para clínica de psicologia com foco em captação de pacientes.",
             contexto: "Projeto desenvolvido como simulação de presença digital para um profissional de psicologia, com necessidade de atrair pacientes e facilitar contato via WhatsApp.",
             solucao: "Layout responsivo, estrutura clara de serviços, CTA para WhatsApp e SEO básico para busca local.",
-            imagem: "midia/psico.png",
-            link: "https://nataldelima.github.io/psico"
+            imagem: "./midia/psico.png",
+            link: "./psico"
         },
         {
             titulo: "Bellelza Estética",
             descricao: "Site institucional para profissional de estética e beleza.",
             contexto: "Simulação de site para uma esteticista autônoma que precisa divulgar serviços e captar clientes online.",
             solucao: "Design moderno, foco em apresentação de serviços, responsividade mobile e integração com WhatsApp.",
-            imagem: "midia/bellelza.png",
-            link: "https://nataldelima.github.io/bellelza"
+            imagem: "./midia/bellelza.png",
+            link: "./bellelza"
         },
         {
             titulo: "Natal Lima - Portfólio",
             descricao: "Site pessoal e portfólio profissional desenvolvido em HTML, CSS e JavaScript puro.",
             contexto: "Projeto de branding pessoal para apresentação de habilidades como desenvolvedor web.",
             solucao: "Estrutura leve, foco em performance, SEO básico e organização de projetos como vitrine técnica.",
-            imagem: "midia/nataldelima.png",
-            link: "https://nataldelima.github.io"
+            imagem: "./midia/nataldelima.png",
+            link: "./"
         },
 
         {
@@ -43,24 +43,24 @@ document.addEventListener('DOMContentLoaded', () => {
             descricao: "Site institucional para clínica veterinária",
             contexto: "Projeto modelo de site simples para clínica veterinária.",
             solucao: "Layout responsivo, SEO básico e foco em conversão.",
-            imagem: "midia/doguinhos.png",
-            link: "https://nataldelima.github.io/doguinhos"
+            imagem: "./midia/doguinhos.png",
+            link: "./doguinhos"
         },
         {
             titulo: "Clínica da Mulher",
             descricao: "Site institucional fictício para clínica médica especializada.",
             contexto: "Simulação de site para clínica de saúde com foco em apresentação de serviços médicos.",
             solucao: "Layout institucional, estrutura de serviços e design responsivo para mobile.",
-            imagem: "midia/clinica-mulher.png",
-            link: "midia/portfolio/clinica-mulher/"
+            imagem: "./midia/clinica-mulher.png",
+            link: "./midia/portfolio/clinica-mulher/"
         },
         {
             titulo: "Sistema IA Landing",
             descricao: "Landing page conceitual sobre inteligência artificial.",
             contexto: "Projeto de estudo para prática de construção de landing pages modernas.",
             solucao: "Layout moderno, hierarquia visual clara e foco em conversão de interesse.",
-            imagem: "midia/ia.png",
-            link: "midia/portfolio/ia/"
+            imagem: "./midia/ia.png",
+            link: "./midia/portfolio/ia/"
         }
     ];
 
