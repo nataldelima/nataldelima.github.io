@@ -1,4 +1,13 @@
+# robots.txt — Natal de Lima
+# https://nataldelima.com.br/robots.txt
+
 User-agent: *
 Allow: /
 
+# Bloquear arquivos desnecessários para SEO
+Disallow: /assets/js/
+Disallow: /assets/css/
+Disallow: /*.json$
+
+# Sitemap
 Sitemap: https://nataldelima.com.br/sitemap.xml

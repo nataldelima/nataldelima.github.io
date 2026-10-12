@@ -16,13 +16,13 @@
    <meta property="og:title" content="Criação de Sites em Campo Grande | Natal Lima">
    <meta property="og:description"
       content="Criação de sites profissionais para empresas e profissionais liberais. Atendimento online para todo o Brasil.">
-   <meta property="og:image" content="./midia/logo.png">
+   <meta property="og:image" content="./assets/img/logo.png">
 
    <!-- Twitter / X Meta Tags -->
    <meta name="twitter:card" content="summary_large_image">
    <meta name="twitter:title" content="Criação de Sites em Campo Grande | Natal Lima">
    <meta name="twitter:description" content="Criação de sites profissionais para empresas e profissionais liberais.">
-   <meta name="twitter:image" content="./midia/logo.png">
+   <meta name="twitter:image" content="./assets/img/logo.png">
 
    <!-- Location Meta Tags -->
    <meta name="geo.region" content="BR">
@@ -39,13 +39,13 @@
 
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-   <link rel="stylesheet" href="./css/style.css">
-   <link rel="shortcut icon" href="./midia/logo.png" type="image/x-icon">
+   <link rel="stylesheet" href="./assets/css/style.css">
+   <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
    <link rel="canonical" href="https://nataldelima.com.br/">
+   <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
 
-   
+
 
 
    <!-- Google tag (gtag.js) -->
@@ -113,7 +113,7 @@
          "sameAs": [
             "https://www.linkedin.com/in/natal-lima/",
             "https://github.com/nataldelima",
-            "https://www.instagram.com/nataldelimasites/"           
+            "https://www.instagram.com/nataldelimasites/"
          ],
          "serviceType":[
          "Criação de Sites",
@@ -151,567 +151,359 @@
 </head>
 
 <body>
-   <!-- Navigation -->
-   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-      <div class="container">
-         <a class="navbar-brand" href="#"><img src="midia/logo.svg" class="img-fluid logo"
-               alt="Logo Natal de Lima Desenvolvedor Web">Natal de Lima</a>
-         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-         </button>
-         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ms-auto">
-               <li class="nav-item">
-                  <a class="nav-link" href="#">Home</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="#servicos">Serviços</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="#como-funciona">Como Funciona</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="#portfolio">Portfólio</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="#beneficios">Por Que Comigo</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="#faq">FAQ</a>
-               </li>
-
-               <li class="nav-item">
-                  <a class="nav-link" href="#contato">Contato</a>
-               </li>
-
-               <li class="nav-item">
-                  <a class="nav-link" href="midia/curriculo.pdf" target="_blank">Currículo</a>
-               </li>
-
-            </ul>
-         </div>
-      </div>
-   </nav>
-
-   <!-- Video Banner -->
-   <header class="video-banner">
-      <video autoplay muted loop playsinline preload="auto" poster="midia/poster-video.jpg">
-         <source src="midia/video-fundo.webm" type="video/webm">
-         <source src="midia/video-fundo.mp4" type="video/mp4">
-         Seu navegador não suporta tag de vídeo
-      </video>
-      <div class="container">
-         <h1 class="display-4">Criação de Sites Profissionais em Campo Grande - MS</h1>
-         <p class="lead">Sou Natal de Lima, desenvolvedor web em Campo Grande especializado em criação de sites
-            institucionais, landing pages e
-            soluções web para empresas e profissionais de todo o Brasil.</p>
-         <a href="#contato" class="btn btn-warning btn-lg">Solicitar Orçamento</a>
+   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+   <header class="site-header">
+      <div class="container nav-wrap">
+         <a class="brand" href="#inicio" aria-label="Natal de Lima - início"><img src="./assets/img/logo.png"
+               class="img-logo"><span class="brand-text"><strong>Natal</strong><b>de Lima</b></span></a>
+         <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false"
+            aria-controls="main-nav"><span></span><span></span><span></span></button>
+         <nav class="main-nav" id="main-nav">
+            <a href="#inicio">Início</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#portfolio">Portfólio</a>
+            <a href="#processo">Como funciona</a>
+            <a href="#faq">FAQ</a>
+            <a class="btn btn-gold nav-cta" data-whatsapp href="#">Solicitar
+               orçamento</a>
+         </nav>
       </div>
    </header>
-
-   <!-- Serviços Section -->
-   <section id="servicos" class="py-5 bg-light">
-      <div class="container">
-
-         <div class="text-center mb-5">
-            <h2>Serviços de Criação de Sites</h2>
-            <p class="lead">
-               Soluções digitais para ajudar sua empresa a conquistar mais clientes e fortalecer sua presença online.
-            </p>
-         </div>
-
-         <div class="row g-4">
-
-            <!-- Landing Page -->
-            <div class="col-lg-4 col-md-6">
-               <div class="card h-100 shadow-sm border-0">
-                  <div class="card-body d-flex flex-column">
-
-                     <h3 class="card-title text-center mb-3">
-                        Landing Page
-                     </h3>
-
-                     <p class="text-center">
-                        Ideal para divulgação de serviços, campanhas e captação de clientes.
-                     </p>
-
-                     <ul class="list-unstyled mt-3">
-                        <li>✔ Página única profissional</li>
-                        <li>✔ WhatsApp integrado</li>
-                        <li>✔ Formulário de contato</li>
-                        <li>✔ Google Maps</li>
-                        <li>✔ Responsiva para celular</li>
-                        <li>✔ SEO básico</li>
-                        <li>✔ Domínio e hospedagem inclusos por 1 ano</li>
-                     </ul>
-
-                     <div class="mt-auto text-center">
-                        <p class="text-muted mb-1">
-                           Preço de tabela
-                        </p>
-                        <del>R$ 999</del>
-
-
-                        <p class="fw-bold text mt-2">
-                           Oferta de lançamento:
-                        </p>
-                        <h4 class="fw-bold text-warning">
-                           R$ 749
-                        </h4>
-
-                        <a href="#contato" class="btn btn-warning mt-3">
-                           Solicitar Orçamento
-                        </a>
-                     </div>
-
-                  </div>
-               </div>
-            </div>
-
-            <!-- Site Institucional -->
-            <div class="col-lg-4 col-md-6">
-               <div class="card h-100 shadow border-warning border-3">
-
-                  <div class="card-body d-flex flex-column">
-                     <span class="badge bg-warning text-dark mb-3">Mais Procurado</span>
-
-                     <h3 class="card-title text-center mb-3">
-                        Site Institucional
-                     </h3>
-
-                     <p class="text-center">
-                        Para empresas que desejam apresentar seus serviços de forma profissional.
-                     </p>
-
-                     <ul class="list-unstyled mt-3">
-                        <li>✔ Até 5 páginas</li>
-                        <li>✔ WhatsApp integrado</li>
-                        <li>✔ Google Maps</li>
-                        <li>✔ Formulários personalizados</li>
-                        <li>✔ SEO básico</li>
-                        <li>✔ Domínio e hospedagem inclusos por 1 ano</li>
-                     </ul>
-
-                     <div class="mt-auto text-center">
-                        <p class="text-muted mb-1">
-                           Preço de tabela
-                        </p>
-                        <del>R$ 1.990</del>
-
-
-                        <p class="fw-bold text mt-2">
-                           Oferta de lançamento:
-                        </p>
-                        <h4 class="fw-bold text-warning">
-                           R$ 1.499
-                        </h4>
-
-                        <a href="#contato" class="btn btn-warning mt-3">
-                           Solicitar Orçamento
-                        </a>
-                     </div>
-
-                  </div>
-               </div>
-            </div>
-
-            <!-- Modernização -->
-            <div class="col-lg-4 col-md-12">
-               <div class="card h-100 shadow-sm border-0">
-
-                  <div class="card-body d-flex flex-column">
-
-                     <h3 class="card-title text-center mb-3">
-                        Modernização de Sites
-                     </h3>
-
-                     <p class="text-center">
-                        Atualização de sites antigos para uma aparência moderna e profissional.
-                     </p>
-
-                     <ul class="list-unstyled mt-3">
-                        <li>✔ Novo visual</li>
-                        <li>✔ Melhor desempenho</li>
-                        <li>✔ Melhor experiência mobile</li>
-                        <li>✔ Correções técnicas</li>
-                        <li>✔ Ajustes de SEO</li>
-                     </ul>
-
-                     <div class="mt-auto text-center">
-                        <h4 class="fw-bold text-warning">
-                           Sob consulta
-                        </h4>
-
-                        <a href="#contato" class="btn btn-warning mt-3">
-                           Solicitar Orçamento
-                        </a>
-                     </div>
-
-                  </div>
-               </div>
-            </div>
-
-         </div>
-
-         <div class="text-center mt-5">
-            <small class="text-light">
-               Os valores apresentados são referências iniciais e podem variar conforme a complexidade e os recursos
-               necessários para cada projeto.
-            </small>
-         </div>
-
-      </div>
-   </section>
-
-   <!-- Como Funciona Section-->
-   <section id="como-funciona" class="py-5 bg-dark">
-      <div class="container">
-
-         <h2 class="text-center mb-5">Como funciona</h2>
-
-         <div class="row g-4 justify-content-center">
-
-            <div class="col-md-3">
-               <div class="step-card text-center p-4 h-100">
-                  <div class="step-number">1</div>
-                  <i class="bi bi-chat-dots display-6 text-warning"></i>
-                  <h5 class="mt-3">Conversa Inicial</h5>
-                  <p>Entendo suas necessidades e objetivos.</p>
-               </div>
-            </div>
-
-            <div class="col-md-3">
-               <div class="step-card text-center p-4 h-100">
-                  <div class="step-number">2</div>
-                  <i class="bi bi-diagram-3 display-6 text-warning"></i>
-                  <h5 class="mt-3">Planejamento</h5>
-                  <p>Definimos estrutura, layout e conteúdo.</p>
-               </div>
-            </div>
-
-            <div class="col-md-3">
-               <div class="step-card text-center p-4 h-100">
-                  <div class="step-number">3</div>
-                  <i class="bi bi-code-slash display-6 text-warning"></i>
-                  <h5 class="mt-3">Desenvolvimento</h5>
-                  <p>Crio o site com foco em performance e design.</p>
-               </div>
-            </div>
-
-            <div class="col-md-3">
-               <div class="step-card text-center p-4 h-100">
-                  <div class="step-number">4</div>
-                  <i class="bi bi-rocket-takeoff display-6 text-warning"></i>
-                  <h5 class="mt-3">Publicação</h5>
-                  <p>Seu site vai ao ar pronto para captar clientes.</p>
-               </div>
-            </div>
-
-         </div>
-      </div>
-   </section>
-
-   <!-- Portfólio Section -->
-   <section id="portfolio" class="bg-light pt-5">
-      <div class="container py-5">
-         <h2 class="text-center text-dark mb-5">Portfólio</h2>
-
-         <!-- Swiper container -->
-         <div class="swiper portfolioSwiper">
-            <div class="swiper-wrapper" id="portfolioWrapper">
-               <!-- Slides serão injetados via JavaScript -->
-            </div>
-
-            <!-- Controles -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-pagination"></div>
-         </div>
-      </div>
-   </section>
-
-   <!-- Benefícios Section -->
-
-   <section id="beneficios" class="py-5 bg-dark">
-      <div class="container">
-
-         <h2 class="text-center mb-5">Por que trabalhar comigo?</h2>
-
-         <div class="row g-4">
-
-            <div class="col-md-3">
-               <div class="card h-100 text-center">
-                  <div class="card-body">
-                     <h3 class="display-6 mb-3"><i class="bi bi-mortarboard-fill"></i></h3>
-                     <p>Formado em Análise e Desenvolvimento de Sistemas</p>
-                  </div>
-               </div>
-            </div>
-
-            <div class="col-md-3">
-               <div class="card h-100 text-center">
-                  <div class="card-body">
-                     <h3 class="display-6 mb-3"><i class="bi bi-phone"></i></h3>
-                     <p>Sites responsivos para celular e computador</p>
-                  </div>
-               </div>
-            </div>
-
-            <div class="col-md-3">
-               <div class="card h-100 text-center">
-                  <div class="card-body">
-                     <h3 class="display-6 mb-3"><i class="bi bi-globe2"></i></h3>
-                     <p>Atendimento para todo o Brasil</p>
-                  </div>
-               </div>
-            </div>
-
-            <div class="col-md-3">
-               <div class="card h-100 text-center">
-                  <div class="card-body">
-                     <h3 class="display-6 mb-3"><i class="bi bi-hand-thumbs-up"></i></h3>
-                     <p>Acompanhamento durante todo o projeto</p>
-                  </div>
-               </div>
+   <main id="conteudo">
+      <section class="hero dark-section" id="inicio">
+         <div class="hero-image"></div>
+         <div class="hero-shade"></div>
+         <div class="container hero-content">
+            <div class="hero-copy">
+               <span class="eyebrow gold">Natal de Lima</span>
+               <h1>Criação de Sites<br>e <span>Landing Pages</span></h1>
+               <p class="hero-subtitle">Seu negócio merece uma presença profissional na internet.</p>
+               <p class="hero-description">Desenvolvo sites e landing pages responsivas para empresas e profissionais
+                  que
+                  querem apresentar seus serviços, fortalecer sua marca e transformar visitantes em novos contatos.</p>
+               <div class="hero-actions"><a class="btn btn-gold" data-whatsapp href="#">Solicitar orçamento</a><a
+                     class="btn btn-outline-light" href="#portfolio">Ver projetos</a></div>
+               <ul class="trust-list">
+                  <li>Design profissional</li>
+                  <li>Responsivo</li>
+                  <li>Integração com WhatsApp</li>
+                  <li>SEO inicial</li>
+               </ul>
             </div>
          </div>
+      </section>
 
-      </div>
-   </section>
+      <section class="section about-section" id="sobre">
+         <div class="container about-grid">
 
-   <section id="cta-final" class="py-5 bg-warning">
-      <div class="container text-center">
-
-         <h2 class="text-dark">
-            Pronto para ter um site profissional?
-         </h2>
-
-         <p class="text-dark">
-            Solicite um orçamento sem compromisso e descubra como sua empresa pode conquistar mais clientes pela
-            internet.
-         </p>
-
-         <a href="#contato" class="btn btn-dark btn-lg">
-            Solicitar Orçamento
-         </a>
-
-      </div>
-   </section>
-
-   <section id="faq" class="py-5 bg-light">
-      <div class="container">
-
-         <h2 class="text-center text-dark mb-5">
-            Perguntas Frequentes
-         </h2>
-
-         <div class="accordion" id="faqAccordion">
-
-            <!-- Item 1 -->
-            <div class="accordion-item">
-               <h2 class="accordion-header">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                     Quanto custa um site?
-                  </button>
-               </h2>
-
-               <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-
-                  <div class="accordion-body">
-                     O valor depende da quantidade de páginas, recursos e funcionalidades desejadas. Atualmente
-                     desenvolvo
-                     Landing Pages a partir de R$ 749 e Sites Institucionais a partir de R$ 1.499.
-                  </div>
-
-               </div>
-            </div>
-
-            <!-- Item 2 -->
-            <div class="accordion-item">
-               <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                     data-bs-target="#faq2">
-                     Em quanto tempo o site fica pronto?
-                  </button>
-               </h2>
-
-               <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                  <div class="accordion-body">
-                     O prazo varia conforme a complexidade do projeto. Em média, Landing Pages levam entre 7 e 15 dias e
-                     Sites Institucionais entre 15 e 30 dias.
-                  </div>
-
-               </div>
-            </div>
-
-            <!-- Item 3 -->
-            <div class="accordion-item">
-               <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                     data-bs-target="#faq3">
-                     Preciso fornecer todo o conteúdo?
-                  </button>
-               </h2>
-
-               <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-
-                  <div class="accordion-body">
-                     Você pode fornecer textos e imagens, mas também posso orientar na organização do conteúdo para que
-                     o
-                     site fique mais profissional e eficiente.
-                  </div>
-
-               </div>
-            </div>
-
-            <!-- Item 4 -->
-            <div class="accordion-item">
-               <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                     data-bs-target="#faq4">
-                     O site funciona em celular?
-                  </button>
-               </h2>
-
-               <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-
-                  <div class="accordion-body">
-                     Sim. Todos os projetos são desenvolvidos com design responsivo para funcionar corretamente em
-                     celulares, tablets e computadores.
-                  </div>
-
-               </div>
-            </div>
-
-            <!-- Item 5 -->
-            <div class="accordion-item">
-               <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                     data-bs-target="#faq5">
-                     O site aparece no Google?
-                  </button>
-               </h2>
-
-               <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-
-                  <div class="accordion-body">
-                     Sim. Os sites são entregues com configurações básicas de SEO para facilitar a indexação pelos
-                     mecanismos de busca.
-                  </div>
-
-               </div>
-            </div>
-
-            <!-- Item 6 -->
-            <div class="accordion-item">
-               <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                     data-bs-target="#faq6">
-                     Você atende apenas Campo Grande?
-                  </button>
-               </h2>
-
-               <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-
-                  <div class="accordion-body">
-                     Não. O atendimento é realizado online e posso desenvolver projetos para clientes de qualquer cidade
-                     do Brasil.
-                  </div>
-
-               </div>
-            </div>
-
-         </div>
-
-      </div>
-   </section>
-
-   <!-- Contato Section -->
-   <section id="contato" class="py-5 bg-dark">
-      <div class="container">
-         <h2 class="text-center">Solicite seu orçamento gratuito</h2>
-         <p class="text-center mb-4">Sem compromisso • Resposta em até 24h • Atendimento direto comigo</p>
-         <div class="row">
-            <div class="col-md-8 mx-auto google-form-container form">
-               <form id="form" onsubmit="sendWhatsAppMessage('form'); return false;">
-                  <div class="mb-3">
-                     <label for="name" class="form-label">Nome <sup>*</sup></label>
-                     <input type="text" class="form-control" id="name" required>
-                  </div>
-                  <div class="mb-3">
-                     <label for="email" class="form-label">Email <sup>*</sup></label>
-                     <input type="email" class="form-control" id="email" required>
-                  </div>
-                  <div class="mb-3">
-                     <label for="phone" class="form-label">Telefone <sup>*</sup></label>
-                     <input type="tel" class="form-control" id="phone" required>
-                  </div>
-                  <div class="mb-3">
-                     <label for="message" class="form-label">Mensagem</label>
-                     <textarea class="form-control" id="message" rows="3"></textarea>
-                  </div>
-                  <div class="alert"></div>
-                  <button type="submit" class="btn btn-warning">Enviar Mensagem</button>
-               </form>
-
-            </div>
-            <div class="col-md-4 mx-auto text-end">
-
-               <p class="social-media">
-                  <img src="midia/whatsapp_claro.png" data-hover="midia/whatsapp_dourado.png"
-                     onclick="sendWhatsAppMessage('btn')" title="Whatsapp">
-                  <a href="https://www.instagram.com/nataldelimasites/" target="_blank">
-                     <img src="midia/instagram_claro.png" data-hover="midia/instagram_dourado.png"
-                        title="Instagram"></a>
-                  <a href="https://www.facebook.com/nataldelimasites/" target="_blank">
-                     <img src="midia/facebook_claro.png" data-hover="midia/facebook_dourado.png" title="Facebook"></a>
-                  <a href="https://www.linkedin.com/in/natal-lima/" target="_blank">
-                     <img src="midia/linkedin_claro.png" data-hover="midia/linkedin_dourado.png" title="LinkedIn"></a>
-                  <a href="https://github.com/nataldelima" target="_blank">
-                     <img src="midia/github_claro.png" data-hover="midia/github_dourado.png" title="GitHub"></a>
-                  <a href="https://www.youtube.com/@nataldelima" target="_blank">
-                     <img src="midia/youtube_claro.png" data-hover="midia/youtube_dourado.png" title="YouTube"></a>
-                  <a href="https://nataldelima.blogspot.com/" target="_blank">
-                     <img src="midia/blogger_claro.png" data-hover="midia/blogger_dourado.png" title="Blogger"></a>
-                  <a href="https://share.google/bfZDmA7bzSTOe87Kv" target="_blank">
-                     <img src="midia/google_claro.png" data-hover="midia/google_dourado.png"
-                        title="Google Meu Negócio"></a>
-                  </a>
+            <!-- Coluna da Esquerda: Introdução -->
+            <div class="about-intro">
+               <span class="eyebrow">Presença digital</span>
+               <h2>Seu negócio está preparado para ser encontrado na internet?</h2>
+               <p>Hoje, antes de entrar em contato com uma empresa ou profissional, muitas pessoas pesquisam na internet
+                  para conhecer seus serviços, verificar informações e avaliar se aquele negócio transmite confiança.
                </p>
+               <p>Um site profissional pode ser o primeiro contato entre sua empresa e um potencial cliente. Por isso,
+                  desenvolvo páginas pensadas para apresentar seu negócio com clareza, credibilidade e uma experiência
+                  agradável em qualquer dispositivo.</p>
+            </div>
 
+            <!-- Coluna da Direita: Detalhes e Lista -->
+            <div class="about-details">
+               <div class="about-detail-heading">
+                  <h3>Um site pensado para o seu negócio</h3>
+                  <p>Informação organizada, navegação simples e contato facilitado.</p>
+               </div>
+
+               <div class="feature-list">
+                  <div class="feature"><span>▧</span>Design profissional e responsivo</div>
+                  <div class="feature"><span>▯</span>Otimização para dispositivos móveis</div>
+                  <div class="feature"><span>⌕</span>Navegação simples e intuitiva</div>
+                  <div class="feature"><span>◷</span>Publicação e configuração do site</div>
+                  <div class="feature"><span>◉</span>Integração com WhatsApp</div>
+                  <div class="feature"><span>⌖</span>Orientação durante todo o projeto</div>
+                  <div class="feature"><span>✉</span>Formulários de contato</div>
+                  <div class="feature"><span>⌁</span>Estrutura preparada para SEO</div>
+               </div>
             </div>
 
          </div>
+      </section>
+
+      <section class="section services-section dark-section" id="servicos">
+         <div class="container">
+            <div class="section-kicker"><span class="eyebrow gold">O que eu posso criar para você</span>
+               <h2>Soluções digitais para apresentar o seu negócio</h2>
+            </div>
+            <div class="service-grid">
+               <article class="service-card"><span class="service-icon">◎</span>
+                  <h3>Sites profissionais</h3>
+                  <p>Sites institucionais para empresas, profissionais liberais e prestadores de serviços que precisam
+                     apresentar sua marca, serviços e formas de contato.</p>
+                  <p class="ideal"><b>Ideal para:</b> empresas, clínicas, profissionais liberais e pequenos negócios.
+                  </p><a class="btn btn-gold btn-small" data-whatsapp
+                     data-message="Olá, Natal! Tenho interesse em criar um site profissional." href="#">Quero criar meu
+                     site</a>
+               </article>
+               <article class="service-card service-featured"><span class="service-icon">▣</span>
+                  <h3>Landing Pages</h3>
+                  <p>Páginas focadas em uma oferta, serviço ou campanha, desenvolvidas para apresentar uma proposta de
+                     forma objetiva e incentivar o visitante a entrar em contato.</p>
+                  <p class="ideal"><b>Ideal para:</b> campanhas, anúncios, divulgação de serviços e captação de leads.
+                  </p>
+                  <a class="btn btn-gold btn-small" data-whatsapp
+                     data-message="Olá, Natal! Tenho interesse em criar uma landing page." href="#">Criar minha Landing
+                     Page</a>
+               </article>
+               <article class="service-card"><span class="service-icon">⚙</span>
+                  <h3>Sites personalizados</h3>
+                  <p>Projetos com funcionalidades específicas, integrações, formulários e outras necessidades que vão
+                     além
+                     de um site institucional.</p>
+                  <p class="ideal"><b>Ideal para:</b> projetos que precisam de uma solução sob medida.</p><a
+                     class="btn btn-gold btn-small" data-whatsapp
+                     data-message="Olá, Natal! Quero conversar sobre um projeto de site personalizado." href="#">Falar
+                     sobre meu projeto</a>
+               </article>
+            </div>
+         </div>
+      </section>
+
+      <section class="section portfolio-section" id="portfolio">
+         <div class="container">
+            <div class="section-heading-row">
+               <div><span class="eyebrow">Projetos desenvolvidos</span>
+                  <h2>Trabalhos que já saíram do papel</h2>
+                  <p>Cada projeto começa entendendo o negócio, o público e o objetivo da página.</p>
+               </div><a class="btn btn-outline-dark" href="projetos.html" rel="noopener">Ver todos os
+                  projetos</a>
+            </div>
+            <div class="portfolio-grid">
+               <article class="project-card"><a class="project-image studio-image"
+                     href="https://nataldelima.github.io/studiobiajordao/" target="_blank" rel="noopener"><span
+                        class="project-brand">Studio<br><b>Bia Jordão</b></span><small>BELEZA &amp; ESTÉTICA</small></a>
+                  <div class="project-body">
+                     <h3>Studio Bia Jordão</h3>
+                     <p>Site desenvolvido para apresentar serviços de beleza e estética, facilitar o contato pelo
+                        WhatsApp
+                        e fortalecer a presença da marca.</p><a href="https://nataldelima.github.io/studiobiajordao/"
+                        target="_blank" rel="noopener">Ver projeto →</a>
+                  </div>
+               </article>
+               <article class="project-card"><a class="project-image psychology-image"
+                     href="https://nataldelima.github.io/psico/" target="_blank" rel="noopener"><span
+                        class="project-brand">Psicologia</span><small>ACOLHIMENTO &amp; CUIDADO</small></a>
+                  <div class="project-body">
+                     <h3>Landing Page de Psicologia</h3>
+                     <p>Landing page organizada para apresentar serviços, transmitir confiança e facilitar o primeiro
+                        contato.</p><a href="https://nataldelima.github.io/psico/" target="_blank" rel="noopener">Ver
+                        projeto →</a>
+                  </div>
+               </article>
+               <article class="project-card"><a class="project-image beauty-image"
+                     href="https://nataldelima.github.io/bellelza/" target="_blank" rel="noopener"><span
+                        class="project-brand">Bellelza</span><small>ESTÉTICA &amp; BEM-ESTAR</small></a>
+                  <div class="project-body">
+                     <h3>Bellelza</h3>
+                     <p>Projeto desenvolvido para apresentar serviços de estética de forma visual, organizada e adaptada
+                        a
+                        dispositivos móveis.</p><a href="https://nataldelima.github.io/bellelza/" target="_blank"
+                        rel="noopener">Ver projeto →</a>
+                  </div>
+               </article>
+            </div>
+         </div>
+      </section>
+
+      <section class="section process-section dark-section" id="processo">
+         <div class="container">
+            <div class="section-heading-row process-heading">
+               <div><span class="eyebrow gold">Como funciona</span>
+                  <h2>Um processo simples, transparente e focado no seu resultado.</h2>
+                  <p>Você acompanha cada etapa, da ideia à publicação.</p>
+               </div>
+            </div>
+            <div class="process-grid">
+               <article class="process-step"><span class="step-number">1</span>
+                  <h3>Conversamos sobre seu projeto</h3>
+                  <p>Você me conta sobre seu negócio, seus serviços e o que espera do site.</p>
+               </article>
+               <article class="process-step"><span class="step-number">2</span>
+                  <h3>Definimos a estrutura</h3>
+                  <p>Organizamos as informações, funcionalidades e objetivos da página.</p>
+               </article>
+               <article class="process-step"><span class="step-number">3</span>
+                  <h3>Desenvolvo o projeto</h3>
+                  <p>Crio a interface e desenvolvo pensando em responsividade, desempenho e experiência do usuário.</p>
+               </article>
+               <article class="process-step"><span class="step-number">4</span>
+                  <h3>Você acompanha e aprova</h3>
+                  <p>Faço os ajustes necessários com base no seu feedback antes da publicação.</p>
+               </article>
+               <article class="process-step"><span class="step-number">5</span>
+                  <h3>Seu site entra no ar</h3>
+                  <p>Publicamos o projeto e deixamos tudo pronto para que seus clientes possam acessar.</p>
+               </article>
+            </div>
+         </div>
+      </section>
+
+      <section class="section why-section" id="porque">
+         <div class="container">
+            <div class="why-heading">
+               <h2>Por que ter um site profissional?</h2>
+            </div>
+            <div class="why-grid">
+               <!-- Card 1 -->
+               <div class="why-card">
+                  <div class="why-icon"><i class="bi bi-shield-check"></i></div>
+                  <h3>Mais credibilidade</h3>
+                  <p>Um site bem estruturado ajuda a apresentar seu negócio de maneira profissional e organizada.</p>
+               </div>
+               <!-- Card 2 -->
+               <div class="why-card">
+                  <div class="why-icon"><i class="bi bi-file-earmark-text"></i></div>
+                  <h3>Mais informação</h3>
+                  <p>Seu cliente encontra em um único lugar seus serviços, diferenciais, informações e formas de
+                     contato.</p>
+               </div>
+               <!-- Card 3 -->
+               <div class="why-card">
+                  <div class="why-icon"><i class="bi bi-people"></i></div>
+                  <h3>Mais oportunidades</h3>
+                  <p>Seu site pode receber visitantes vindos do Google, redes sociais, anúncios e indicações.</p>
+               </div>
+               <!-- Card 4 -->
+               <div class="why-card">
+                  <div class="why-icon"><i class="bi bi-clock"></i></div>
+                  <h3>Disponível 24 horas</h3>
+                  <p>Mesmo quando você não está atendendo, seu site continua apresentando sua empresa para quem está
+                     pesquisando.</p>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <section class="device-band dark-section">
+         <div class="device-background"></div>
+         <div class="device-shade"></div>
+         <div class="container device-band-inner">
+
+            <div class="device-copy">
+               <span class="eyebrow gold">Experiência em qualquer tela</span>
+               <h2>Feito para funcionar em qualquer dispositivo</h2>
+               <p>Seu site precisa funcionar bem onde seus clientes estiverem. Por isso, os projetos são desenvolvidos
+                  para oferecer uma boa experiência em computadores, tablets e smartphones.</p>
+
+               <div class="device-types">
+                  <span><i class="bi bi-display"></i><b>Computadores</b></span>
+                  <span><i class="bi bi-tablet"></i><b>Tablets</b></span>
+                  <span><i class="bi bi-phone"></i><b>Smartphones</b></span>
+               </div>
+            </div>
+         </div>
+      </section>
+
+
+      <section class="section faq-section" id="faq">
+         <div class="container">
+            <div class="section-heading-row faq-heading">
+               <div><span class="eyebrow">Perguntas frequentes</span>
+                  <h2>Tire suas dúvidas antes de começar</h2>
+                  <p>Informações sobre processo, prazo, investimento e funcionalidades.</p>
+               </div>
+            </div>
+            <div class="faq-grid">
+               <details>
+                  <summary>Quanto custa criar um site?</summary>
+                  <p>O investimento depende do tipo de projeto, da quantidade de páginas, das funcionalidades e das
+                     necessidades do negócio. Depois de entender seu projeto, apresento uma proposta com escopo e
+                     valores.
+                  </p>
+               </details>
+               <details>
+                  <summary>O site pode ter WhatsApp?</summary>
+                  <p>Sim. Posso integrar o site ao WhatsApp para facilitar o contato dos visitantes com sua empresa.</p>
+               </details>
+               <details>
+                  <summary>Quanto tempo leva para criar um site?</summary>
+                  <p>O prazo depende da complexidade do projeto e da disponibilidade dos conteúdos e informações
+                     necessários para o desenvolvimento.</p>
+               </details>
+               <details>
+                  <summary>Vocês trabalham com SEO?</summary>
+                  <p>Os projetos podem incluir uma estrutura inicial de SEO, com títulos, headings, conteúdo e aspectos
+                     técnicos básicos. Estratégias contínuas podem ser avaliadas separadamente.</p>
+               </details>
+               <details>
+                  <summary>Vocês também criam Landing Pages?</summary>
+                  <p>Sim. Desenvolvo landing pages para divulgação de serviços, campanhas, anúncios e captação de
+                     contatos.
+                  </p>
+               </details>
+               <details>
+                  <summary>Posso acompanhar o desenvolvimento?</summary>
+                  <p>Sim. Você acompanha as etapas combinadas e pode avaliar o projeto antes da publicação.</p>
+               </details>
+               <details>
+                  <summary>O site funciona no celular?</summary>
+                  <p>Sim. Os projetos são desenvolvidos com layout responsivo para diferentes tamanhos de tela.</p>
+               </details>
+               <details>
+                  <summary>E se eu precisar de mudanças depois?</summary>
+                  <p>Alterações e manutenção podem ser combinadas de acordo com a necessidade do projeto.</p>
+               </details>
+            </div>
+         </div>
+      </section>
+
+      <section class="final-cta dark-section" id="contato">
+         <div class="cta-background"></div>
+         <div class="container cta-content"><span class="eyebrow gold">Vamos conversar?</span>
+            <h2>Vamos colocar seu negócio na internet?</h2>
+            <p>Se você precisa de um site profissional ou de uma landing page para divulgar seu serviço, conte um pouco
+               sobre seu projeto.</p><a class="btn btn-gold" data-whatsapp href="#"><i class="bi bi-whatsapp me-2"></i>
+               Solicitar orçamento pelo
+               WhatsApp</a>
+         </div>
+      </section>
+   </main>
+   <footer class="site-footer">
+      <div class="container footer-main"><a class="brand footer-brand" href="#inicio"><img src="./assets/img/logo.png"
+               class="img-logo"><span class="brand-text"><strong>Natal</strong><b>de Lima</b><small>CRIAÇÃO
+                  DE
+                  SITES<br>E LANDING PAGES</small></span></a>
+         <nav class="footer-nav">
+            <a href="#inicio">Início</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#portfolio">Portfólio</a>
+            <a href="#processo">Como funciona</a>
+            <a href="#faq">FAQ</a>
+         </nav>
+         <div class="footer-social">
+            <a data-whatsapp href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            <a data-instagram href="https://www.instagram.com/nataldelimasites/" aria-label="Instagram"
+               target="_blank"><i class="bi bi-instagram"></i></a>
+            <a data-facebook href="https://www.facebook.com/nataldelimasites/" aria-label="Facebook" target="_blank"><i
+                  class="bi bi-facebook"></i></a>
+            <a data-linkedin href="https://www.linkedin.com/in/natal-lima/" aria-label="LinkedIn" target="_blank"><i
+                  class="bi bi-linkedin"></i></a>
+            <a data-github href="https://github.com/nataldelima" aria-label="GitHub" target="_blank"><i
+                  class="bi bi-github"></i></a>
+            <a data-youtube href="https://www.youtube.com/@nataldelima" aria-label="YouTube" target="_blank"><i
+                  class="bi bi-youtube"></i></a>
+            <a data-google href="https://share.google/bfZDmA7bzSTOe87Kv" aria-label="Google" target="_blank"><i
+                  class="bi bi-google"></i></a>
+         </div>
       </div>
-   </section>
-
-   <a href="javascript:void(0)" class="whatsapp-float" onclick="sendWhatsAppMessage('float')">
-      <i class="bi bi-whatsapp"></i>
-   </a>
-
-   <!-- Footer -->
-   <footer class="py-4 bg-dark text-white-50">
-      <div class="container text-center">
-
-         <p>
-            <a href="https://share.google/bfZDmA7bzSTOe87Kv" target="_blank" rel="noopener">
-               Ver Perfil no Google
-            </a>
-         </p>
-
-         <small>
-            © 2024 Natal de Lima - Desenvolvedor Web
-         </small>
-
-      </div>
+      <div class="container footer-bottom"><span>© <span data-year></span> - Natal de Lima. Todos os direitos
+            reservados.</span></div>
    </footer>
-   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"></script>
-   <script src="functions.js"></script>
-
+   <a class="whatsapp-float" data-whatsapp href="#" aria-label="Solicitar orçamento pelo WhatsApp"><i
+         class="bi bi-whatsapp"></i></a>
+   <script src="assets/js/functions.js"></script>
 </body>
 
 </html>
